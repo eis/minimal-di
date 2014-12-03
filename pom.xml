@@ -8,7 +8,7 @@
   <packaging>jar</packaging>
 
   <name>Minimal DI</name>
-  <url>https://github.com/eis/minimal-di</url>
+  <url>http://eis.github.io/minimal-di/</url>
   <description>This is a minimal dependency injection framework.</description>
 
   <issueManagement>
