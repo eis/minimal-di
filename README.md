@@ -7,9 +7,9 @@ Reasoning
 ---------
 
 This was created out of need for simple DI. Guice is 600kt, Weld
-CDI is 3M of files, and Spring is even more. That's not what I needed
- - I needed simple DI system that would just implement the basic features
-and nothing more, with few simple classes. This is it.
+CDI is 3M of files, and Spring is even more. That's not what I
+needed - I needed simple DI system that would just implement the
+basic features and nothing more, with few simple classes. This is it.
 
 It currently weighs 16kt as a .jar, which is simple enough.
 
