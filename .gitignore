@@ -1,0 +1,15 @@
+# Maven
+target/
+
+# Eclipse
+.settings/
+.classpath
+.project
+
+# IntelliJ IDEA files
+.idea
+*.iml
+
+# Some random others
+*.txt
+travis/
