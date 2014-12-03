@@ -2,7 +2,6 @@ language: java
 
 jdk:
   - oraclejdk7
-  - oraclejdk8
 
 install: mvn clean site -DbuildNumber=${TRAVIS_BUILD_NUMBER}
 
