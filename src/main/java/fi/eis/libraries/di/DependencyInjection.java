@@ -1,5 +1,6 @@
 package fi.eis.libraries.di;
 
+import java.io.File;
 import java.util.List;
 
 /**
@@ -27,5 +28,8 @@ public class DependencyInjection {
 
     public static Context deploymentUnitContext(Class sourceClass) {
         return new DeploymentUnitContext(sourceClass);
+    }
+    public static Context deploymentUnitContext(File jarFile) {
+        return new DeploymentUnitContext(jarFile);
     }
 }

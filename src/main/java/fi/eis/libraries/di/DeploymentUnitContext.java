@@ -8,9 +8,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Enumeration;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Vector;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipException;
 import java.util.zip.ZipFile;
@@ -39,27 +37,25 @@ public class DeploymentUnitContext extends Context {
     public static final String JAR_URL_SEPARATOR = "!/";
     public static final String CLASS_FILE_EXTENSION = ".class";
 
-    private final Class sourceClass;
-    boolean firstTime = true;
 
     public DeploymentUnitContext(Class sourceClass) {
         super();
-        this.sourceClass = sourceClass;
+        // a jar or a directory path of whoever initiated us
+        initFrom(handle(sourceClass.getProtectionDomain().getCodeSource().getLocation()));
     }
 
+    public DeploymentUnitContext(File sourceJar) {
+        super();
+        initFrom(handle(sourceJar));
+    }
+    
     public <T> T get(Class<T> type) {
-        if (firstTime) {
-            initClassList();
-            firstTime = false;
-        }
         return super.get(type);
     }
 
-    private void initClassList() {
-        // a jar or a directory path of whoever initiated us
-        URL currenturl = sourceClass.getProtectionDomain().getCodeSource().getLocation();
-        List<Class> classes = handle(currenturl).getClasses();
-        System.out.println("got classes " + classes);
+    private void initFrom(BeanArchiveBuilder builder) {
+        List<Class> classes = builder.getClasses();
+        log_debugv("got classes " + classes);
         super.modules.add(DependencyInjection.classes(classes));
     }
 
@@ -67,15 +63,11 @@ public class DeploymentUnitContext extends Context {
         return handle(new File(url.getPath()));
     }
 
-    public BeanArchiveBuilder handle(String path) {
-
-        return handle(new File(path));
-    }
-
     public BeanArchiveBuilder handle(File file) {
 
         if (!file.exists()) {
-            return null;
+            throw new IllegalArgumentException(
+                    String.format("Doesn't exist: %s", file));
         }
 
         BeanArchiveBuilder builder = new BeanArchiveBuilder();
@@ -123,7 +115,8 @@ public class DeploymentUnitContext extends Context {
         File[] files = entry.getFile().listFiles();
 
         if (files == null) {
-            log_warnv("Unable to list directory files: {0}", entry.getFile());
+            throw new IllegalArgumentException(
+                    String.format("Unable to list directory files: %s", entry.getFile()));
         }
         String parentPath = entry.getName();
 
@@ -143,10 +136,6 @@ public class DeploymentUnitContext extends Context {
             }
             entry.setPath(parentPath);
         }
-    }
-
-    private void log_warnv(String s, Object... args) {
-        System.out.println(s + " - " + Arrays.asList(args));
     }
 
     private void log_debugv(String s, Object... args) {
