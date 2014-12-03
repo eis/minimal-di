@@ -44,7 +44,7 @@ public class CurrentApp {
 and fire up the system using either all classes in the deployment unit:
 
 ```java
-public static void(String args[]) {
+public static void main(String args[]) {
     Context diContext = DependencyInjection.deploymentUnitContext(CurrentApp.class);
     CurrentApp app = diContext.get(CurrentApp.class);
     app.run();
@@ -54,7 +54,7 @@ public static void(String args[]) {
 or listing all implementation classes part of DI:
 
 ```java
-public static void(String args[]) {
+public static void main(String args[]) {
     Module module = DependencyInjection.classes(CurrentApp.class, ClassImplementingDependency.class);
     Context diContext = DependencyInjection.context(module);
     CurrentApp app = diContext.get(CurrentApp.class);
