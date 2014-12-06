@@ -21,19 +21,19 @@
     <url>https://travis-ci.org/eis/minimal-di</url>
   </ciManagement>
 
-	<licenses>
-		<license>
-			<name>Apache License</name>
-			<url>http://www.apache.org/licenses/LICENSE-2.0</url>
-			<distribution>repo</distribution>
-		</license>
-	</licenses>
+    <licenses>
+        <license>
+            <name>Apache License</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
 
-	<scm>
-		<url>https://github.com/eis/minimal-di</url>
-		<connection>scm:git:git://github.com/eis/minimal-di.git</connection>
-		<developerConnection>scm:git:git@github.com:eis/minimal-di.git</developerConnection>
-	</scm>
+    <scm>
+        <url>https://github.com/eis/minimal-di</url>
+        <connection>scm:git:git://github.com/eis/minimal-di.git</connection>
+        <developerConnection>scm:git:git@github.com:eis/minimal-di.git</developerConnection>
+    </scm>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
