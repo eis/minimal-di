@@ -47,7 +47,7 @@
                                                                                                                                                                                                                                                                                             <li class="collapsed">
                           <a href="project-info.html" title="Project Information">Project Information</a>
                   </li>
-                                                                                                <li class="expanded">
+                                                                                                                  <li class="expanded">
                           <a href="project-reports.html" title="Project Reports">Project Reports</a>
                     <ul>
                       <li class="none">
@@ -56,6 +56,9 @@
                       <li class="none">
             <strong>JavaNCSS Report</strong>
           </li>
+                      <li class="none">
+                          <a href="findbugs.html" title="FindBugs">FindBugs</a>
+            </li>
               </ul>
         </li>
           </ul>
@@ -174,17 +177,17 @@
 <td>0</td>
 <td>1</td></tr>
 <tr class="b">
-<td>fi.eis.libraries.di.DependencyInjection</td>
-<td>14</td>
-<td>5</td>
-<td>0</td>
-<td>1</td></tr>
-<tr class="a">
 <td>fi.eis.libraries.di.SimpleLogger</td>
 <td>16</td>
 <td>5</td>
 <td>0</td>
 <td>0</td></tr>
+<tr class="a">
+<td>fi.eis.libraries.di.DependencyInjection</td>
+<td>14</td>
+<td>5</td>
+<td>0</td>
+<td>1</td></tr>
 <tr class="b">
 <td>fi.eis.libraries.di.Context</td>
 <td>32</td>
@@ -221,24 +224,24 @@
 <td>6</td>
 <td>0</td></tr>
 <tr class="a">
-<td>fi.eis.libraries.di.Context.resolveProperties(T)</td>
-<td>13</td>
-<td>6</td>
-<td>0</td></tr>
-<tr class="b">
 <td>fi.eis.libraries.di.Module.get(T)</td>
 <td>13</td>
 <td>8</td>
 <td>0</td></tr>
-<tr class="a">
-<td>fi.eis.libraries.di.DeploymentUnitContext.handle(File)</td>
-<td>12</td>
+<tr class="b">
+<td>fi.eis.libraries.di.Context.resolveProperties(T)</td>
+<td>13</td>
 <td>6</td>
 <td>0</td></tr>
-<tr class="b">
+<tr class="a">
 <td>fi.eis.libraries.di.Context.get(T)</td>
 <td>12</td>
 <td>5</td>
+<td>0</td></tr>
+<tr class="b">
+<td>fi.eis.libraries.di.DeploymentUnitContext.handle(File)</td>
+<td>12</td>
+<td>6</td>
 <td>0</td></tr>
 <tr class="a">
 <td>fi.eis.libraries.di.Module.newInstance(Class)</td>
@@ -251,14 +254,14 @@
 <td>4</td>
 <td>0</td></tr>
 <tr class="a">
-<td>fi.eis.libraries.di.DeploymentUnitContext.BeanArchiveBuilder.addClass(String)</td>
-<td>7</td>
-<td>5</td>
-<td>0</td></tr>
-<tr class="b">
 <td>fi.eis.libraries.di.Module.has(Class)</td>
 <td>7</td>
 <td>4</td>
+<td>0</td></tr>
+<tr class="b">
+<td>fi.eis.libraries.di.DeploymentUnitContext.BeanArchiveBuilder.addClass(String)</td>
+<td>7</td>
+<td>5</td>
 <td>0</td></tr>
 <tr class="a">
 <td>fi.eis.libraries.di.Module.getImplClassFor(Class)</td>
@@ -279,6 +282,26 @@
 <td>fi.eis.libraries.di.DeploymentUnitContext.initFrom(BeanArchiveBuilder)</td>
 <td>4</td>
 <td>1</td>
+<td>0</td></tr>
+<tr class="a">
+<td>fi.eis.libraries.di.Module.Module(Class)</td>
+<td>3</td>
+<td>2</td>
+<td>0</td></tr>
+<tr class="b">
+<td>fi.eis.libraries.di.Module.Module(Class)</td>
+<td>3</td>
+<td>2</td>
+<td>0</td></tr>
+<tr class="a">
+<td>fi.eis.libraries.di.SimpleLogger.debugPrint(String)</td>
+<td>3</td>
+<td>2</td>
+<td>0</td></tr>
+<tr class="b">
+<td>fi.eis.libraries.di.SimpleLogger.debugPrint(String,Object)</td>
+<td>3</td>
+<td>2</td>
 <td>0</td></tr>
 <tr class="a">
 <td>fi.eis.libraries.di.DeploymentUnitContext.DeploymentUnitContext(Class)</td>
@@ -311,57 +334,37 @@
 <td>1</td>
 <td>0</td></tr>
 <tr class="a">
-<td>fi.eis.libraries.di.Module.Module(Class)</td>
-<td>3</td>
-<td>2</td>
-<td>0</td></tr>
-<tr class="b">
-<td>fi.eis.libraries.di.Module.Module(Class)</td>
-<td>3</td>
-<td>2</td>
-<td>0</td></tr>
-<tr class="a">
-<td>fi.eis.libraries.di.SimpleLogger.debugPrint(String)</td>
-<td>3</td>
-<td>2</td>
-<td>0</td></tr>
-<tr class="b">
-<td>fi.eis.libraries.di.SimpleLogger.debugPrint(String,Object)</td>
-<td>3</td>
-<td>2</td>
-<td>0</td></tr>
-<tr class="a">
-<td>fi.eis.libraries.di.DeploymentUnitContext.setDebug(boolean)</td>
+<td>fi.eis.libraries.di.Module.setDebug(boolean)</td>
 <td>2</td>
 <td>1</td>
 <td>0</td></tr>
 <tr class="b">
-<td>fi.eis.libraries.di.DeploymentUnitContext.get(T)</td>
+<td>fi.eis.libraries.di.Module.add(Module)</td>
 <td>2</td>
 <td>1</td>
 <td>0</td></tr>
 <tr class="a">
-<td>fi.eis.libraries.di.DeploymentUnitContext.handle(URL)</td>
+<td>fi.eis.libraries.di.Context.Context(Module)</td>
 <td>2</td>
 <td>1</td>
 <td>0</td></tr>
 <tr class="b">
-<td>fi.eis.libraries.di.DeploymentUnitContext.isClass(String)</td>
+<td>fi.eis.libraries.di.Context.setDebug(boolean)</td>
 <td>2</td>
 <td>1</td>
 <td>0</td></tr>
 <tr class="a">
-<td>fi.eis.libraries.di.DeploymentUnitContext.filenameToClassname(String)</td>
+<td>fi.eis.libraries.di.SimpleLogger.SimpleLogger(Class)</td>
 <td>2</td>
 <td>1</td>
 <td>0</td></tr>
 <tr class="b">
-<td>fi.eis.libraries.di.DeploymentUnitContext.BeanArchiveBuilder.getClasses()</td>
+<td>fi.eis.libraries.di.SimpleLogger.setDebug(boolean)</td>
 <td>2</td>
 <td>1</td>
 <td>0</td></tr>
 <tr class="a">
-<td>fi.eis.libraries.di.DeploymentUnitContext.ZipFileEntry.ZipFileEntry(String)</td>
+<td>fi.eis.libraries.di.SimpleLogger.setPrintOut(PrintStream)</td>
 <td>2</td>
 <td>1</td>
 <td>0</td></tr></table>
