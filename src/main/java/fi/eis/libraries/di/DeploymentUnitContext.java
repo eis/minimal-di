@@ -34,12 +34,28 @@ public class DeploymentUnitContext extends Context {
     public DeploymentUnitContext(Class sourceClass) {
         super();
         // a jar or a directory path of whoever initiated us
-        initFrom(handle(sourceClass.getProtectionDomain().getCodeSource().getLocation()));
+        initUsing(sourceClass);
+    }
+
+    public DeploymentUnitContext(Class sourceClass, boolean debug) {
+        super();
+        setDebug(debug);
+        initUsing(sourceClass);
     }
 
     public DeploymentUnitContext(File sourceJar) {
         super();
         initFrom(handle(sourceJar));
+    }
+
+    public DeploymentUnitContext(File sourceJar, boolean debugFlag) {
+        super();
+        setDebug(debugFlag);
+        initFrom(handle(sourceJar));
+    }
+
+    private void initUsing(Class sourceClass) {
+        initFrom(handle(sourceClass.getProtectionDomain().getCodeSource().getLocation()));
     }
 
     public <T> T get(Class<T> type) {

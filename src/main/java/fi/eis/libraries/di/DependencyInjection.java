@@ -32,4 +32,10 @@ public class DependencyInjection {
     public static Context deploymentUnitContext(File jarFile) {
         return new DeploymentUnitContext(jarFile);
     }
+    public static Context deploymentUnitContext(Class sourceClass, boolean debugFlag) {
+        return new DeploymentUnitContext(sourceClass, debugFlag);
+    }
+    public static Context deploymentUnitContext(File jarFile, boolean debugFlag) {
+        return new DeploymentUnitContext(jarFile, debugFlag);
+    }
 }
