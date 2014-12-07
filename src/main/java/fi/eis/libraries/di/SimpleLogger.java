@@ -16,8 +16,8 @@ public class SimpleLogger {
     }
     public void debugPrint(String message) {
         if (this.debugFlag) {
-            printStream.printf(String.format("%s DEBUG %s: %s%n",
-                    new Date(), className, message));
+            printStream.printf("%s DEBUG %s: %s%n",
+                    new Date(), className, message);
         }
     }
     public void debugPrint(String message, Object... parameters) {
