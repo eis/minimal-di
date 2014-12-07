@@ -1,10 +1,10 @@
 #!/bin/bash
+export PROJECT_GIT_ID=minimal-di
 
 if [ "$TRAVIS_JDK_VERSION" == "oraclejdk7" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_BRANCH" == "master" ]; then
 
   echo -e "Publishing...\n"
 
-  PROJECT_GIT_ID=minimal-di
   echo -n $id_rsa_{00..30} >> ~/.ssh/id_rsa_base64
   base64 --decode --ignore-garbage ~/.ssh/id_rsa_base64 > ~/.ssh/id_rsa
   chmod 600 ~/.ssh/id_rsa
