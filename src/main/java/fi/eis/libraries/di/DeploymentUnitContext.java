@@ -6,7 +6,6 @@ import java.lang.reflect.Modifier;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.zip.ZipEntry;
@@ -28,17 +27,9 @@ import java.util.zip.ZipFile;
  * @author eis
  */
 public class DeploymentUnitContext extends Context {
-    public static final String PROCOTOL_FILE = "file";
-    public static final String PROCOTOL_JAR = "jar";
-    public static final String PROCOTOL_HTTP = "http";
-    public static final String PROCOTOL_HTTPS = "https";
-    public static final String PROTOCOL_FILE_PART = PROCOTOL_FILE + ":";
-    // according to JarURLConnection api doc, the separator is "!/"
-    public static final String JAR_URL_SEPARATOR = "!/";
-    public static final String CLASS_FILE_EXTENSION = ".class";
+    private static final String PROCOTOL_JAR = "jar";
+    private static final String CLASS_FILE_EXTENSION = ".class";
     
-    private final SimpleLogger logger = new SimpleLogger(this.getClass());
-
 
     public DeploymentUnitContext(Class sourceClass) {
         super();
@@ -49,9 +40,6 @@ public class DeploymentUnitContext extends Context {
     public DeploymentUnitContext(File sourceJar) {
         super();
         initFrom(handle(sourceJar));
-    }
-    public void setDebug(boolean flag) {
-        this.logger.setDebug(flag);
     }
 
     public <T> T get(Class<T> type) {

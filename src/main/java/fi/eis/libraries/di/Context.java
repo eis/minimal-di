@@ -12,7 +12,7 @@ import java.util.List;
  * @author eis
  */
 public class Context extends Module {
-    private final SimpleLogger logger = new SimpleLogger(this.getClass());
+    protected final SimpleLogger logger = new SimpleLogger(this.getClass());
 
     final List<Module> modules = new ArrayList<Module>();
     public Context(Module... modules) {
