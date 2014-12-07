@@ -13,18 +13,9 @@ import java.util.Map;
  * @author eis
  */
 public class Module {
-    private static final boolean debug = false;
-    public void debugPrint(String message) {
-        if (debug) {
-            System.out.println(message);
-        }
-    }
-    public void debugPrint(String message, Object... parameters) {
-        if (debug) {
-            System.out.printf(message, parameters);
-        }
-    }
 
+    private SimpleLogger logger = new SimpleLogger(this.getClass());
+    
     private static final Object NO_INSTANCE = new Object();
     private Map<Class, Object> providers = new HashMap<>();
     public Module(Class... providers) {
@@ -37,14 +28,18 @@ public class Module {
             this.providers.put(clazz, NO_INSTANCE );
         }
     }
+    public void setDebug(boolean flag) {
+        this.logger.setDebug(flag);
+    }
+
     public void add(Module module) {
         this.providers.putAll(module.providers);
     }
 
     public boolean has(Class type) {
-        debugPrint("Has %s? (in %s)%n", type, providers.keySet());
+        logger.debugPrint("Has %s? (in %s)%n", type, providers.keySet());
         for (Class clazz: providers.keySet()) {
-            debugPrint("Comparing %s with %s%n", clazz, type);
+            logger.debugPrint("Comparing %s with %s%n", clazz, type);
             if (type.isAssignableFrom(clazz)) {
                 return true;
             }

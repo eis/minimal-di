@@ -36,6 +36,8 @@ public class DeploymentUnitContext extends Context {
     // according to JarURLConnection api doc, the separator is "!/"
     public static final String JAR_URL_SEPARATOR = "!/";
     public static final String CLASS_FILE_EXTENSION = ".class";
+    
+    private final SimpleLogger logger = new SimpleLogger(this.getClass());
 
 
     public DeploymentUnitContext(Class sourceClass) {
@@ -48,14 +50,17 @@ public class DeploymentUnitContext extends Context {
         super();
         initFrom(handle(sourceJar));
     }
-    
+    public void setDebug(boolean flag) {
+        this.logger.setDebug(flag);
+    }
+
     public <T> T get(Class<T> type) {
         return super.get(type);
     }
 
     private void initFrom(BeanArchiveBuilder builder) {
         List<Class> classes = builder.getClasses();
-        log_debugv("got classes " + classes);
+        logger.debugPrint("got classes " + classes);
         super.modules.add(DependencyInjection.classes(classes));
     }
 
@@ -73,7 +78,7 @@ public class DeploymentUnitContext extends Context {
         BeanArchiveBuilder builder = new BeanArchiveBuilder();
 
         try {
-            log_debugv("Handle path: {0}", file.toPath());
+            logger.debugPrint("Handle path: {0}", file.toPath());
 
             if (file.isDirectory()) {
                 handleDirectory(new DirectoryEntry().setFile(file), builder);
@@ -81,19 +86,14 @@ public class DeploymentUnitContext extends Context {
                 handleFile(file, builder);
             }
         } catch (IOException e) {
-            log_warn("Could not handle path: " + file.toPath(), e);
+            throw new IllegalStateException("Could not handle path: " + file.toPath(), e);
         }
         return builder;
     }
 
-    private void log_warn(String s, Throwable t) {
-        System.err.println(s);
-        t.printStackTrace(System.err);
-    }
-
     protected void handleFile(File file, BeanArchiveBuilder builder) throws IOException {
 
-        log_debugv("Handle archive file: {0}", file);
+        logger.debugPrint("Handle archive file: {0}", file);
 
         try {
             ZipFile zip = new ZipFile(file);
@@ -110,7 +110,7 @@ public class DeploymentUnitContext extends Context {
 
     protected void handleDirectory(DirectoryEntry entry, BeanArchiveBuilder builder) throws IOException {
 
-        log_debugv("Handle directory: {0}", entry.getFile());
+        logger.debugPrint("Handle directory: %s", entry.getFile());
 
         File[] files = entry.getFile().listFiles();
 
@@ -136,10 +136,6 @@ public class DeploymentUnitContext extends Context {
             }
             entry.setPath(parentPath);
         }
-    }
-
-    private void log_debugv(String s, Object... args) {
-        System.out.println(s + " - " + Arrays.asList(args));
     }
 
     protected void add(Entry entry, BeanArchiveBuilder builder) throws MalformedURLException {
