@@ -21,19 +21,30 @@
     <url>https://travis-ci.org/eis/minimal-di</url>
   </ciManagement>
 
-    <licenses>
-        <license>
-            <name>Apache License</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0</url>
-            <distribution>repo</distribution>
-        </license>
-    </licenses>
+  <distributionManagement>
+    <snapshotRepository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    </snapshotRepository>
+    <repository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+    </repository>
+  </distributionManagement>
 
-    <scm>
-        <url>https://github.com/eis/minimal-di</url>
-        <connection>scm:git:git://github.com/eis/minimal-di.git</connection>
-        <developerConnection>scm:git:git@github.com:eis/minimal-di.git</developerConnection>
-    </scm>
+  <licenses>
+      <license>
+          <name>Apache License</name>
+          <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+          <distribution>repo</distribution>
+      </license>
+  </licenses>
+
+  <scm>
+      <url>https://github.com/eis/minimal-di</url>
+      <connection>scm:git:git://github.com/eis/minimal-di.git</connection>
+      <developerConnection>scm:git:git@github.com:eis/minimal-di.git</developerConnection>
+  </scm>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -91,6 +102,33 @@
           <target>${java.version}</target>
         </configuration>
       </plugin>
+      <!-- source and javadoc releases -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>2.2.1</version>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <goals>
+              <goal>jar-no-fork</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>2.9.1</version>
+        <executions>
+          <execution>
+            <id>attach-javadocs</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
       <!-- integration tests -->
       <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -131,17 +169,17 @@
             <targetTests>
               <param>fi.eis.libraries*</param>
             </targetTests>
-  					<mutators>
-  						<mutator>ALL</mutator>
-  					</mutators>
-  					<outputFormats>
-  						<outputFormat>HTML</outputFormat>
-  						<outputFormat>XML</outputFormat>
-  					</outputFormats>
-  					<timestampedReports>false</timestampedReports>
-  					<avoidCallsTo>
-  					 <param>fi.eis.libraries.di.SimpleLogger</param>
-  					</avoidCallsTo>
+            <mutators>
+              <mutator>ALL</mutator>
+            </mutators>
+            <outputFormats>
+              <outputFormat>HTML</outputFormat>
+              <outputFormat>XML</outputFormat>
+            </outputFormats>
+            <timestampedReports>false</timestampedReports>
+            <avoidCallsTo>
+              <param>fi.eis.libraries.di.SimpleLogger</param>
+            </avoidCallsTo>
           </configuration>
       </plugin>
     </plugins>
