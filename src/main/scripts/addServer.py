@@ -45,3 +45,5 @@ m2Str = m2.toxml()
 f = open(homedir + '/.m2/mySettings.xml', 'w')
 f.write(m2Str)
 f.close()
+
+print 'Python script just wrote variables to '+ homedir + '/.m2/mySettings.xml!'
