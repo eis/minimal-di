@@ -12,6 +12,8 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipException;
 import java.util.zip.ZipFile;
 
+import fi.eis.libraries.di.SimpleLogger.LogLevel;
+
 /**
  * Creation Date: 1.12.2014
  * Creation Time: 21:55
@@ -29,7 +31,6 @@ import java.util.zip.ZipFile;
 public class DeploymentUnitContext extends Context {
     private static final String PROCOTOL_JAR = "jar";
     private static final String CLASS_FILE_EXTENSION = ".class";
-    
 
     public DeploymentUnitContext(Class sourceClass) {
         super();
@@ -37,9 +38,9 @@ public class DeploymentUnitContext extends Context {
         initUsing(sourceClass);
     }
 
-    public DeploymentUnitContext(Class sourceClass, boolean debug) {
+    public DeploymentUnitContext(Class sourceClass, LogLevel logLevel) {
         super();
-        setDebug(debug);
+        setLogLevel(logLevel);
         initUsing(sourceClass);
     }
 
@@ -48,9 +49,9 @@ public class DeploymentUnitContext extends Context {
         initFrom(handle(sourceJar));
     }
 
-    public DeploymentUnitContext(File sourceJar, boolean debugFlag) {
+    public DeploymentUnitContext(File sourceJar, LogLevel logLevel) {
         super();
-        setDebug(debugFlag);
+        setLogLevel(logLevel);
         initFrom(handle(sourceJar));
     }
 
@@ -64,7 +65,7 @@ public class DeploymentUnitContext extends Context {
 
     private void initFrom(BeanArchiveBuilder builder) {
         List<Class> classes = builder.getClasses();
-        logger.debugPrint("got classes " + classes);
+        logger.debug("got classes " + classes);
         super.modules.add(DependencyInjection.classes(classes));
     }
 
@@ -82,7 +83,7 @@ public class DeploymentUnitContext extends Context {
         BeanArchiveBuilder builder = new BeanArchiveBuilder();
 
         try {
-            logger.debugPrint("Handle path: {0}", file.toPath());
+            logger.debug("Handle path: {0}", file.toPath());
 
             if (file.isDirectory()) {
                 handleDirectory(new DirectoryEntry().setFile(file), builder);
@@ -97,7 +98,7 @@ public class DeploymentUnitContext extends Context {
 
     protected void handleFile(File file, BeanArchiveBuilder builder) throws IOException {
 
-        logger.debugPrint("Handle archive file: {0}", file);
+        logger.debug("Handle archive file: {0}", file);
 
         try {
             ZipFile zip = new ZipFile(file);
@@ -114,7 +115,7 @@ public class DeploymentUnitContext extends Context {
 
     protected void handleDirectory(DirectoryEntry entry, BeanArchiveBuilder builder) throws IOException {
 
-        logger.debugPrint("Handle directory: %s", entry.getFile());
+        logger.debug("Handle directory: %s", entry.getFile());
 
         File[] files = entry.getFile().listFiles();
 

@@ -18,6 +18,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import fi.eis.libraries.di.SimpleLogger.LogLevel;
+
 
 interface ConstDependencyInterface {
     void sayHello();
@@ -108,9 +110,9 @@ public class DIConstructorTest {
             ConstClassToInit.class
         );
         Module mClasses = DependencyInjection.classes(ConstClassToInit.class);
-        mClasses.setDebug(true);
+        mClasses.setLogLevel(LogLevel.DEBUG);
         Context diContext = DependencyInjection.context(mClasses, mSuppliers);
-        diContext.setDebug(true);
+        diContext.setLogLevel(LogLevel.DEBUG);
         diContext.get(ConstClassToInit.class);
         
         String loggedStuff = loggingOutputStream.toString("UTF-8");
@@ -124,9 +126,9 @@ public class DIConstructorTest {
             ConstClassToInit.class
         );
         Module mClasses = DependencyInjection.classes(ConstClassToInit.class);
-        mClasses.setDebug(false);
+        mClasses.setLogLevel(LogLevel.NONE);
         Context diContext = DependencyInjection.context(mClasses, mSuppliers);
-        diContext.setDebug(false);
+        diContext.setLogLevel(LogLevel.NONE);
         diContext.get(ConstClassToInit.class);
         
         String loggedStuff = loggingOutputStream.toString("UTF-8");

@@ -3,6 +3,8 @@ package fi.eis.libraries.di;
 import java.io.File;
 import java.util.List;
 
+import fi.eis.libraries.di.SimpleLogger.LogLevel;
+
 /**
  * Creation Date: 30.11.2014
  * Creation Time: 22:54
@@ -32,10 +34,10 @@ public class DependencyInjection {
     public static Context deploymentUnitContext(File jarFile) {
         return new DeploymentUnitContext(jarFile);
     }
-    public static Context deploymentUnitContext(Class sourceClass, boolean debugFlag) {
-        return new DeploymentUnitContext(sourceClass, debugFlag);
+    public static Context deploymentUnitContext(Class sourceClass, LogLevel logLevel) {
+        return new DeploymentUnitContext(sourceClass, logLevel);
     }
-    public static Context deploymentUnitContext(File jarFile, boolean debugFlag) {
-        return new DeploymentUnitContext(jarFile, debugFlag);
+    public static Context deploymentUnitContext(File jarFile, LogLevel logLevel) {
+        return new DeploymentUnitContext(jarFile, logLevel);
     }
 }

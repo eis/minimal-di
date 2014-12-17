@@ -4,6 +4,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 
+import fi.eis.libraries.di.SimpleLogger.LogLevel;
 import fi.eis.libraries.di.testhelpers.MockClassInNeedOfDependency;
 
 import org.hamcrest.Matchers;
@@ -46,7 +47,7 @@ public class DIClassScanningTest {
     @Test
     public void testDiLoggingEnabled() throws UnsupportedEncodingException {
         // actual test
-        Context diContext = DependencyInjection.deploymentUnitContext(this.getClass(), true);
+        Context diContext = DependencyInjection.deploymentUnitContext(this.getClass(), LogLevel.DEBUG);
         diContext.get(MockClassInNeedOfDependency.class);
         
         // after tests, we check what was logged
@@ -61,7 +62,7 @@ public class DIClassScanningTest {
     @Test
     public void testDiLoggingDisabled() throws UnsupportedEncodingException {
         // actual test
-        Context diContext = DependencyInjection.deploymentUnitContext(this.getClass(), false);
+        Context diContext = DependencyInjection.deploymentUnitContext(this.getClass(), LogLevel.NONE);
         diContext.get(MockClassInNeedOfDependency.class);
         
         // after tests, we check what was logged

@@ -12,22 +12,18 @@ import java.util.List;
  * @author eis
  */
 public class Context extends Module {
-    protected final SimpleLogger logger = new SimpleLogger(this.getClass());
 
-    final List<Module> modules = new ArrayList<Module>();
+    protected final List<Module> modules = new ArrayList<Module>();
     public Context(Module... modules) {
         Collections.addAll(this.modules, modules);
     }
-    public void setDebug(boolean flag) {
-        this.logger.setDebug(flag);
-    }
     public <T> T get(Class<T> type) {
-        logger.debugPrint("context.get=" + type);
+        logger.debug("context.get=" + type);
         T object = null;
         for (Module module : modules) {
 
             if (module.has(type)) {
-                logger.debugPrint("has type " + type);
+                logger.debug("has type " + type);
                 object = module.get(type);
                 break;
             }
@@ -40,8 +36,8 @@ public class Context extends Module {
     }
 
     private <T> void resolveProperties(T object) {
-        logger.debugPrint("resolveProperties=" + object);
-        logger.debugPrint("class=" + object.getClass());
+        logger.debug("resolveProperties=" + object);
+        logger.debug("class=" + object.getClass());
 
         // @Injected fields
         Field[] allFields = object.getClass().getDeclaredFields();

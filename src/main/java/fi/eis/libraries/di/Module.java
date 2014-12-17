@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import fi.eis.libraries.di.SimpleLogger.LogLevel;
+
 /**
  * Creation Date: 30.11.2014
  * Creation Time: 22:49
@@ -14,7 +16,7 @@ import java.util.Map;
  */
 public class Module {
 
-    private SimpleLogger logger = new SimpleLogger(this.getClass());
+    protected final SimpleLogger logger = new SimpleLogger(this.getClass());
     
     private static final Object NO_INSTANCE = new Object();
     private Map<Class, Object> providers = new HashMap<>();
@@ -28,8 +30,8 @@ public class Module {
             this.providers.put(clazz, NO_INSTANCE );
         }
     }
-    public void setDebug(boolean flag) {
-        this.logger.setDebug(flag);
+    public void setLogLevel(LogLevel level) {
+        this.logger.setLogLevel(level);
     }
 
     public void add(Module module) {
@@ -37,9 +39,9 @@ public class Module {
     }
 
     public boolean has(Class type) {
-        logger.debugPrint("Has %s? (in %s)%n", type, providers.keySet());
+        logger.debug("Has %s? (in %s)%n", type, providers.keySet());
         for (Class clazz: providers.keySet()) {
-            logger.debugPrint("Comparing %s with %s%n", clazz, type);
+            logger.debug("Comparing %s with %s%n", clazz, type);
             if (type.isAssignableFrom(clazz)) {
                 return true;
             }
