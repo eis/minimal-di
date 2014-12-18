@@ -1,5 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.github.eis.libraries</groupId>
@@ -78,9 +77,12 @@
                       <groupId>org.apache.maven.plugins</groupId>
                       <artifactId>maven-gpg-plugin</artifactId>
                       <version>1.5</version>
+                      <!--
+                      Commenting this out so this will be asked interactively
                       <configuration>
                           <passphrase>${gpg.passphrase}</passphrase>
                       </configuration>
+                      -->
                       <executions>
                           <execution>
                               <id>sign-artifacts</id>
@@ -134,6 +136,21 @@
           <target>${java.version}</target>
         </configuration>
       </plugin>
+      <!-- release + sign -->
+      <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-release-plugin</artifactId>
+          <!-- DO NOT USE <2.5, see https://jira.codehaus.org/browse/MRELEASE-812 -->
+          <version>2.5.1</version>
+          <configuration>
+          <!--
+              Commenting this out so this will be asked interactively
+              <arguments>-Dgpg.passphrase=${gpg.passphrase}</arguments>
+              -->
+              <!-- see http://jira.codehaus.org/browse/MGPG-9 -->
+              <mavenExecutorId>forked-path</mavenExecutorId>
+          </configuration>
+      </plugin>
       <!-- source and javadoc releases -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -182,17 +199,6 @@
                 </goals>
               </execution>
           </executions>
-      </plugin>
-      <!-- release + sign -->
-      <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-release-plugin</artifactId>
-          <version>2.4.1</version>
-          <configuration>
-              <arguments>-Dgpg.passphrase=${gpg.passphrase}</arguments>
-              <!-- see http://jira.codehaus.org/browse/MGPG-9 -->
-              <mavenExecutorId>forked-path</mavenExecutorId>
-          </configuration>
       </plugin>
       <plugin>
           <!--
@@ -253,7 +259,7 @@
             <format>html</format>
             <format>xml</format>
           </formats>
-          <check/>
+          <check />
         </configuration>
       </plugin>
       <plugin>
