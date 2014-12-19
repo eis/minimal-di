@@ -3,7 +3,7 @@
 
   <groupId>com.github.eis.libraries</groupId>
   <artifactId>minimal-di</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0</version>
   <packaging>jar</packaging>
 
   <name>Minimal DI</name>
@@ -43,6 +43,7 @@
       <url>https://github.com/eis/minimal-di</url>
       <connection>scm:git:git://github.com/eis/minimal-di.git</connection>
       <developerConnection>scm:git:git@github.com:eis/minimal-di.git</developerConnection>
+    <tag>minimal-di-1.0</tag>
   </scm>
 
   <properties>
