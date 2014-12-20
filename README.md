@@ -65,3 +65,13 @@ public static void main(String args[]) {
 ```
 
 That's it.
+
+PS. this library can be used from Maven Central:
+
+```xml
+<dependency>
+  <groupId>com.github.eis.libraries</groupId>
+  <artifactId>minimal-di</artifactId>
+  <version>1.0</version>
+</dependency>
+```
