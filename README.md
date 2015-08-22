@@ -75,3 +75,9 @@ PS. this library can be used from Maven Central:
   <version>1.0</version>
 </dependency>
 ```
+
+Build status
+------------
+
+[![Build Status](https://api.travis-ci.org/eis/minimal-di.svg?branch=master)]
+(https://travis-ci.org/eis/minimal-di)
