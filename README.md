@@ -1,6 +1,10 @@
 Minimal DI
 ==========
 
+[![Build Status](http://img.shields.io/travis/eis/minimal-di/master.svg)](https://travis-ci.org/eis/minimal-di)
+[![Coverage Status](http://img.shields.io/coveralls/eis/minimal-di/master.svg)](https://coveralls.io/github/eis/minimal-di?branch=master)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.eis.libraries/minimal-di/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.eis.libraries/minimal-di/)
+
 This is a minimal dependency injection framework.
 
 Reasoning
@@ -66,7 +70,10 @@ public static void main(String args[]) {
 
 That's it.
 
-PS. this library can be used from Maven Central:
+Maven dependency
+----------------
+
+This library can be used from Maven Central:
 
 ```xml
 <dependency>
@@ -75,12 +82,3 @@ PS. this library can be used from Maven Central:
   <version>1.0</version>
 </dependency>
 ```
-
-Project status
-------------
-
-[![Build Status](https://api.travis-ci.org/eis/minimal-di.svg?branch=master)]
-(https://travis-ci.org/eis/minimal-di)
-
-[![Coverage Status](https://coveralls.io/repos/eis/minimal-di/badge.svg?branch=master&service=github)]
-(https://coveralls.io/github/eis/minimal-di?branch=master)
