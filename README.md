@@ -76,8 +76,11 @@ PS. this library can be used from Maven Central:
 </dependency>
 ```
 
-Build status
+Project status
 ------------
 
 [![Build Status](https://api.travis-ci.org/eis/minimal-di.svg?branch=master)]
 (https://travis-ci.org/eis/minimal-di)
+
+[![Coverage Status](https://coveralls.io/repos/eis/minimal-di/badge.svg?branch=master&service=github)]
+(https://coveralls.io/github/eis/minimal-di?branch=master)
