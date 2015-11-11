@@ -17,14 +17,15 @@ import fi.eis.libraries.di.SimpleLogger.LogLevel;
 /**
  * Creation Date: 1.12.2014
  * Creation Time: 21:55
- * <p/>
+ * <p>
  * This class borrows heavily from JBoss Weld class FileSystemBeanArchiveHandler, which authors are:
  * Pete Muir, Marko Luksa, Martin Kouba
- * <p/>
+ * </p>
+ * <p>
  * FileSystemBeanArchiveHandler has been licensed under Apache License,
  * Version 2.0. It permits releasing under different license.
- * <p/>
  * (http://en.wikipedia.org/wiki/Comparison_of_free_and_open-source_software_licenses)
+ * </p>
  *
  * @author eis
  */
@@ -167,7 +168,7 @@ public class DeploymentUnitContext extends Context {
 
         /**
          * @return the URL, most probably lazily created
-         * @throws MalformedURLException
+         * @throws MalformedURLException missing protocol or URL parsing error
          */
         URL getUrl() throws MalformedURLException;
 
