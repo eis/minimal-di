@@ -4,6 +4,7 @@ Minimal DI
 [![Build Status](http://img.shields.io/travis/eis/minimal-di/master.svg)](https://travis-ci.org/eis/minimal-di)
 [![Coverage Status](http://img.shields.io/coveralls/eis/minimal-di/master.svg)](https://coveralls.io/github/eis/minimal-di?branch=master)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.eis.libraries/minimal-di/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.eis.libraries/minimal-di/)
+[![Dependency status](https://www.versioneye.com/java/com.github.eis.libraries:minimal-di/badge.svg?style=flat)](https://www.versioneye.com/java/com.github.eis.libraries:minimal-di/)
 
 This is a minimal dependency injection framework.
 
@@ -11,9 +12,10 @@ Reasoning
 ---------
 
 This was created out of need for simple DI. Guice is 600kt, Weld
-CDI is 3M of files, and Spring is even more. That's not what I
-needed - I needed simple DI system that would just implement the
-basic features and nothing more, with few simple classes. This is it.
+CDI is 3M of files, and Spring is even more. Even PicoContainer is
+317kt. That's not what I needed - I needed a very simple DI system
+that would just implement the basic features and nothing more, with
+few simple classes. This is it.
 
 "Minimal DI" currently weighs 18.5k as a .jar, which is simple enough.
 It doesn't need any additional dependencies which was one of
