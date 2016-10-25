@@ -12,9 +12,9 @@ This is a minimal dependency injection framework.
 Reasoning
 ---------
 
-This was created out of need for simple DI. Guice is 600kt, Weld
-CDI is 3M of files, and Spring is even more. Even PicoContainer is
-317kt. That's not what I needed - I needed a very simple DI system
+This was created out of need for simple DI. Guice weighs 600kt, Weld
+CDI 3M, and Spring even more. Even PicoContainer weighs 317kt.
+That's not what I needed - I needed a very simple DI system
 that would just implement the basic features and nothing more, with
 few simple classes. This is it.
 
