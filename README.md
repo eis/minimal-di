@@ -71,7 +71,7 @@ public static void main(String args[]) {
 }
 ```
 
-or use a Spring-style javaconfig class:
+or use a Spring-style javaconfig class (version 1.1):
 
 ```java
 public static void main(String args[]) {
