@@ -16,7 +16,7 @@ public class Context {
     protected final SimpleLogger logger = new SimpleLogger(this.getClass());
 
     protected final List<Module> modules = new ArrayList<Module>();
-    public Context(Module... modules) {
+    Context(Module... modules) {
         Collections.addAll(this.modules, modules);
     }
     public <T> T get(Class<T> type) {

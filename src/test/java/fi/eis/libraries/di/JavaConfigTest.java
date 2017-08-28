@@ -1,7 +1,6 @@
 package fi.eis.libraries.di;
 
-import fi.eis.libraries.di.testhelpers.DependencyMock;
-import fi.eis.libraries.di.testhelpers.DependencyMockInterface;
+import fi.eis.libraries.di.testhelpers.ExampleJavaConfig;
 import fi.eis.libraries.di.testhelpers.MockClassInNeedOfConstructorDependency;
 import org.junit.Assert;
 import org.junit.Test;
@@ -15,13 +14,3 @@ public class JavaConfigTest {
     }
 }
 
-class ExampleJavaConfig {
-
-    public MockClassInNeedOfConstructorDependency mockClassInNeedOfConstructorDependency(DependencyMockInterface dependencyMockInterface) {
-        return new MockClassInNeedOfConstructorDependency(dependencyMockInterface);
-    }
-
-    public DependencyMockInterface dependencyMock() {
-        return new DependencyMock();
-    }
-}
