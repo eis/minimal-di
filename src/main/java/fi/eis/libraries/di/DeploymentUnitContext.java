@@ -60,10 +60,6 @@ public class DeploymentUnitContext extends Context {
         initFrom(handle(sourceClass.getProtectionDomain().getCodeSource().getLocation()));
     }
 
-    public <T> T get(Class<T> type) {
-        return super.get(type);
-    }
-
     private void initFrom(BeanArchiveBuilder builder) {
         List<Class> classes = builder.getClasses();
         logger.debug("got classes " + classes);

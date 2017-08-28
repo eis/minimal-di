@@ -20,14 +20,20 @@ public class Module {
     
     private static final Object NO_INSTANCE = new Object();
     private Map<Class, Object> providers = new HashMap<>();
-    public Module(Class... providers) {
-        for (Class clazz: providers) {
+    public Module(Class... classes) {
+        for (Class clazz: classes) {
             this.providers.put(clazz, NO_INSTANCE );
         }
     }
-    public Module(List<Class> providers) {
-        for (Class clazz: providers) {
+    public Module(List<Class> classes) {
+        for (Class clazz: classes) {
             this.providers.put(clazz, NO_INSTANCE );
+        }
+    }
+    public Module(Map<Class,Object> classesWithInstances) {
+        for (Map.Entry<Class,Object> entry: classesWithInstances.entrySet()) {
+            logger.debug("Storing %s with key %s", entry.getValue(), entry.getKey());
+            this.providers.put(entry.getKey(), entry.getValue());
         }
     }
     public void setLogLevel(LogLevel level) {
@@ -84,12 +90,10 @@ public class Module {
         }
     }
 
-    // example borrowed from
-    // http://java-bytes.blogspot.fi/2010/04/create-your-own-dependency-injection.html
-    private Object newInstance(Class implClass) throws InstantiationException,
+    protected Object newInstance(Class implClass) throws InstantiationException,
             IllegalAccessException, NoSuchMethodException, InvocationTargetException {
-        for(Constructor constructor: implClass.getConstructors()) {
-            if(constructor.isAnnotationPresent(Inject.class)) {
+        for (Constructor constructor: implClass.getConstructors()) {
+            if (constructor.isAnnotationPresent(Inject.class)) {
 
                 Class[] parameterTypes = constructor.getParameterTypes();
                 Object[] objArr = new Object[parameterTypes.length];
@@ -100,11 +104,13 @@ public class Module {
                     objArr[i++] = get(c);
                 }
 
-                Object resObj = implClass.getConstructor(parameterTypes).newInstance(objArr);
-
-                return resObj;
+                return constructor.newInstance(objArr);
             }
         }
         return implClass.newInstance();
+    }
+    @Override
+    public String toString() {
+        return this.getClass() + " [providers=" + providers.toString() + "]";
     }
 }

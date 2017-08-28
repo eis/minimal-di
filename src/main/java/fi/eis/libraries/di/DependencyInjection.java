@@ -2,6 +2,7 @@ package fi.eis.libraries.di;
 
 import java.io.File;
 import java.util.List;
+import java.util.Map;
 
 import fi.eis.libraries.di.SimpleLogger.LogLevel;
 
@@ -17,6 +18,9 @@ public class DependencyInjection {
     }
     public static Module classes(List<Class> classes) {
         return new Module(classes);
+    }
+    public static Module classesWithInstances(Map<Class,Object> classesWithInstaces) {
+        return new Module(classesWithInstaces);
     }
     public static Context context(Module... modules) {
         // add all other modules to combined one
@@ -39,5 +43,12 @@ public class DependencyInjection {
     }
     public static Context deploymentUnitContext(File jarFile, LogLevel logLevel) {
         return new DeploymentUnitContext(jarFile, logLevel);
+    }
+
+    public static Context configurationClasses(Class... exampleJavaConfigClass) {
+        return new ConfigurationClassContext(exampleJavaConfigClass);
+    }
+    public static Context configurationClasses(LogLevel logLevel, Class... exampleJavaConfigClass) {
+        return new ConfigurationClassContext(logLevel, exampleJavaConfigClass);
     }
 }

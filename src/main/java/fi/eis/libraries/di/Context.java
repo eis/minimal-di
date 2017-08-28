@@ -11,7 +11,9 @@ import java.util.List;
  *
  * @author eis
  */
-public class Context extends Module {
+public class Context {
+
+    protected final SimpleLogger logger = new SimpleLogger(this.getClass());
 
     protected final List<Module> modules = new ArrayList<Module>();
     public Context(Module... modules) {
@@ -29,7 +31,7 @@ public class Context extends Module {
             }
         }
         if (object == null) {
-            throw new IllegalArgumentException("Type was not found but should: " + type);
+            throw new IllegalArgumentException(String.format("Type %s was not found, looking at modules %s", type, modules));
         }
         resolveProperties(object);
         return object;
@@ -56,5 +58,8 @@ public class Context extends Module {
                 }
             }
         }
+    }
+    public void setLogLevel(SimpleLogger.LogLevel level) {
+        this.logger.setLogLevel(level);
     }
 }

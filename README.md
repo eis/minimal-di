@@ -18,7 +18,7 @@ That's not what I needed - I needed a very simple DI system
 that would just implement the basic features and nothing more, with
 few simple classes. This is it.
 
-"Minimal DI" currently weighs 18.5k as a .jar, which is simple enough.
+"Minimal DI" currently weighs 23k as a .jar, which is simple enough.
 It doesn't need any additional dependencies which was one of
 its main goals.
 
@@ -66,6 +66,16 @@ or listing all implementation classes part of DI:
 public static void main(String args[]) {
     Module module = DependencyInjection.classes(CurrentApp.class, ClassImplementingDependency.class);
     Context diContext = DependencyInjection.context(module);
+    CurrentApp app = diContext.get(CurrentApp.class);
+    app.run();
+}
+```
+
+or use a Spring-style javaconfig class:
+
+```java
+public static void main(String args[]) {
+    Context diContext = DependencyInjection.configurationClasses(ExampleJavaConfig.class);
     CurrentApp app = diContext.get(CurrentApp.class);
     app.run();
 }
