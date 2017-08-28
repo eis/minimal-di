@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
 
-<coverage line-rate="0.8837209302325582" branch-rate="0.8571428571428571" lines-covered="228" lines-valid="258" branches-covered="72" branches-valid="84" complexity="1.9846153846153847" version="2.1.1" timestamp="1503944262246">
+<coverage line-rate="0.8837209302325582" branch-rate="0.8571428571428571" lines-covered="228" lines-valid="258" branches-covered="72" branches-valid="84" complexity="1.9846153846153847" version="2.1.1" timestamp="1503946739525">
 	<sources>
 		<source>--source</source>
 		<source>/home/travis/build/eis/minimal-di/target/generated-sources/annotations</source>
