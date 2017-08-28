@@ -29,7 +29,7 @@ import fi.eis.libraries.di.SimpleLogger.LogLevel;
  *
  * @author eis
  */
-class DeploymentUnitContext extends Context {
+public class DeploymentUnitContext extends Context {
     private static final String PROCOTOL_JAR = "jar";
     private static final String CLASS_FILE_EXTENSION = ".class";
 

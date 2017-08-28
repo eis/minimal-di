@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-class ConfigurationClassContext extends Context {
+public class ConfigurationClassContext extends Context {
     private final Map<Class, Object> classObjectMap = new HashMap<>();
 
     public ConfigurationClassContext(Class... configurationClasses) {

@@ -13,13 +13,13 @@ import fi.eis.libraries.di.SimpleLogger.LogLevel;
  * @author eis
  */
 public class DependencyInjection {
-    static Module classes(Class... classes) {
+    public static Module classes(Class... classes) {
         return new Module(classes);
     }
-    static Module classes(List<Class> classes) {
+    public static Module classes(List<Class> classes) {
         return new Module(classes);
     }
-    static Module classesWithInstances(Map<Class,Object> classesWithInstaces) {
+    public static Module classesWithInstances(Map<Class,Object> classesWithInstaces) {
         return new Module(classesWithInstaces);
     }
     public static Context context(Module... modules) {

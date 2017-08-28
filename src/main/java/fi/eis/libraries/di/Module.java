@@ -14,7 +14,7 @@ import fi.eis.libraries.di.SimpleLogger.LogLevel;
  *
  * @author eis
  */
-class Module {
+public class Module {
 
     protected final SimpleLogger logger = new SimpleLogger(this.getClass());
     
