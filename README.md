@@ -92,6 +92,6 @@ This library can be used from Maven Central:
 <dependency>
   <groupId>com.github.eis.libraries</groupId>
   <artifactId>minimal-di</artifactId>
-  <version>1.0</version>
+  <version>1.1</version>
 </dependency>
 ```
