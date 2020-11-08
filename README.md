@@ -4,7 +4,6 @@ Minimal DI
 [![Build Status](http://img.shields.io/travis/eis/minimal-di/master.svg)](https://travis-ci.org/eis/minimal-di)
 [![Coverage Status](http://img.shields.io/coveralls/eis/minimal-di/master.svg)](https://coveralls.io/github/eis/minimal-di?branch=master)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.eis.libraries/minimal-di/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.eis.libraries/minimal-di/)
-[![Dependency Status](https://www.versioneye.com/java/com.github.eis.libraries:minimal-di/badge.svg?style=flat)](https://www.versioneye.com/java/com.github.eis.libraries:minimal-di/)
 [![Codebeat Analysis](https://codebeat.co/badges/8e124ee5-7860-4551-b13f-64a2d109222c)](https://codebeat.co/projects/github-com-eis-minimal-di)
 
 This is a minimal dependency injection framework.
