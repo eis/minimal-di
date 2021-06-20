@@ -29,6 +29,8 @@ jobs:
           distribution: 'zulu'
       - name: Build with Maven
         run: mvn site --batch-mode -DbuildNumber=${GITHUB_RUN_NUMBER}
+      - name: Check for vulnerabilities
+        run: mvn org.sonatype.ossindex.maven:ossindex-maven-plugin:audit
       - name: Deploy docs 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.4
         if: github.ref == 'refs/heads/master' && matrix.java == '7'
