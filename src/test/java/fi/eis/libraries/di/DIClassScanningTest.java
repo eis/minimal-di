@@ -1,17 +1,18 @@
 package fi.eis.libraries.di;
 
+import fi.eis.libraries.di.SimpleLogger.LogLevel;
+import fi.eis.libraries.di.testhelpers.MockClassInNeedOfDependency;
+import org.hamcrest.Matchers;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 
-import fi.eis.libraries.di.SimpleLogger.LogLevel;
-import fi.eis.libraries.di.testhelpers.MockClassInNeedOfDependency;
-
-import org.hamcrest.Matchers;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
  * Creation Date: 1.12.2014
@@ -25,13 +26,13 @@ public class DIClassScanningTest {
     public void testDi() {
         Context diContext = DependencyInjection.deploymentUnitContext(this.getClass());
         MockClassInNeedOfDependency instance = diContext.get(MockClassInNeedOfDependency.class);
-        Assert.assertNotNull("was not initialized: " + instance, instance.dependency);
+        assertNotNull(instance.dependency, "was not initialized: " + instance);
     }
     private PrintStream originalPrintStream;
     private ByteArrayOutputStream loggingOutputStream;
     
     // redirect System.out to capture any logging
-    @Before
+    @BeforeEach
     public void setupSystemOutRedirection() {
         originalPrintStream = System.out;
         
@@ -40,7 +41,7 @@ public class DIClassScanningTest {
         System.setOut(ps);
     }
     
-    @After
+    @AfterEach
     public void resetSystemOutRedirection() {
         System.setOut(originalPrintStream);
     }
@@ -54,10 +55,10 @@ public class DIClassScanningTest {
         String loggedStuff = loggingOutputStream.toString("UTF-8");
         
         // there should be at least a context.get call
-        Assert.assertThat(loggedStuff, Matchers.containsString("context.get"));
+        assertThat(loggedStuff, Matchers.containsString("context.get"));
         
         // and path handling
-        Assert.assertThat(loggedStuff, Matchers.containsString("Handle path"));
+        assertThat(loggedStuff, Matchers.containsString("Handle path"));
     }
     @Test
     public void testDiLoggingDisabled() throws UnsupportedEncodingException {
@@ -68,8 +69,8 @@ public class DIClassScanningTest {
         // after tests, we check what was logged
         String loggedStuff = loggingOutputStream.toString("UTF-8");
         
-        Assert.assertThat(loggedStuff, Matchers.not(Matchers.containsString("context.get")));
-        Assert.assertThat(loggedStuff, Matchers.not(Matchers.containsString("Handle path")));
+        assertThat(loggedStuff, Matchers.not(Matchers.containsString("context.get")));
+        assertThat(loggedStuff, Matchers.not(Matchers.containsString("Handle path")));
     }
     @Test
     public void testDiLoggingDefault() throws UnsupportedEncodingException {
@@ -80,7 +81,7 @@ public class DIClassScanningTest {
         // after tests, we check what was logged
         String loggedStuff = loggingOutputStream.toString("UTF-8");
         
-        Assert.assertThat(loggedStuff, Matchers.not(Matchers.containsString("context.get")));
-        Assert.assertThat(loggedStuff, Matchers.not(Matchers.containsString("Handle path")));
+        assertThat(loggedStuff, Matchers.not(Matchers.containsString("context.get")));
+        assertThat(loggedStuff, Matchers.not(Matchers.containsString("Handle path")));
     }
 }
