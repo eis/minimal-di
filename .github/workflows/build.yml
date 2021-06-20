@@ -55,7 +55,7 @@ jobs:
         with:
           distribution: 'adopt'
           java-version: '8'
-      - name: Coverage with Jacoco Maven plugin
+      - name: Coverage with Cobertura Maven plugin
         run: mvn cobertura:cobertura --quiet --batch-mode -DbuildNumber=${GITHUB_RUN_NUMBER}
       - uses: codecov/codecov-action@v1
         with:
