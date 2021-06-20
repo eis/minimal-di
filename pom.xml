@@ -16,8 +16,8 @@
   </issueManagement>
 
   <ciManagement>
-    <system>Travis</system>
-    <url>https://travis-ci.org/eis/minimal-di</url>
+    <system>GitHub Actions</system>
+    <url>https://github.com/eis/minimal-di/actions/workflows/build.yml</url>
   </ciManagement>
 
   <distributionManagement>
@@ -231,12 +231,6 @@
               <param>fi.eis.libraries.di.SimpleLogger</param>
             </avoidCallsTo>
           </configuration>
-      </plugin>
-      <plugin>
-        <!--to report to coveralls, use -DrepoToken=yourrepotoken -->
-        <groupId>org.eluder.coveralls</groupId>
-        <artifactId>coveralls-maven-plugin</artifactId>
-        <version>4.0.0</version>
       </plugin>
       <plugin>
         <groupId>org.codehaus.mojo</groupId>

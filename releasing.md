@@ -5,7 +5,7 @@
 5. `git tag 1.2.3`
 6. `mvn clean deploy -DperformRelease=true` (gpg pass is in password store)
 7. login to https://oss.sonatype.org/#stagingRepositories
-8. find your artifact: `comgithubeis`
+8. find your artifact: `com.github.eis`
 9. press close
 10. wait for success, if failure, fix, drop and go to step 6
 11. press release
