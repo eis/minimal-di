@@ -1,8 +1,8 @@
 Minimal DI
 ==========
 
-[![Build Status](http://img.shields.io/travis/eis/minimal-di/master.svg)](https://travis-ci.org/eis/minimal-di)
-[![Coverage Status](http://img.shields.io/coveralls/eis/minimal-di/master.svg)](https://coveralls.io/github/eis/minimal-di?branch=master)
+[![Build Status](https://github.com/eis/minimal-di/actions/workflows/build.yml/badge.svg)](https://github.com/eis/minimal-di/actions/workflows/build.yml)
+[![Coverage Status](https://img.shields.io/codecov/c/gh/eis/minimal-di?token=FL4QJY2PRT)](https://codecov.io/gh/eis/minimal-di)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.eis.libraries/minimal-di/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.eis.libraries/minimal-di/)
 [![Codebeat Analysis](https://codebeat.co/badges/8e124ee5-7860-4551-b13f-64a2d109222c)](https://codebeat.co/projects/github-com-eis-minimal-di)
 
