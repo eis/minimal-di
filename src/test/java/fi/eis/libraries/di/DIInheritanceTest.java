@@ -1,15 +1,15 @@
 package fi.eis.libraries.di;
 
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 /**
  * Creation Date: 30.11.2014
  * Creation Time: 21:21
  *
  * @author eis
  */
-
-
-import org.junit.Assert;
-import org.junit.Test;
 
 
 interface DependencyInterface {
@@ -54,7 +54,7 @@ public class DIInheritanceTest {
         Module mClasses = DependencyInjection.classes(ClassToInit.class);
         Context diContext = DependencyInjection.context(mClasses, mSuppliers);
         ClassToInit instance = diContext.get(ClassToInit.class);
-        Assert.assertNotNull("was not initialized: " + instance, instance.getDependency());
+        assertNotNull(instance.getDependency(), "was not initialized: " + instance);
     }
 
     @Test
@@ -65,6 +65,6 @@ public class DIInheritanceTest {
         Module mClasses = DependencyInjection.classes(ClassToInit.class);
         Context diContext = DependencyInjection.context(mClasses, mSuppliers);
         ClassToInit instance = diContext.get(ClassToInit.class);
-        Assert.assertNotNull("was not initialized: " + instance, instance.getDependency());
+        assertNotNull(instance.getDependency(), "was not initialized: " + instance);
     }
 }

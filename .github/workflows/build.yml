@@ -5,11 +5,7 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        java: [ '7', '8']
-
-    name: Java ${{ matrix.java }} build with Maven
+    name: Java 8 build with Maven
     env:
       MAVEN_OPTS: '-Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn'
 
@@ -25,15 +21,38 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v2
         with:
-          java-version: ${{ matrix.java }}
-          distribution: 'zulu'
+          java-version: '8'
+          distribution: 'adopt'
       - name: Build with Maven
-        run: mvn site --batch-mode -DbuildNumber=${GITHUB_RUN_NUMBER}
+        run: mvn test --batch-mode -DbuildNumber=${GITHUB_RUN_NUMBER}
       - name: Check for vulnerabilities
         run: mvn org.sonatype.ossindex.maven:ossindex-maven-plugin:audit
+
+  update-site:
+    needs: build
+    runs-on: ubuntu-latest
+    name: Site build with Maven
+    if: github.ref == 'refs/heads/master'
+    env:
+      MAVEN_OPTS: '-Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn'
+    steps:
+      - uses: actions/checkout@v2
+      - name: Cache local Maven repository
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: site-${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            site-${{ runner.os }}-maven-
+      - name: Set up JDK
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'adopt'
+          java-version: '8'
+      - name: Generate site with Maven
+        run: mvn test org.pitest:pitest-maven:mutationCoverage site --batch-mode -DbuildNumber=${GITHUB_RUN_NUMBER}
       - name: Deploy docs 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.4
-        if: github.ref == 'refs/heads/master' && matrix.java == '7'
         with:
           branch: gh-pages # The branch the action should deploy to.
           folder: target/site # The folder the action should deploy.
@@ -55,10 +74,10 @@ jobs:
         with:
           distribution: 'adopt'
           java-version: '8'
-      - name: Coverage with Cobertura Maven plugin
-        run: mvn cobertura:cobertura --quiet --batch-mode -DbuildNumber=${GITHUB_RUN_NUMBER}
+      - name: Coverage with Jacoco Maven plugin
+        run: mvn verify jacoco:report --quiet --batch-mode -DbuildNumber=${GITHUB_RUN_NUMBER}
       - uses: codecov/codecov-action@v1
         with:
           fail_ci_if_error: true
-          file: ./**/target/site/cobertura/cobertura.xml
+          file: ./**/target/site/jacoco/jacoco.xml
           name: codecov
