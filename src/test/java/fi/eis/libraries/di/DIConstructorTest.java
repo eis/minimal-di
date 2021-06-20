@@ -13,12 +13,14 @@ import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 
 import org.hamcrest.Matchers;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
 
 import fi.eis.libraries.di.SimpleLogger.LogLevel;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 
 interface ConstDependencyInterface {
@@ -71,7 +73,7 @@ public class DIConstructorTest {
         Module mClasses = DependencyInjection.classes(ConstClassToInit.class);
         Context diContext = DependencyInjection.context(mClasses, mSuppliers);
         ConstClassToInit instance = diContext.get(ConstClassToInit.class);
-        Assert.assertNotNull("was not initialized: " + instance, instance.getDependency());
+        assertNotNull(instance.getDependency(), "was not initialized: " + instance);
     }
 
     @Test
@@ -83,14 +85,14 @@ public class DIConstructorTest {
         Module mClasses = DependencyInjection.classes(ConstClassToInit.class);
         Context diContext = DependencyInjection.context(mClasses, mSuppliers);
         ConstClassToInit instance = diContext.get(ConstClassToInit.class);
-        Assert.assertNotNull("was not initialized: " + instance, instance.getDependency());
+        assertNotNull( instance.getDependency(), "was not initialized: " + instance);
     }
 
     // below is to test logging
 
     private PrintStream originalPrintStream;
     private ByteArrayOutputStream loggingOutputStream;
-    @Before
+    @BeforeEach
     public void setupSystemOutRedirection() {
         originalPrintStream = System.out;
         
@@ -99,7 +101,7 @@ public class DIConstructorTest {
         System.setOut(ps);
     }
     
-    @After
+    @AfterEach
     public void resetSystemOutRedirection() {
         System.setOut(originalPrintStream);
     }
@@ -117,7 +119,7 @@ public class DIConstructorTest {
         
         String loggedStuff = loggingOutputStream.toString("UTF-8");
         // there should be at least a context.get call
-        Assert.assertThat(loggedStuff, Matchers.containsString("context.get"));
+        assertThat(loggedStuff, Matchers.containsString("context.get"));
     }
     @Test
     public void testDiWithLoggingDisabled() throws UnsupportedEncodingException {
@@ -132,7 +134,7 @@ public class DIConstructorTest {
         diContext.get(ConstClassToInit.class);
         
         String loggedStuff = loggingOutputStream.toString("UTF-8");
-        Assert.assertThat(loggedStuff, Matchers.not(
+        assertThat(loggedStuff, Matchers.not(
                 Matchers.containsString("context.get")));
     }
     @Test
@@ -146,7 +148,7 @@ public class DIConstructorTest {
         diContext.get(ConstClassToInit.class);
         
         String loggedStuff = loggingOutputStream.toString("UTF-8");
-        Assert.assertThat(loggedStuff, Matchers.not(
+        assertThat(loggedStuff, Matchers.not(
                 Matchers.containsString("context.get")));
     }
 }
