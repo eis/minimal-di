@@ -55,6 +55,11 @@ jobs:
           java-version: '8'
       - name: Generate site with Maven
         run: mvn test org.pitest:pitest-maven:mutationCoverage site --batch-mode -DbuildNumber=${GITHUB_RUN_NUMBER}
+      - name: Deploy docs 🚀
+        uses: JamesIves/github-pages-deploy-action@4.1.4
+        with:
+          branch: gh-pages # The branch the action should deploy to.
+          folder: target/site # The folder the action should deploy.
 
   coverage:
     needs: build
