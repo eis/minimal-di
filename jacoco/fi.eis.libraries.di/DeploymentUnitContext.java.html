@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DeploymentUnitContext.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Minimal DI</a> &gt; <a href="index.source.html" class="el_package">fi.eis.libraries.di</a> &gt; <span class="el_source">DeploymentUnitContext.java</span></div><h1>DeploymentUnitContext.java</h1><pre class="source lang-java linenums">package fi.eis.libraries.di;
+
+import java.io.File;
+import java.io.IOException;
+import java.lang.reflect.Modifier;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.List;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipException;
+import java.util.zip.ZipFile;
+
+import fi.eis.libraries.di.SimpleLogger.LogLevel;
+
+/**
+ * Creation Date: 1.12.2014
+ * Creation Time: 21:55
+ * &lt;p&gt;
+ * This class borrows heavily from JBoss Weld class FileSystemBeanArchiveHandler, which authors are:
+ * Pete Muir, Marko Luksa, Martin Kouba
+ * &lt;/p&gt;
+ * &lt;p&gt;
+ * FileSystemBeanArchiveHandler has been licensed under Apache License,
+ * Version 2.0. It permits releasing under different license.
+ * (http://en.wikipedia.org/wiki/Comparison_of_free_and_open-source_software_licenses)
+ * &lt;/p&gt;
+ *
+ * @author eis
+ */
+public class DeploymentUnitContext extends Context {
+    private static final String PROCOTOL_JAR = &quot;jar&quot;;
+    private static final String CLASS_FILE_EXTENSION = &quot;.class&quot;;
+
+    public DeploymentUnitContext(Class sourceClass) {
+<span class="fc" id="L37">        super();</span>
+        // a jar or a directory path of whoever initiated us
+<span class="fc" id="L39">        initUsing(sourceClass);</span>
+<span class="fc" id="L40">    }</span>
+
+    public DeploymentUnitContext(Class sourceClass, LogLevel logLevel) {
+<span class="fc" id="L43">        super();</span>
+<span class="fc" id="L44">        setLogLevel(logLevel);</span>
+<span class="fc" id="L45">        initUsing(sourceClass);</span>
+<span class="fc" id="L46">    }</span>
+
+    public DeploymentUnitContext(File sourceJar) {
+<span class="fc" id="L49">        super();</span>
+<span class="fc" id="L50">        initFrom(handle(sourceJar));</span>
+<span class="fc" id="L51">    }</span>
+
+    public DeploymentUnitContext(File sourceJar, LogLevel logLevel) {
+<span class="nc" id="L54">        super();</span>
+<span class="nc" id="L55">        setLogLevel(logLevel);</span>
+<span class="nc" id="L56">        initFrom(handle(sourceJar));</span>
+<span class="nc" id="L57">    }</span>
+
+    private void initUsing(Class sourceClass) {
+<span class="fc" id="L60">        initFrom(handle(sourceClass.getProtectionDomain().getCodeSource().getLocation()));</span>
+<span class="fc" id="L61">    }</span>
+
+    private void initFrom(BeanArchiveBuilder builder) {
+<span class="fc" id="L64">        List&lt;Class&gt; classes = builder.getClasses();</span>
+<span class="fc" id="L65">        logger.debug(&quot;got classes &quot; + classes);</span>
+<span class="fc" id="L66">        super.modules.add(DependencyInjection.classes(classes));</span>
+<span class="fc" id="L67">    }</span>
+
+    public BeanArchiveBuilder handle(URL url) {
+<span class="fc" id="L70">        return handle(new File(url.getPath()));</span>
+    }
+
+    public BeanArchiveBuilder handle(File file) {
+
+<span class="fc bfc" id="L75" title="All 2 branches covered.">        if (!file.exists()) {</span>
+<span class="fc" id="L76">            throw new IllegalArgumentException(</span>
+<span class="fc" id="L77">                    String.format(&quot;Doesn't exist: %s&quot;, file));</span>
+        }
+
+<span class="fc" id="L80">        BeanArchiveBuilder builder = new BeanArchiveBuilder();</span>
+
+        try {
+<span class="fc" id="L83">            logger.debug(&quot;Handle path: {0}&quot;, file.toPath());</span>
+
+<span class="fc bfc" id="L85" title="All 2 branches covered.">            if (file.isDirectory()) {</span>
+<span class="fc" id="L86">                handleDirectory(new DirectoryEntry().setFile(file), builder);</span>
+            } else {
+<span class="fc" id="L88">                handleFile(file, builder);</span>
+            }
+<span class="nc" id="L90">        } catch (IOException e) {</span>
+<span class="nc" id="L91">            throw new IllegalStateException(&quot;Could not handle path: &quot; + file.toPath(), e);</span>
+<span class="fc" id="L92">        }</span>
+<span class="fc" id="L93">        return builder;</span>
+    }
+
+    protected void handleFile(File file, BeanArchiveBuilder builder) throws IOException {
+
+<span class="fc" id="L98">        logger.debug(&quot;Handle archive file: {0}&quot;, file);</span>
+
+        try {
+<span class="fc" id="L101">            ZipFile zip = new ZipFile(file);</span>
+<span class="fc" id="L102">            Enumeration&lt;? extends ZipEntry&gt; entries = zip.entries();</span>
+<span class="fc" id="L103">            ZipFileEntry entry = new ZipFileEntry(PROCOTOL_JAR + &quot;:&quot; + file.toURI().toURL().toExternalForm() + &quot;!/&quot;);</span>
+<span class="fc bfc" id="L104" title="All 2 branches covered.">            while (entries.hasMoreElements()) {</span>
+<span class="fc" id="L105">                add(entry.setName(entries.nextElement().getName()), builder);</span>
+            }
+<span class="fc" id="L107">            zip.close();</span>
+<span class="nc" id="L108">        } catch (ZipException e) {</span>
+<span class="nc" id="L109">            throw new IllegalArgumentException(e);</span>
+<span class="fc" id="L110">        }</span>
+<span class="fc" id="L111">    }</span>
+
+    protected void handleDirectory(DirectoryEntry entry, BeanArchiveBuilder builder) throws IOException {
+
+<span class="fc" id="L115">        logger.debug(&quot;Handle directory: %s&quot;, entry.getFile());</span>
+
+<span class="fc" id="L117">        File[] files = entry.getFile().listFiles();</span>
+
+<span class="pc bpc" id="L119" title="1 of 2 branches missed.">        if (files == null) {</span>
+<span class="nc" id="L120">            throw new IllegalArgumentException(</span>
+<span class="nc" id="L121">                    String.format(&quot;Unable to list directory files: %s&quot;, entry.getFile()));</span>
+        }
+<span class="fc" id="L123">        String parentPath = entry.getName();</span>
+
+<span class="fc bfc" id="L125" title="All 2 branches covered.">        for (File child : files) {</span>
+
+<span class="fc bfc" id="L127" title="All 2 branches covered.">            if (entry.getName() != null) {</span>
+<span class="fc" id="L128">                entry.setPath(entry.getName() + &quot;/&quot; + child.getName());</span>
+            } else {
+<span class="fc" id="L130">                entry.setPath(child.getName());</span>
+            }
+<span class="fc" id="L132">            entry.setFile(child);</span>
+
+<span class="fc bfc" id="L134" title="All 2 branches covered.">            if (child.isDirectory()) {</span>
+<span class="fc" id="L135">                handleDirectory(entry, builder);</span>
+            } else {
+<span class="fc" id="L137">                add(entry, builder);</span>
+            }
+<span class="fc" id="L139">            entry.setPath(parentPath);</span>
+        }
+<span class="fc" id="L141">    }</span>
+
+    protected void add(Entry entry, BeanArchiveBuilder builder) throws MalformedURLException {
+<span class="fc bfc" id="L144" title="All 2 branches covered.">        if (isClass(entry.getName())) {</span>
+<span class="fc" id="L145">            builder.addClass(filenameToClassname(entry.getName()));</span>
+        }
+<span class="fc" id="L147">    }</span>
+
+    protected boolean isClass(String name) {
+<span class="fc" id="L150">        return name.endsWith(CLASS_FILE_EXTENSION);</span>
+    }
+
+    private String filenameToClassname(String filename) {
+<span class="fc" id="L154">        return filename.substring(0, filename.lastIndexOf(CLASS_FILE_EXTENSION))</span>
+<span class="fc" id="L155">                .replace('/', '.').replace('\\', '.');</span>
+    }
+
+    /**
+     * An abstraction of a bean archive entry.
+     */
+    protected interface Entry {
+
+        String getName();
+
+        /**
+         * @return the URL, most probably lazily created
+         * @throws MalformedURLException missing protocol or URL parsing error
+         */
+        URL getUrl() throws MalformedURLException;
+
+    }
+
+<span class="fc" id="L173">    static class BeanArchiveBuilder {</span>
+<span class="fc" id="L174">        private final List&lt;Class&gt; classes = new ArrayList&lt;&gt;();</span>
+
+        public void addClass(String className) {
+            try {
+<span class="fc" id="L178">                Class targetClass = Class.forName(className);</span>
+                // we want instantiable classes, so don't add interfaces or
+                // abstract classes
+<span class="fc bfc" id="L181" title="All 4 branches covered.">                if (targetClass.isInterface() || Modifier.isAbstract(targetClass.getModifiers())) {</span>
+<span class="fc" id="L182">                    return;</span>
+                }
+<span class="fc" id="L184">                classes.add(targetClass);</span>
+<span class="nc" id="L185">            } catch (ClassNotFoundException | NoClassDefFoundError e) {</span>
+<span class="nc" id="L186">                System.out.println(&quot;Not found: &quot; + className);</span>
+<span class="fc" id="L187">            }</span>
+<span class="fc" id="L188">        }</span>
+
+        public List&lt;Class&gt; getClasses() {
+<span class="fc" id="L191">            return this.classes;</span>
+        }
+    }
+
+    private static class ZipFileEntry implements Entry {
+
+        private String name;
+        private String archiveUrl;
+
+<span class="fc" id="L200">        ZipFileEntry(String archiveUrl) {</span>
+<span class="fc" id="L201">            this.archiveUrl = archiveUrl;</span>
+<span class="fc" id="L202">        }</span>
+
+        @Override
+        public String getName() {
+<span class="fc" id="L206">            return name;</span>
+        }
+
+        ZipFileEntry setName(String name) {
+<span class="fc" id="L210">            this.name = name;</span>
+<span class="fc" id="L211">            return this;</span>
+        }
+
+        @Override
+        public URL getUrl() throws MalformedURLException {
+<span class="nc" id="L216">            return new URL(archiveUrl + name);</span>
+        }
+
+    }
+
+    private static class DirectoryEntry implements Entry {
+
+        private String path;
+        private File file;
+
+        @Override
+        public String getName() {
+<span class="fc" id="L228">            return path;</span>
+        }
+
+        @Override
+        public URL getUrl() throws MalformedURLException {
+<span class="nc" id="L233">            return file.toURI().toURL();</span>
+        }
+
+        public DirectoryEntry setPath(String path) {
+<span class="fc" id="L237">            this.path = path;</span>
+<span class="fc" id="L238">            return this;</span>
+        }
+
+        public File getFile() {
+<span class="fc" id="L242">            return file;</span>
+        }
+
+        public DirectoryEntry setFile(File dir) {
+<span class="fc" id="L246">            this.file = dir;</span>
+<span class="fc" id="L247">            return this;</span>
+        }
+
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

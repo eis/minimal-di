@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Context.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Minimal DI</a> &gt; <a href="index.source.html" class="el_package">fi.eis.libraries.di</a> &gt; <span class="el_source">Context.java</span></div><h1>Context.java</h1><pre class="source lang-java linenums">package fi.eis.libraries.di;
+
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+/**
+ * Creation Date: 30.11.2014
+ * Creation Time: 22:52
+ *
+ * @author eis
+ */
+public class Context {
+
+<span class="fc" id="L16">    protected final SimpleLogger logger = new SimpleLogger(this.getClass());</span>
+
+<span class="fc" id="L18">    protected final List&lt;Module&gt; modules = new ArrayList&lt;Module&gt;();</span>
+<span class="fc" id="L19">    public Context(Module... modules) {</span>
+<span class="fc" id="L20">        Collections.addAll(this.modules, modules);</span>
+<span class="fc" id="L21">    }</span>
+    public &lt;T&gt; T get(Class&lt;T&gt; type) {
+<span class="fc" id="L23">        logger.debug(&quot;context.get=&quot; + type);</span>
+<span class="fc" id="L24">        T object = null;</span>
+<span class="pc bpc" id="L25" title="1 of 2 branches missed.">        for (Module module : modules) {</span>
+
+<span class="pc bpc" id="L27" title="1 of 2 branches missed.">            if (module.has(type)) {</span>
+<span class="fc" id="L28">                logger.debug(&quot;has type &quot; + type);</span>
+<span class="fc" id="L29">                object = module.get(type);</span>
+<span class="fc" id="L30">                break;</span>
+            }
+<span class="nc" id="L32">        }</span>
+<span class="pc bpc" id="L33" title="1 of 2 branches missed.">        if (object == null) {</span>
+<span class="nc" id="L34">            throw new IllegalArgumentException(String.format(&quot;Type %s was not found, looking at modules %s&quot;, type, modules));</span>
+        }
+<span class="fc" id="L36">        resolveProperties(object);</span>
+<span class="fc" id="L37">        return object;</span>
+    }
+
+    private &lt;T&gt; void resolveProperties(T object) {
+<span class="fc" id="L41">        logger.debug(&quot;resolveProperties=&quot; + object);</span>
+<span class="fc" id="L42">        logger.debug(&quot;class=&quot; + object.getClass());</span>
+
+        // @Injected fields
+<span class="fc" id="L45">        Field[] allFields = object.getClass().getDeclaredFields();</span>
+
+<span class="fc bfc" id="L47" title="All 2 branches covered.">        for (Field field : allFields) {</span>
+<span class="fc bfc" id="L48" title="All 2 branches covered.">            if(field.isAnnotationPresent(Inject.class)) {</span>
+                try {
+<span class="fc" id="L50">                    boolean originallyAccessible = field.isAccessible();</span>
+<span class="fc" id="L51">                    field.setAccessible(true);</span>
+<span class="fc" id="L52">                    field.set(object, get(field.getType()));</span>
+<span class="pc bpc" id="L53" title="1 of 2 branches missed.">                    if (!originallyAccessible) {</span>
+<span class="fc" id="L54">                        field.setAccessible(false);</span>
+                    }
+<span class="nc" id="L56">                } catch (IllegalAccessException e) {</span>
+<span class="nc" id="L57">                    throw new IllegalStateException(e);</span>
+<span class="fc" id="L58">                }</span>
+            }
+        }
+<span class="fc" id="L61">    }</span>
+    public void setLogLevel(SimpleLogger.LogLevel level) {
+<span class="fc" id="L63">        this.logger.setLogLevel(level);</span>
+<span class="fc" id="L64">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
