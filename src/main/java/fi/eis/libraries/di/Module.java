@@ -63,9 +63,9 @@ public class Module {
         throw new IllegalArgumentException("not allowed: " + type);
     }
     private <T> T getInstance(Class <T> type) {
-        for (Class clazz: providers.keySet()) {
-            if (type.isAssignableFrom(clazz)) {
-                return (T)providers.get(clazz);
+        for (Map.Entry<Class,Object> classObjEntry: providers.entrySet()) {
+            if (type.isAssignableFrom(classObjEntry.getKey())) {
+                return (T)classObjEntry.getValue();
             }
         }
         throw new IllegalArgumentException("not allowed: " + type);
