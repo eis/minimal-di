@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 public class ConfigurationClassContext extends Context {
-    private final Map<Class, Object> classObjectMap = new HashMap<>();
+    private final Map<Class, Object> classObjectMap = new HashMap<Class, Object>();
 
     public ConfigurationClassContext(Class... configurationClasses) {
         this(SimpleLogger.LogLevel.NONE, configurationClasses);
@@ -20,7 +20,7 @@ public class ConfigurationClassContext extends Context {
         setLogLevel(logLevel);
 
         try {
-            List<Map.Entry<Object, Method>> confClassCreationMethodTuples = new ArrayList<>();
+            List<Map.Entry<Object, Method>> confClassCreationMethodTuples = new ArrayList<Map.Entry<Object, Method>>();
             for (Class configurationClass: configurationClassInstances){
                 Object configurationClassInstance = configurationClass.newInstance();
 
@@ -40,7 +40,13 @@ public class ConfigurationClassContext extends Context {
                 classObjectMap.put(method.getReturnType(), instance);
                 logger.debug("instantiated and stored instance for class " + method.getReturnType());
             }
-        } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
+        } catch (InstantiationException e) {
+            throw new IllegalArgumentException(e);
+        } catch (IllegalAccessException e) {
+            throw new IllegalArgumentException(e);
+        } catch (NoSuchMethodException e) {
+            throw new IllegalArgumentException(e);
+        } catch (InvocationTargetException e) {
             throw new IllegalArgumentException(e);
         }
         logger.debug("class-instance module: " + DependencyInjection.classesWithInstances(classObjectMap));
@@ -48,12 +54,13 @@ public class ConfigurationClassContext extends Context {
     }
 
     private static Map.Entry<Object,Method> tuple(Object object, Method method) {
-        return new HashMap.SimpleEntry<>(object, method);
+        return new HashMap.SimpleEntry<Object,Method>(object, method);
     }
     private static final Comparator<Map.Entry<Object,Method>> ConfClassCreationMethodTuplesComparator = new Comparator<Map.Entry<Object, Method>>() {
         @Override
         public int compare(Map.Entry<Object, Method> o1, Map.Entry<Object, Method> o2) {
-            return Integer.compare(o1.getValue().getParameterTypes().length, o2.getValue().getParameterTypes().length);
+            return ((Integer)(o1.getValue().getParameterTypes().length))
+                    .compareTo(o2.getValue().getParameterTypes().length);
         }
     };
 
