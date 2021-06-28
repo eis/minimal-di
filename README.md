@@ -70,11 +70,12 @@ public static void main(String args[]) {
 }
 ```
 
-or use a Spring-style javaconfig class (version 1.1):
+or use a Spring-style javaconfig class (since 1.1):
 
 ```java
 public static void main(String args[]) {
-    Context diContext = DependencyInjection.configurationClasses(ExampleJavaConfig.class);
+    Module module = DependencyInjection.configurationClasses(ExampleJavaConfig.class);
+    Context diContext = DependencyInjection.context(module);
     CurrentApp app = diContext.get(CurrentApp.class);
     app.run();
 }

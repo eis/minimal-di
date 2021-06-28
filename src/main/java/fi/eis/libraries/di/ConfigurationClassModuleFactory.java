@@ -10,14 +10,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ConfigurationClassContext extends Context {
-    private final Map<Class, Object> classObjectMap = new HashMap<>();
+class ConfigurationClassModuleFactory {
 
-    public ConfigurationClassContext(Class... configurationClasses) {
-        this(SimpleLogger.LogLevel.NONE, configurationClasses);
+    static Module module(Class... configurationClasses) {
+        return module(SimpleLogger.LogLevel.NONE, configurationClasses);
     }
-    public ConfigurationClassContext(SimpleLogger.LogLevel logLevel, Class... configurationClassInstances) {
-        setLogLevel(logLevel);
+
+    static Module module(SimpleLogger.LogLevel logLevel, Class... configurationClassInstances) {
+        final Map<Class, Object> classObjectMap = new HashMap<>();
+        final SimpleLogger logger = new SimpleLogger(ConfigurationClassModuleFactory.class);
+        logger.setLogLevel(logLevel);
 
         try {
             List<Map.Entry<Object, Method>> confClassCreationMethodTuples = new ArrayList<>();
@@ -36,7 +38,7 @@ public class ConfigurationClassContext extends Context {
 
             for (Map.Entry<Object,Method> confClassCreationMethodTuple: confClassCreationMethodTuples) {
                 Method method = confClassCreationMethodTuple.getValue();
-                Object instance = newInstance(confClassCreationMethodTuple.getKey(), method);
+                Object instance = newInstance(classObjectMap, confClassCreationMethodTuple.getKey(), method);
                 classObjectMap.put(method.getReturnType(), instance);
                 logger.debug("instantiated and stored instance for class " + method.getReturnType());
             }
@@ -44,7 +46,7 @@ public class ConfigurationClassContext extends Context {
             throw new IllegalArgumentException(e);
         }
         logger.debug("class-instance module: " + DependencyInjection.classesWithInstances(classObjectMap));
-        super.modules.add(DependencyInjection.classesWithInstances(classObjectMap)) ;
+        return (DependencyInjection.classesWithInstances(classObjectMap)) ;
     }
 
     private static Map.Entry<Object,Method> tuple(Object object, Method method) {
@@ -57,7 +59,7 @@ public class ConfigurationClassContext extends Context {
         }
     };
 
-    private Object newInstance(Object configurationClass, Method method) throws InstantiationException,
+    private static Object newInstance(final Map<Class, Object> classObjectMap, Object configurationClass, Method method) throws InstantiationException,
             IllegalAccessException, NoSuchMethodException, InvocationTargetException {
         Class[] parameterTypes = method.getParameterTypes();
         Object[] paramArr = new Object[parameterTypes.length];
@@ -68,4 +70,5 @@ public class ConfigurationClassContext extends Context {
         }
         return method.invoke(configurationClass, paramArr);
     }
+
 }

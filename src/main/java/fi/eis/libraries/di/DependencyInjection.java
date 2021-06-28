@@ -45,10 +45,10 @@ public class DependencyInjection {
         return new DeploymentUnitContext(jarFile, logLevel);
     }
 
-    public static Context configurationClasses(Class... exampleJavaConfigClass) {
-        return new ConfigurationClassContext(exampleJavaConfigClass);
+    public static Module configurationClasses(Class... exampleJavaConfigClass) {
+        return ConfigurationClassModuleFactory.module(exampleJavaConfigClass);
     }
-    public static Context configurationClasses(LogLevel logLevel, Class... exampleJavaConfigClass) {
-        return new ConfigurationClassContext(logLevel, exampleJavaConfigClass);
+    public static Module configurationClasses(LogLevel logLevel, Class... exampleJavaConfigClass) {
+        return ConfigurationClassModuleFactory.module(logLevel, exampleJavaConfigClass);
     }
 }

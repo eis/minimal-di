@@ -9,7 +9,8 @@ import org.junit.Test;
 public class JavaConfigTest {
     @Test
     public void testJavaConfig() {
-        Context diContext = DependencyInjection.configurationClasses(SimpleLogger.LogLevel.DEBUG, ExampleJavaConfig.class);
+        Module module = DependencyInjection.configurationClasses(SimpleLogger.LogLevel.DEBUG, ExampleJavaConfig.class);
+        Context diContext = DependencyInjection.context(module);
         MockClassInNeedOfConstructorDependency instance = diContext.get(MockClassInNeedOfConstructorDependency.class);
         Assert.assertTrue("was not initialized: " + instance, instance.hasDependency());
     }
