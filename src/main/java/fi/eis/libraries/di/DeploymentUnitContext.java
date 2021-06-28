@@ -80,7 +80,7 @@ public class DeploymentUnitContext extends Context {
         BeanArchiveBuilder builder = new BeanArchiveBuilder();
 
         try {
-            logger.debug("Handle path: {0}", file.toPath());
+            logger.debug("Handle path: {0}", file.getAbsolutePath());
 
             if (file.isDirectory()) {
                 handleDirectory(new DirectoryEntry().setFile(file), builder);
@@ -88,7 +88,7 @@ public class DeploymentUnitContext extends Context {
                 handleFile(file, builder);
             }
         } catch (IOException e) {
-            throw new IllegalStateException("Could not handle path: " + file.toPath(), e);
+            throw new IllegalStateException("Could not handle path: " + file.getAbsolutePath(), e);
         }
         return builder;
     }
@@ -171,7 +171,7 @@ public class DeploymentUnitContext extends Context {
     }
 
     static class BeanArchiveBuilder {
-        private final List<Class> classes = new ArrayList<>();
+        private final List<Class> classes = new ArrayList<Class>();
 
         public void addClass(String className) {
             try {
@@ -182,7 +182,9 @@ public class DeploymentUnitContext extends Context {
                     return;
                 }
                 classes.add(targetClass);
-            } catch (ClassNotFoundException | NoClassDefFoundError e) {
+            } catch (ClassNotFoundException e) {
+                System.out.println("Not found: " + className);
+            } catch (NoClassDefFoundError e) {
                 System.out.println("Not found: " + className);
             }
         }

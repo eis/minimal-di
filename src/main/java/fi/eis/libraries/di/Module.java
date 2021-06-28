@@ -19,7 +19,7 @@ public class Module {
     protected final SimpleLogger logger = new SimpleLogger(this.getClass());
     
     private static final Object NO_INSTANCE = new Object();
-    private Map<Class, Object> providers = new HashMap<>();
+    private Map<Class, Object> providers = new HashMap<Class, Object>();
     public Module(Class... classes) {
         for (Class clazz: classes) {
             this.providers.put(clazz, NO_INSTANCE );
@@ -84,7 +84,13 @@ public class Module {
                 storedValue = newInstance(implClass);
                 providers.put(implClass, storedValue);
                 return (T)storedValue;
-            } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
+            } catch (InstantiationException e) {
+                throw new IllegalStateException(e);
+            } catch (IllegalAccessException e) {
+                throw new IllegalStateException(e);
+            } catch (NoSuchMethodException e) {
+                throw new IllegalStateException(e);
+            } catch (InvocationTargetException e) {
                 throw new IllegalStateException(e);
             }
         }
