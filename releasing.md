@@ -1,6 +1,14 @@
+Snapshot version
+----------------
+1. verify oss credentials in ~/.m2/settings.xml
+2. `mvn clean deploy`
+
+Release version
+---------------
+
 1. verify gpg command responds
 2. verify git-ssh agent is running
-3. verify oss credentials in settings.xml
+3. verify oss credentials in ~/.m2/settings.xml
 4. `mvn versions:set -DnewVersion=1.2.3`
 5. `git tag 1.2.3`
 6. `mvn clean deploy -DperformRelease=true` (gpg pass is in password store)
