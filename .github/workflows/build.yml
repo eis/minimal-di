@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        java: [ '7', '8', '11', '16']
+        java: [ '6', '7', '8', '11', '16']
 
     name: Java ${{ matrix.java }} build with Maven
     env:
@@ -22,13 +22,43 @@ jobs:
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
             ${{ runner.os }}-maven-
+      - name: Install Toolchain JDK
+        uses: battila7/jdk-via-jabba@v1
+        with:
+          jdk: zulu@1.${{ matrix.java }}
+          javaHomeEnvironmentVariable: TOOLCHAIN_JDK
+      - name: Set up Toolchain
+        shell: bash
+        run: |
+          mkdir -p $HOME/.m2 \
+          && cat << EOF > $HOME/.m2/toolchains.xml
+          <?xml version="1.0" encoding="UTF8"?>
+          <toolchains>
+            <toolchain>
+              <type>jdk</type>
+                <provides>
+                  <version>${{ matrix.java }}</version>
+                  <vendor>jabba</vendor>
+                </provides>
+                <configuration>
+                  <jdkHome>${{ env.TOOLCHAIN_JDK }}</jdkHome>
+                </configuration>
+            </toolchain>
+          </toolchains>
+          EOF
       - name: Set up JDK
         uses: actions/setup-java@v2
         with:
-          java-version: ${{ matrix.java }}
+          java-version: 8
           distribution: 'zulu'
-      - name: Build with Maven
-        run: mvn test --batch-mode -DbuildNumber=${GITHUB_RUN_NUMBER}
+      - name: Display Maven environment
+        run: mvn --version
+      - name: Build with Maven (binary target java 7)
+        if: ${{ matrix.java > 11 }}
+        run: mvn test --batch-mode -DbuildNumber=${GITHUB_RUN_NUMBER} -P jabba-toolchain,target-java7
+      - name: Build with Maven (binary target java 6)
+        if: ${{ matrix.java <= 11 }}
+        run: mvn test --batch-mode -DbuildNumber=${GITHUB_RUN_NUMBER} -P jabba-toolchain
       - name: Check for vulnerabilities
         run: mvn org.sonatype.ossindex.maven:ossindex-maven-plugin:audit
 
@@ -64,6 +94,8 @@ jobs:
   coverage:
     needs: build
     runs-on: ubuntu-latest
+    env:
+      MAVEN_OPTS: '-Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn'
     steps:
       - uses: actions/checkout@v2
       - name: Cache local Maven repository
@@ -79,7 +111,7 @@ jobs:
           distribution: 'adopt'
           java-version: '8'
       - name: Coverage with Jacoco Maven plugin
-        run: mvn verify jacoco:report --quiet --batch-mode -DbuildNumber=${GITHUB_RUN_NUMBER}
+        run: mvn verify jacoco:report --batch-mode -DbuildNumber=${GITHUB_RUN_NUMBER}
       - uses: codecov/codecov-action@v1
         with:
           fail_ci_if_error: true
