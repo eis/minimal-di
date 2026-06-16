@@ -140,7 +140,7 @@ public class DeploymentUnitContext extends Context {
         }
     }
 
-    protected void add(Entry entry, BeanArchiveBuilder builder) throws MalformedURLException {
+    protected void add(Entry entry, BeanArchiveBuilder builder) {
         if (isClass(entry.getName())) {
             builder.addClass(filenameToClassname(entry.getName()));
         }
@@ -183,7 +183,7 @@ public class DeploymentUnitContext extends Context {
                 }
                 classes.add(targetClass);
             } catch (ClassNotFoundException | NoClassDefFoundError e) {
-                System.out.println("Not found: " + className);
+                throw new IllegalArgumentException("Not found: " + className);
             }
         }
 
