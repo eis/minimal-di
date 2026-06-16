@@ -142,7 +142,6 @@ class BeanArchive {
             } else {
                 addIfClass(entry);
             }
-            entry.setPath(directoryPath);
         }
     }
 
