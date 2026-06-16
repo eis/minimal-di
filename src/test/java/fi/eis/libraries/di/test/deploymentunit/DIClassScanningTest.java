@@ -1,11 +1,12 @@
-package fi.eis.libraries.di;
+package fi.eis.libraries.di.test.deploymentunit;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 
-import fi.eis.libraries.di.SimpleLogger.LogLevel;
-import fi.eis.libraries.di.testhelpers.MockClassInNeedOfDependency;
+import fi.eis.libraries.di.DependencyInjection;
+import fi.eis.libraries.di.logger.SimpleLogger.LogLevel;
+import fi.eis.libraries.di.context.Context;
 
 import org.hamcrest.Matchers;
 import org.junit.After;
@@ -14,9 +15,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * Creation Date: 1.12.2014
- * Creation Time: 21:43
- *
  * @author eis
  */
 public class DIClassScanningTest {

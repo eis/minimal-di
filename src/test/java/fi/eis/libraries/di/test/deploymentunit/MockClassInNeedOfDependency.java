@@ -1,11 +1,9 @@
-package fi.eis.libraries.di.testhelpers;
+package fi.eis.libraries.di.test.deploymentunit;
 
 import fi.eis.libraries.di.Inject;
+import fi.eis.libraries.di.testhelpers.DependencyMockInterface;
 
 /**
- * Creation Date: 1.12.2014
- * Creation Time: 21:47
- *
  * @author eis
  */
 public class MockClassInNeedOfDependency {

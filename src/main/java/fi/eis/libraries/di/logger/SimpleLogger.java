@@ -1,4 +1,4 @@
-package fi.eis.libraries.di;
+package fi.eis.libraries.di.logger;
 
 import java.io.PrintStream;
 import java.util.Date;

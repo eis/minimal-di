@@ -1,15 +1,14 @@
-package fi.eis.libraries.di;
+package fi.eis.libraries.di.test.deploymentunit;
 
 import java.io.File;
 
-import fi.eis.libraries.di.testhelpers.MockClassInNeedOfDependency;
+import fi.eis.libraries.di.DependencyInjection;
+import fi.eis.libraries.di.context.Context;
+import fi.eis.libraries.di.test.deploymentunit.MockClassInNeedOfDependency;
 import org.junit.Assert;
 import org.junit.Test;
 
 /**
- * Creation Date: 1.12.2014
- * Creation Time: 21:43
- *
  * @author eis
  */
 public class DIClassScanningJarLoadingTest {
@@ -17,7 +16,7 @@ public class DIClassScanningJarLoadingTest {
     @Test
     public void testDi() {
         Context diContext = DependencyInjection.deploymentUnitContext(
-                new File(this.getClass().getResource("/minimal-di-1.0-SNAPSHOT-test-targets.jar").getPath()));
+                new File(this.getClass().getResource("/minimal-di-1.2.0-SNAPSHOT-tests.jar").getPath()));
         MockClassInNeedOfDependency instance = diContext.get(MockClassInNeedOfDependency.class);
         Assert.assertNotNull("was not initialized: " + instance, instance.dependency);
     }

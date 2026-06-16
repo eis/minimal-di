@@ -1,4 +1,7 @@
-package fi.eis.libraries.di;
+package fi.eis.libraries.di.context;
+
+import fi.eis.libraries.di.Inject;
+import fi.eis.libraries.di.logger.SimpleLogger;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -6,8 +9,8 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Creation Date: 30.11.2014
- * Creation Time: 22:52
+ * A Context instance makes up of the DI context our library creates. It consists of one or more
+ * Module instances that provide classes as required.
  *
  * @author eis
  */

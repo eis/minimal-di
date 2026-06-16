@@ -1,8 +1,6 @@
-package fi.eis.libraries.di;
+package fi.eis.libraries.di.test.moduleconfig;
 
 /**
- * Creation Date: 30.11.2014
- * Creation Time: 21:21
  *
  * @author eis
  */
@@ -12,75 +10,40 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 
+import fi.eis.libraries.di.DependencyInjection;
+import fi.eis.libraries.di.context.Context;
+import fi.eis.libraries.di.context.Module;
 import org.hamcrest.Matchers;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import fi.eis.libraries.di.SimpleLogger.LogLevel;
+import fi.eis.libraries.di.logger.SimpleLogger.LogLevel;
 
-
-interface ConstDependencyInterface {
-    void sayHello();
-}
-
-class ConstDependency implements ConstDependencyInterface {
-    public void sayHello() {
-        System.out.println("hello");
-    }
-}
-
-class ConstClassToInit {
-    private final ConstDependencyInterface dependency;
-
-    @Inject
-    public ConstClassToInit(ConstDependencyInterface dependency) {
-        this.dependency = dependency;
-    }
-
-
-    @Override
-    public String toString() {
-        return "ConstClassToInit{" +
-                "dependency=" + dependency +
-                '}';
-    }
-
-    public ConstDependencyInterface getDependency() {
-        return this.dependency;
-    }
-}
-
-abstract class ConstAbstractParentForDependency implements ConstDependencyInterface {
-    public void sayHello() {
-        System.out.println("hello");
-    }
-}
-
-class AnotherConstDependency extends ConstAbstractParentForDependency {}
 
 public class DIConstructorTest {
 
     @Test
     public void testDi() {
-        Module mSuppliers = DependencyInjection.classes(
+        Module mSuppliers = DependencyInjection.module(
             ConstDependency.class,
             ConstClassToInit.class
         );
-        Module mClasses = DependencyInjection.classes(ConstClassToInit.class);
+        Module mClasses = DependencyInjection.module(ConstClassToInit.class);
         Context diContext = DependencyInjection.context(mClasses, mSuppliers);
         ConstClassToInit instance = diContext.get(ConstClassToInit.class);
         Assert.assertNotNull("was not initialized: " + instance, instance.getDependency());
     }
 
+
     @Test
     public void testDiWithInheritance() {
-        Module mSuppliers = DependencyInjection.classes(
+        Module mSuppliers = DependencyInjection.module(
             AnotherConstDependency.class,
             ConstClassToInit.class
         );
-        Module mClasses = DependencyInjection.classes(ConstClassToInit.class);
+        Module mClasses = DependencyInjection.module(ConstClassToInit.class);
         Context diContext = DependencyInjection.context(mClasses, mSuppliers);
         ConstClassToInit instance = diContext.get(ConstClassToInit.class);
         Assert.assertNotNull("was not initialized: " + instance, instance.getDependency());
@@ -105,11 +68,11 @@ public class DIConstructorTest {
     }
     @Test
     public void testDiWithLoggingEnabled() throws UnsupportedEncodingException {
-        Module mSuppliers = DependencyInjection.classes(
+        Module mSuppliers = DependencyInjection.module(
             ConstDependency.class,
             ConstClassToInit.class
         );
-        Module mClasses = DependencyInjection.classes(ConstClassToInit.class);
+        Module mClasses = DependencyInjection.module(ConstClassToInit.class);
         mClasses.setLogLevel(LogLevel.DEBUG);
         Context diContext = DependencyInjection.context(mClasses, mSuppliers);
         diContext.setLogLevel(LogLevel.DEBUG);
@@ -121,11 +84,11 @@ public class DIConstructorTest {
     }
     @Test
     public void testDiWithLoggingDisabled() throws UnsupportedEncodingException {
-        Module mSuppliers = DependencyInjection.classes(
+        Module mSuppliers = DependencyInjection.module(
             ConstDependency.class,
             ConstClassToInit.class
         );
-        Module mClasses = DependencyInjection.classes(ConstClassToInit.class);
+        Module mClasses = DependencyInjection.module(ConstClassToInit.class);
         mClasses.setLogLevel(LogLevel.NONE);
         Context diContext = DependencyInjection.context(mClasses, mSuppliers);
         diContext.setLogLevel(LogLevel.NONE);
@@ -137,11 +100,11 @@ public class DIConstructorTest {
     }
     @Test
     public void testDiWithLoggingDefault() throws UnsupportedEncodingException {
-        Module mSuppliers = DependencyInjection.classes(
+        Module mSuppliers = DependencyInjection.module(
             ConstDependency.class,
             ConstClassToInit.class
         );
-        Module mClasses = DependencyInjection.classes(ConstClassToInit.class);
+        Module mClasses = DependencyInjection.module(ConstClassToInit.class);
         Context diContext = DependencyInjection.context(mClasses, mSuppliers);
         diContext.get(ConstClassToInit.class);
         

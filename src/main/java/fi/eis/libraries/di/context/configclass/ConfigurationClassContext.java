@@ -1,4 +1,8 @@
-package fi.eis.libraries.di;
+package fi.eis.libraries.di.context.configclass;
+
+import fi.eis.libraries.di.DependencyInjection;
+import fi.eis.libraries.di.context.Context;
+import fi.eis.libraries.di.logger.SimpleLogger;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -10,6 +14,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * A Configuration Class is a Spring-style class that contains the required configuration
+ * to do dependency injection. It contains the definition of dependency associations so that
+ * it can be used to figure out which class depends on what.
+ *
+ * This class contains the logic to handle such classes, so we create a dependency injection context
+ * based on such class or several classes. This class goes through all the methods in a
+ * configuration class, creating the needed dependencies and instantiating the configured classes
+ * with their dependencies.
+ */
 public class ConfigurationClassContext extends Context {
     private final Map<Class, Object> classObjectMap = new HashMap<>();
 
@@ -43,19 +57,15 @@ public class ConfigurationClassContext extends Context {
         } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
             throw new IllegalArgumentException(e);
         }
-        logger.debug("class-instance module: " + DependencyInjection.classesWithInstances(classObjectMap));
-        super.modules.add(DependencyInjection.classesWithInstances(classObjectMap)) ;
+        logger.debug("class-instance module: " + DependencyInjection.module(classObjectMap));
+        super.modules.add(DependencyInjection.module(classObjectMap)) ;
     }
 
     private static Map.Entry<Object,Method> tuple(Object object, Method method) {
         return new HashMap.SimpleEntry<>(object, method);
     }
-    private static final Comparator<Map.Entry<Object,Method>> ConfClassCreationMethodTuplesComparator = new Comparator<Map.Entry<Object, Method>>() {
-        @Override
-        public int compare(Map.Entry<Object, Method> o1, Map.Entry<Object, Method> o2) {
-            return Integer.compare(o1.getValue().getParameterTypes().length, o2.getValue().getParameterTypes().length);
-        }
-    };
+    private static final Comparator<Map.Entry<Object,Method>> ConfClassCreationMethodTuplesComparator =
+            Comparator.comparingInt(o -> o.getValue().getParameterTypes().length);
 
     private Object newInstance(Object configurationClass, Method method) throws InstantiationException,
             IllegalAccessException, NoSuchMethodException, InvocationTargetException {

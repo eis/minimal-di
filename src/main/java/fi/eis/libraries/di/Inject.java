@@ -1,7 +1,4 @@
 /**
- * Creation Date: 30.11.2014
- * Creation Time: 20:51
- *
  * @author eis
  */
 package fi.eis.libraries.di;

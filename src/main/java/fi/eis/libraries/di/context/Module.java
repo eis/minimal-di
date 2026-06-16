@@ -1,4 +1,4 @@
-package fi.eis.libraries.di;
+package fi.eis.libraries.di.context;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -6,11 +6,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import fi.eis.libraries.di.SimpleLogger.LogLevel;
+import fi.eis.libraries.di.Inject;
+import fi.eis.libraries.di.logger.SimpleLogger;
+import fi.eis.libraries.di.logger.SimpleLogger.LogLevel;
 
 /**
- * Creation Date: 30.11.2014
- * Creation Time: 22:49
+ *
+ * A Module is an abstraction that contains classes user of a library has explicitly defined
+ * to be part of dependency injection.
  *
  * @author eis
  */

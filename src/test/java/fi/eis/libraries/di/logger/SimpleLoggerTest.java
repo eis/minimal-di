@@ -1,4 +1,4 @@
-package fi.eis.libraries.di;
+package fi.eis.libraries.di.logger;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -8,7 +8,7 @@ import org.hamcrest.Matchers;
 import org.junit.Assert;
 import org.junit.Test;
 
-import fi.eis.libraries.di.SimpleLogger.LogLevel;
+import fi.eis.libraries.di.logger.SimpleLogger.LogLevel;
 
 public class SimpleLoggerTest {
     @Test
