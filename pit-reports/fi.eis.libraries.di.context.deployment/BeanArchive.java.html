@@ -1,0 +1,3374 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+<body>
+
+
+<h1>BeanArchive.java</h1>
+
+<table class="src">
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_1'/>
+1
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_1'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>package fi.eis.libraries.di.context.deployment;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_2'/>
+2
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_2'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_3'/>
+3
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_3'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import fi.eis.libraries.di.logger.SimpleLogger;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_4'/>
+4
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_4'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_5'/>
+5
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_5'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.io.File;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_6'/>
+6
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_6'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.io.IOException;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_7'/>
+7
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_7'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.lang.reflect.Modifier;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_8'/>
+8
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_8'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.net.URL;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_9'/>
+9
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_9'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.util.ArrayList;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_10'/>
+10
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_10'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.util.Enumeration;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_11'/>
+11
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_11'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.util.List;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_12'/>
+12
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_12'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.util.zip.ZipEntry;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_13'/>
+13
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_13'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.util.zip.ZipException;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_14'/>
+14
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_14'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.util.zip.ZipFile;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_15'/>
+15
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_15'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_16'/>
+16
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_16'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>/**</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_17'/>
+17
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_17'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * &#60;p&#62;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_18'/>
+18
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_18'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * This class borrows heavily from JBoss Weld class FileSystemBeanArchiveHandler, which authors are:</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_19'/>
+19
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_19'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * Pete Muir, Marko Luksa, Martin Kouba</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_20'/>
+20
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_20'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * &#60;/p&#62;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_21'/>
+21
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_21'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * &#60;p&#62;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_22'/>
+22
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_22'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * FileSystemBeanArchiveHandler has been licensed under Apache License,</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_23'/>
+23
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_23'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * Version 2.0. It permits releasing under different license.</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_24'/>
+24
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_24'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * (http://en.wikipedia.org/wiki/Comparison_of_free_and_open-source_software_licenses)</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_25'/>
+25
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_25'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * &#60;/p&#62;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_26'/>
+26
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_26'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> *</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_27'/>
+27
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_27'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * @author eis</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_28'/>
+28
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_28'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> */</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_29'/>
+29
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_29'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>class BeanArchive {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_30'/>
+30
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_30'>8</a>
+<span>
+1. &#60;init&#62; : removed call to java/util/ArrayList::&#60;init&#62; &rarr; NO_COVERAGE<br/>
+2. &#60;init&#62; : Removed assignment to member variable classes &rarr; NO_COVERAGE<br/>
+3. &#60;init&#62; : removed call to java/util/ArrayList::&#60;init&#62; &rarr; KILLED<br/>
+4. &#60;init&#62; : removed call to java/util/ArrayList::&#60;init&#62; &rarr; KILLED<br/>
+5. &#60;init&#62; : Removed assignment to member variable classes &rarr; KILLED<br/>
+6. &#60;init&#62; : Removed assignment to member variable classes &rarr; KILLED<br/>
+7. &#60;init&#62; : removed call to java/util/ArrayList::&#60;init&#62; &rarr; KILLED<br/>
+8. &#60;init&#62; : Removed assignment to member variable classes &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>    private final List&#60;Class&#62; classes = new ArrayList&#60;&#62;();</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_31'/>
+31
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_31'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    private final SimpleLogger logger = new SimpleLogger(this.getClass());</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_32'/>
+32
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_32'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_33'/>
+33
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_33'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    public BeanArchive(URL url) {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_34'/>
+34
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_34'>1</a>
+<span>
+1. &#60;init&#62; : removed call to fi/eis/libraries/di/context/deployment/BeanArchive::initArchive &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        initArchive(url);</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_35'/>
+35
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_35'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_36'/>
+36
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_36'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    public BeanArchive(URL url, SimpleLogger.LogLevel logLevel) {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_37'/>
+37
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_37'>1</a>
+<span>
+1. &#60;init&#62; : removed call to fi/eis/libraries/di/context/deployment/BeanArchive::setLogLevel &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        setLogLevel(logLevel);</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_38'/>
+38
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_38'>1</a>
+<span>
+1. &#60;init&#62; : removed call to fi/eis/libraries/di/context/deployment/BeanArchive::initArchive &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        initArchive(url);</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_39'/>
+39
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_39'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_40'/>
+40
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_40'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    public BeanArchive(File file) {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_41'/>
+41
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_41'>1</a>
+<span>
+1. &#60;init&#62; : removed call to fi/eis/libraries/di/context/deployment/BeanArchive::initArchive &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        initArchive(file);</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_42'/>
+42
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_42'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_43'/>
+43
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_43'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class=''>    public BeanArchive(File file, SimpleLogger.LogLevel logLevel) {</span></pre></td></tr>
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_44'/>
+44
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_44'>1</a>
+<span>
+1. &#60;init&#62; : removed call to fi/eis/libraries/di/context/deployment/BeanArchive::setLogLevel &rarr; NO_COVERAGE<br/>
+
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class='survived'>        setLogLevel(logLevel);</span></pre></td></tr>
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_45'/>
+45
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_45'>1</a>
+<span>
+1. &#60;init&#62; : removed call to fi/eis/libraries/di/context/deployment/BeanArchive::initArchive &rarr; NO_COVERAGE<br/>
+
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class='survived'>        initArchive(file);</span></pre></td></tr>
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_46'/>
+46
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_46'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class=''>    }</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_47'/>
+47
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_47'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_48'/>
+48
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_48'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public List&#60;Class&#62; getClasses() {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_49'/>
+49
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_49'>1</a>
+<span>
+1. getClasses : replaced return value with Collections.emptyList for fi/eis/libraries/di/context/deployment/BeanArchive::getClasses &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return this.classes;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_50'/>
+50
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_50'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_51'/>
+51
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_51'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_52'/>
+52
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_52'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private static final String PROCOTOL_JAR = &#34;jar&#34;;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_53'/>
+53
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_53'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private static final String CLASS_FILE_EXTENSION = &#34;.class&#34;;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_54'/>
+54
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_54'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_55'/>
+55
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_55'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private void initArchive(URL url) {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_56'/>
+56
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_56'>3</a>
+<span>
+1. initArchive : removed call to java/io/File::&#60;init&#62; &rarr; KILLED<br/>
+2. initArchive : removed call to java/net/URL::getPath &rarr; KILLED<br/>
+3. initArchive : removed call to fi/eis/libraries/di/context/deployment/BeanArchive::initArchive &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        initArchive(new File(url.getPath()));</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_57'/>
+57
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_57'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_58'/>
+58
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_58'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_59'/>
+59
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_59'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private void initArchive(File file) {</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_60'/>
+60
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_60'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_61'/>
+61
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_61'>4</a>
+<span>
+1. initArchive : removed conditional - replaced equality check with false &rarr; KILLED<br/>
+2. initArchive : negated conditional &rarr; KILLED<br/>
+3. initArchive : removed call to java/io/File::exists &rarr; KILLED<br/>
+4. initArchive : removed conditional - replaced equality check with true &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        if (!file.exists()) {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_62'/>
+62
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_62'>2</a>
+<span>
+1. initArchive : Substituted 0 with 1 &rarr; KILLED<br/>
+2. initArchive : Substituted 1 with 0 &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            throw new IllegalArgumentException(</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_63'/>
+63
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_63'>3</a>
+<span>
+1. initArchive : replaced call to java/lang/String::format with argument &rarr; SURVIVED<br/>
+2. initArchive : removed call to java/lang/String::format &rarr; SURVIVED<br/>
+3. initArchive : removed call to java/lang/IllegalArgumentException::&#60;init&#62; &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>                    String.format(&#34;Doesn&#39;t exist: %s&#34;, file));</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_64'/>
+64
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_64'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_65'/>
+65
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_65'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_66'/>
+66
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_66'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        try {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_67'/>
+67
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_67'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            logger.debug(&#34;Handle path: %s&#34;, file.toPath());</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_68'/>
+68
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_68'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_69'/>
+69
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_69'>4</a>
+<span>
+1. initArchive : removed call to java/io/File::isDirectory &rarr; KILLED<br/>
+2. initArchive : removed conditional - replaced equality check with true &rarr; KILLED<br/>
+3. initArchive : removed conditional - replaced equality check with false &rarr; KILLED<br/>
+4. initArchive : negated conditional &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            if (file.isDirectory()) {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_70'/>
+70
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_70'>4</a>
+<span>
+1. initArchive : removed call to fi/eis/libraries/di/context/deployment/BeanArchive::handleDirectory &rarr; KILLED<br/>
+2. initArchive : removed call to fi/eis/libraries/di/context/deployment/DirectoryEntry::setFile &rarr; KILLED<br/>
+3. initArchive : replaced call to fi/eis/libraries/di/context/deployment/DirectoryEntry::setFile with receiver &rarr; KILLED<br/>
+4. initArchive : removed call to fi/eis/libraries/di/context/deployment/DirectoryEntry::&#60;init&#62; &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                handleDirectory(new DirectoryEntry().setFile(file));</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_71'/>
+71
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_71'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            } else {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_72'/>
+72
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_72'>1</a>
+<span>
+1. initArchive : removed call to fi/eis/libraries/di/context/deployment/BeanArchive::handleFile &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                handleFile(file);</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_73'/>
+73
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_73'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            }</span></pre></td></tr>
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_74'/>
+74
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_74'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class=''>        } catch (IOException e) {</span></pre></td></tr>
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_75'/>
+75
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_75'>8</a>
+<span>
+1. initArchive : replaced call to java/lang/StringBuilder::append with receiver &rarr; NO_COVERAGE<br/>
+2. initArchive : removed call to java/lang/StringBuilder::append &rarr; NO_COVERAGE<br/>
+3. initArchive : removed call to java/io/File::toPath &rarr; NO_COVERAGE<br/>
+4. initArchive : removed call to java/lang/StringBuilder::append &rarr; NO_COVERAGE<br/>
+5. initArchive : replaced call to java/lang/StringBuilder::append with receiver &rarr; NO_COVERAGE<br/>
+6. initArchive : removed call to java/lang/IllegalStateException::&#60;init&#62; &rarr; NO_COVERAGE<br/>
+7. initArchive : removed call to java/lang/StringBuilder::&#60;init&#62; &rarr; NO_COVERAGE<br/>
+8. initArchive : removed call to java/lang/StringBuilder::toString &rarr; NO_COVERAGE<br/>
+
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class='survived'>            throw new IllegalStateException(&#34;Could not handle path: &#34; + file.toPath(), e);</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_76'/>
+76
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_76'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        }</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_77'/>
+77
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_77'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_78'/>
+78
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_78'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_79'/>
+79
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_79'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_80'/>
+80
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_80'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * Method to go through all entries in a .jar file on disk</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_81'/>
+81
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_81'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * </span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_82'/>
+82
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_82'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @param file jar file that we want to use basis for dependency injection</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_83'/>
+83
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_83'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @throws IOException</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_84'/>
+84
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_84'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_85'/>
+85
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_85'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private void handleFile(File file) throws IOException {</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_86'/>
+86
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_86'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_87'/>
+87
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_87'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        logger.debug(&#34;Handle archive file: %s&#34;, file);</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_88'/>
+88
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_88'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_89'/>
+89
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_89'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        try {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_90'/>
+90
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_90'>1</a>
+<span>
+1. handleFile : removed call to java/util/zip/ZipFile::&#60;init&#62; &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            ZipFile zip = new ZipFile(file);</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_91'/>
+91
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_91'>1</a>
+<span>
+1. handleFile : removed call to java/util/zip/ZipFile::entries &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            Enumeration&#60;? extends ZipEntry&#62; entries = zip.entries();</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_92'/>
+92
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_92'>12</a>
+<span>
+1. handleFile : replaced call to java/lang/StringBuilder::append with receiver &rarr; SURVIVED<br/>
+2. handleFile : removed call to java/net/URL::toExternalForm &rarr; SURVIVED<br/>
+3. handleFile : replaced call to java/lang/StringBuilder::append with receiver &rarr; SURVIVED<br/>
+4. handleFile : replaced call to java/lang/StringBuilder::append with receiver &rarr; SURVIVED<br/>
+5. handleFile : removed call to java/lang/StringBuilder::toString &rarr; SURVIVED<br/>
+6. handleFile : removed call to java/io/File::toURI &rarr; KILLED<br/>
+7. handleFile : removed call to java/net/URI::toURL &rarr; KILLED<br/>
+8. handleFile : removed call to fi/eis/libraries/di/context/deployment/ZipFileEntry::&#60;init&#62; &rarr; KILLED<br/>
+9. handleFile : removed call to java/lang/StringBuilder::append &rarr; KILLED<br/>
+10. handleFile : removed call to java/lang/StringBuilder::&#60;init&#62; &rarr; KILLED<br/>
+11. handleFile : removed call to java/lang/StringBuilder::append &rarr; KILLED<br/>
+12. handleFile : removed call to java/lang/StringBuilder::append &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>            ZipFileEntry entry = new ZipFileEntry(PROCOTOL_JAR + &#34;:&#34; + file.toURI().toURL().toExternalForm() + &#34;!/&#34;);</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_93'/>
+93
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_93'>4</a>
+<span>
+1. handleFile : negated conditional &rarr; KILLED<br/>
+2. handleFile : removed call to java/util/Enumeration::hasMoreElements &rarr; KILLED<br/>
+3. handleFile : removed conditional - replaced equality check with false &rarr; KILLED<br/>
+4. handleFile : removed conditional - replaced equality check with true &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            while (entries.hasMoreElements()) {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_94'/>
+94
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_94'>5</a>
+<span>
+1. handleFile : replaced call to fi/eis/libraries/di/context/deployment/ZipFileEntry::setName with receiver &rarr; KILLED<br/>
+2. handleFile : removed call to java/util/Enumeration::nextElement &rarr; KILLED<br/>
+3. handleFile : removed call to fi/eis/libraries/di/context/deployment/BeanArchive::addIfClass &rarr; KILLED<br/>
+4. handleFile : removed call to java/util/zip/ZipEntry::getName &rarr; KILLED<br/>
+5. handleFile : removed call to fi/eis/libraries/di/context/deployment/ZipFileEntry::setName &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                addIfClass(entry.setName(entries.nextElement().getName()));</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_95'/>
+95
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_95'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            }</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_96'/>
+96
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_96'>1</a>
+<span>
+1. handleFile : removed call to java/util/zip/ZipFile::close &rarr; SURVIVED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>            zip.close();</span></pre></td></tr>
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_97'/>
+97
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_97'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class=''>        } catch (ZipException e) {</span></pre></td></tr>
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_98'/>
+98
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_98'>1</a>
+<span>
+1. handleFile : removed call to java/lang/IllegalArgumentException::&#60;init&#62; &rarr; NO_COVERAGE<br/>
+
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class='survived'>            throw new IllegalArgumentException(e);</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_99'/>
+99
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_99'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        }</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_100'/>
+100
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_100'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_101'/>
+101
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_101'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_102'/>
+102
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_102'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_103'/>
+103
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_103'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * Recursive method to handle a directory tree of classes loaded runtime.</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_104'/>
+104
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_104'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_105'/>
+105
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_105'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @param entry an entry in a directory. A file instance that might or might not have a path.</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_106'/>
+106
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_106'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @throws IOException</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_107'/>
+107
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_107'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_108'/>
+108
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_108'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private void handleDirectory(DirectoryEntry entry) throws IOException {</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_109'/>
+109
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_109'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_110'/>
+110
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_110'>1</a>
+<span>
+1. handleDirectory : removed call to fi/eis/libraries/di/context/deployment/DirectoryEntry::getName &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        String directoryPath = entry.getName();</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_111'/>
+111
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_111'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_112'/>
+112
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_112'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        logger.debug(&#34;Handle file %s with a path: %s&#34;, entry.getFile(), directoryPath);</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_113'/>
+113
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_113'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_114'/>
+114
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_114'>5</a>
+<span>
+1. handleDirectory : negated conditional &rarr; KILLED<br/>
+2. handleDirectory : removed conditional - replaced equality check with false &rarr; KILLED<br/>
+3. handleDirectory : Substituted 1 with 0 &rarr; KILLED<br/>
+4. handleDirectory : removed conditional - replaced equality check with true &rarr; KILLED<br/>
+5. handleDirectory : Substituted 0 with 1 &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        boolean hasPath = directoryPath != null;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_115'/>
+115
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_115'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_116'/>
+116
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_116'>2</a>
+<span>
+1. handleDirectory : removed call to fi/eis/libraries/di/context/deployment/DirectoryEntry::getFile &rarr; KILLED<br/>
+2. handleDirectory : removed call to java/io/File::listFiles &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        File[] files = entry.getFile().listFiles();</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_117'/>
+117
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_117'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_118'/>
+118
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_118'>3</a>
+<span>
+1. handleDirectory : removed conditional - replaced equality check with false &rarr; SURVIVED<br/>
+2. handleDirectory : negated conditional &rarr; KILLED<br/>
+3. handleDirectory : removed conditional - replaced equality check with true &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>        if (files == null) {</span></pre></td></tr>
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_119'/>
+119
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_119'>2</a>
+<span>
+1. handleDirectory : Substituted 0 with 1 &rarr; NO_COVERAGE<br/>
+2. handleDirectory : Substituted 1 with 0 &rarr; NO_COVERAGE<br/>
+
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class='survived'>            throw new IllegalArgumentException(</span></pre></td></tr>
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_120'/>
+120
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_120'>4</a>
+<span>
+1. handleDirectory : replaced call to java/lang/String::format with argument &rarr; NO_COVERAGE<br/>
+2. handleDirectory : removed call to fi/eis/libraries/di/context/deployment/DirectoryEntry::getFile &rarr; NO_COVERAGE<br/>
+3. handleDirectory : removed call to java/lang/IllegalArgumentException::&#60;init&#62; &rarr; NO_COVERAGE<br/>
+4. handleDirectory : removed call to java/lang/String::format &rarr; NO_COVERAGE<br/>
+
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class='survived'>                    String.format(&#34;Unable to list directory files: %s&#34;, entry.getFile()));</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_121'/>
+121
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_121'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_122'/>
+122
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_122'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_123'/>
+123
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_123'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        for (File childFile : files) {</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_124'/>
+124
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_124'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_125'/>
+125
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_125'>3</a>
+<span>
+1. handleDirectory : negated conditional &rarr; KILLED<br/>
+2. handleDirectory : removed conditional - replaced equality check with false &rarr; KILLED<br/>
+3. handleDirectory : removed conditional - replaced equality check with true &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            if (hasPath) {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_126'/>
+126
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_126'>11</a>
+<span>
+1. handleDirectory : replaced call to java/lang/StringBuilder::append with receiver &rarr; KILLED<br/>
+2. handleDirectory : removed call to java/lang/StringBuilder::&#60;init&#62; &rarr; KILLED<br/>
+3. handleDirectory : removed call to java/io/File::getName &rarr; KILLED<br/>
+4. handleDirectory : replaced call to java/lang/StringBuilder::append with receiver &rarr; KILLED<br/>
+5. handleDirectory : removed call to java/lang/StringBuilder::append &rarr; KILLED<br/>
+6. handleDirectory : removed call to fi/eis/libraries/di/context/deployment/DirectoryEntry::setPath &rarr; KILLED<br/>
+7. handleDirectory : removed call to java/lang/StringBuilder::toString &rarr; KILLED<br/>
+8. handleDirectory : replaced call to java/lang/StringBuilder::append with receiver &rarr; KILLED<br/>
+9. handleDirectory : removed call to java/lang/StringBuilder::append &rarr; KILLED<br/>
+10. handleDirectory : replaced call to fi/eis/libraries/di/context/deployment/DirectoryEntry::setPath with receiver &rarr; KILLED<br/>
+11. handleDirectory : removed call to java/lang/StringBuilder::append &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                entry.setPath(directoryPath + &#34;/&#34; + childFile.getName());</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_127'/>
+127
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_127'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            } else {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_128'/>
+128
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_128'>3</a>
+<span>
+1. handleDirectory : removed call to java/io/File::getName &rarr; KILLED<br/>
+2. handleDirectory : removed call to fi/eis/libraries/di/context/deployment/DirectoryEntry::setPath &rarr; KILLED<br/>
+3. handleDirectory : replaced call to fi/eis/libraries/di/context/deployment/DirectoryEntry::setPath with receiver &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                entry.setPath(childFile.getName());</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_129'/>
+129
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_129'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            }</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_130'/>
+130
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_130'>2</a>
+<span>
+1. handleDirectory : removed call to fi/eis/libraries/di/context/deployment/DirectoryEntry::setFile &rarr; KILLED<br/>
+2. handleDirectory : replaced call to fi/eis/libraries/di/context/deployment/DirectoryEntry::setFile with receiver &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            entry.setFile(childFile);</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_131'/>
+131
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_131'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_132'/>
+132
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_132'>4</a>
+<span>
+1. handleDirectory : removed call to java/io/File::isDirectory &rarr; KILLED<br/>
+2. handleDirectory : removed conditional - replaced equality check with true &rarr; KILLED<br/>
+3. handleDirectory : negated conditional &rarr; KILLED<br/>
+4. handleDirectory : removed conditional - replaced equality check with false &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            if (childFile.isDirectory()) {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_133'/>
+133
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_133'>1</a>
+<span>
+1. handleDirectory : removed call to fi/eis/libraries/di/context/deployment/BeanArchive::handleDirectory &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                handleDirectory(entry);</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_134'/>
+134
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_134'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            } else {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_135'/>
+135
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_135'>1</a>
+<span>
+1. handleDirectory : removed call to fi/eis/libraries/di/context/deployment/BeanArchive::addIfClass &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                addIfClass(entry);</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_136'/>
+136
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_136'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            }</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_137'/>
+137
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_137'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_138'/>
+138
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_138'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_139'/>
+139
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_139'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_140'/>
+140
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_140'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private void addIfClass(Entry entry) {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_141'/>
+141
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_141'>5</a>
+<span>
+1. addIfClass : removed conditional - replaced equality check with false &rarr; KILLED<br/>
+2. addIfClass : removed conditional - replaced equality check with true &rarr; KILLED<br/>
+3. addIfClass : removed call to fi/eis/libraries/di/context/deployment/Entry::getName &rarr; KILLED<br/>
+4. addIfClass : removed call to fi/eis/libraries/di/context/deployment/BeanArchive::isClass &rarr; KILLED<br/>
+5. addIfClass : negated conditional &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        if (isClass(entry.getName())) {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_142'/>
+142
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_142'>4</a>
+<span>
+1. addIfClass : replaced call to fi/eis/libraries/di/context/deployment/BeanArchive::filenameToClassname with argument &rarr; KILLED<br/>
+2. addIfClass : removed call to fi/eis/libraries/di/context/deployment/BeanArchive::addClassWithName &rarr; KILLED<br/>
+3. addIfClass : removed call to fi/eis/libraries/di/context/deployment/Entry::getName &rarr; KILLED<br/>
+4. addIfClass : removed call to fi/eis/libraries/di/context/deployment/BeanArchive::filenameToClassname &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            addClassWithName(filenameToClassname(entry.getName()));</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_143'/>
+143
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_143'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_144'/>
+144
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_144'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_145'/>
+145
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_145'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_146'/>
+146
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_146'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private void addClassWithName(String className) {</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_147'/>
+147
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_147'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        try {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_148'/>
+148
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_148'>1</a>
+<span>
+1. addClassWithName : removed call to java/lang/Class::forName &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            Class targetClass = Class.forName(className);</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_149'/>
+149
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_149'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            // we want instantiable classes, so don&#39;t add interfaces or</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_150'/>
+150
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_150'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            // abstract classes</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_151'/>
+151
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_151'>9</a>
+<span>
+1. addClassWithName : removed conditional - replaced equality check with false &rarr; SURVIVED<br/>
+2. addClassWithName : removed call to java/lang/reflect/Modifier::isAbstract &rarr; SURVIVED<br/>
+3. addClassWithName : removed call to java/lang/Class::getModifiers &rarr; SURVIVED<br/>
+4. addClassWithName : removed conditional - replaced equality check with true &rarr; SURVIVED<br/>
+5. addClassWithName : removed call to java/lang/Class::isInterface &rarr; SURVIVED<br/>
+6. addClassWithName : removed conditional - replaced equality check with true &rarr; KILLED<br/>
+7. addClassWithName : negated conditional &rarr; KILLED<br/>
+8. addClassWithName : removed conditional - replaced equality check with false &rarr; KILLED<br/>
+9. addClassWithName : negated conditional &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>            if (targetClass.isInterface() || Modifier.isAbstract(targetClass.getModifiers())) {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_152'/>
+152
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_152'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>                return;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_153'/>
+153
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_153'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            }</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_154'/>
+154
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_154'>1</a>
+<span>
+1. addClassWithName : removed call to java/util/List::add &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            classes.add(targetClass);</span></pre></td></tr>
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_155'/>
+155
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_155'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class=''>        } catch (ClassNotFoundException | NoClassDefFoundError e) {</span></pre></td></tr>
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_156'/>
+156
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_156'>7</a>
+<span>
+1. addClassWithName : removed call to java/lang/StringBuilder::append &rarr; NO_COVERAGE<br/>
+2. addClassWithName : removed call to java/lang/StringBuilder::&#60;init&#62; &rarr; NO_COVERAGE<br/>
+3. addClassWithName : removed call to java/lang/StringBuilder::toString &rarr; NO_COVERAGE<br/>
+4. addClassWithName : replaced call to java/lang/StringBuilder::append with receiver &rarr; NO_COVERAGE<br/>
+5. addClassWithName : removed call to java/lang/StringBuilder::append &rarr; NO_COVERAGE<br/>
+6. addClassWithName : replaced call to java/lang/StringBuilder::append with receiver &rarr; NO_COVERAGE<br/>
+7. addClassWithName : removed call to java/lang/IllegalArgumentException::&#60;init&#62; &rarr; NO_COVERAGE<br/>
+
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class='survived'>            throw new IllegalArgumentException(&#34;Not found: &#34; + className);</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_157'/>
+157
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_157'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        }</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_158'/>
+158
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_158'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_159'/>
+159
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_159'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_160'/>
+160
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_160'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private boolean isClass(String fileName) {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_161'/>
+161
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_161'>3</a>
+<span>
+1. isClass : replaced boolean return with false for fi/eis/libraries/di/context/deployment/BeanArchive::isClass &rarr; KILLED<br/>
+2. isClass : removed call to java/lang/String::endsWith &rarr; KILLED<br/>
+3. isClass : replaced boolean return with true for fi/eis/libraries/di/context/deployment/BeanArchive::isClass &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return fileName.endsWith(CLASS_FILE_EXTENSION);</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_162'/>
+162
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_162'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_163'/>
+163
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_163'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_164'/>
+164
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_164'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private String filenameToClassname(String fileName) {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_165'/>
+165
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_165'>7</a>
+<span>
+1. filenameToClassname : replaced return value with &#34;&#34; for fi/eis/libraries/di/context/deployment/BeanArchive::filenameToClassname &rarr; KILLED<br/>
+2. filenameToClassname : Substituted 0 with 1 &rarr; KILLED<br/>
+3. filenameToClassname : Substituted 46 with 47 &rarr; KILLED<br/>
+4. filenameToClassname : removed call to java/lang/String::substring &rarr; KILLED<br/>
+5. filenameToClassname : removed call to java/lang/String::lastIndexOf &rarr; KILLED<br/>
+6. filenameToClassname : replaced call to java/lang/String::substring with receiver &rarr; KILLED<br/>
+7. filenameToClassname : Substituted 47 with 48 &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return fileName.substring(0, fileName.lastIndexOf(CLASS_FILE_EXTENSION))</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_166'/>
+166
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_166'>6</a>
+<span>
+1. filenameToClassname : Substituted 92 with 93 &rarr; SURVIVED<br/>
+2. filenameToClassname : Substituted 46 with 47 &rarr; SURVIVED<br/>
+3. filenameToClassname : replaced call to java/lang/String::replace with receiver &rarr; SURVIVED<br/>
+4. filenameToClassname : removed call to java/lang/String::replace &rarr; KILLED<br/>
+5. filenameToClassname : replaced call to java/lang/String::replace with receiver &rarr; KILLED<br/>
+6. filenameToClassname : removed call to java/lang/String::replace &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>                .replace(&#39;/&#39;, &#39;.&#39;).replace(&#39;\\&#39;, &#39;.&#39;);</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_167'/>
+167
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_167'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_168'/>
+168
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_168'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_169'/>
+169
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_169'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private void setLogLevel(SimpleLogger.LogLevel logLevel) {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_170'/>
+170
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_170'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        this.logger.setLogLevel(logLevel);</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_171'/>
+171
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_171'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_172'/>
+172
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_172'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45a824d_173'/>
+173
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_173'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>}</span></pre></td></tr>
+
+
+
+<tr><td></td><td></td><td><h2>Mutations</h2></td></tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@45a824d_30'>30</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_30'/> 
+
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to java/util/ArrayList::&#60;init&#62; &rarr; NO_COVERAGE</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</span></span> removed call to java/util/ArrayList::&#60;init&#62; &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingDefault(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</span></span> removed call to java/util/ArrayList::&#60;init&#62; &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</span></span> Removed assignment to member variable classes &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>5.<span><b>5</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingDisabled(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</span></span> Removed assignment to member variable classes &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>6.<span><b>6</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingDisabled(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</span></span> removed call to java/util/ArrayList::&#60;init&#62; &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>7.<span><b>7</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingDefault(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</span></span> Removed assignment to member variable classes &rarr; KILLED</span>
+</div> <p class='NO_COVERAGE'><span class='pop'>8.<span><b>8</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> Removed assignment to member variable classes &rarr; NO_COVERAGE</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@45a824d_34'>34</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_34'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingDefault(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</span></span> removed call to fi/eis/libraries/di/context/deployment/BeanArchive::initArchive &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@45a824d_37'>37</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_37'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingEnabled(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</span></span> removed call to fi/eis/libraries/di/context/deployment/BeanArchive::setLogLevel &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@45a824d_38'>38</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_38'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingDisabled(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</span></span> removed call to fi/eis/libraries/di/context/deployment/BeanArchive::initArchive &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@45a824d_41'>41</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_41'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDiWithNonExistingFile(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</span></span> removed call to fi/eis/libraries/di/context/deployment/BeanArchive::initArchive &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@45a824d_44'>44</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_44'/> 
+
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to fi/eis/libraries/di/context/deployment/BeanArchive::setLogLevel &rarr; NO_COVERAGE</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@45a824d_45'>45</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_45'/> 
+
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to fi/eis/libraries/di/context/deployment/BeanArchive::initArchive &rarr; NO_COVERAGE</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@45a824d_49'>49</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_49'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getClasses<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</span></span> replaced return value with Collections.emptyList for fi/eis/libraries/di/context/deployment/BeanArchive::getClasses &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@45a824d_56'>56</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_56'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>initArchive<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingDefault(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</span></span> removed call to java/io/File::&#60;init&#62; &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>initArchive<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingDefault(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</span></span> removed call to java/net/URL::getPath &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>initArchive<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingDefault(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</span></span> removed call to fi/eis/libraries/di/context/deployment/BeanArchive::initArchive &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@45a824d_61'>61</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_61'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>initArchive<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDiWithNonExistingFile(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</span></span> removed conditional - replaced equality check with false &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>initArchive<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDiWithNonExistingFile(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>initArchive<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</span></span> removed call to java/io/File::exists &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>initArchive<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</span></span> removed conditional - replaced equality check with true &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@45a824d_62'>62</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_62'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>initArchive<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDiWithNonExistingFile(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</span></span> Substituted 0 with 1 &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>initArchive<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDiWithNonExistingFile(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</span></span> Substituted 1 with 0 &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@45a824d_63'>63</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_63'/> 
+
+<p class='SURVIVED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>initArchive<br/><b>Killed by : </b>none</span></span> replaced call to java/lang/String::format with argument &rarr; SURVIVED</span>
+<a title="Click to view covering tests" class="view-covered-by-tests" onClick="document.getElementById('MutationIdentifier-[location=Location-[clazz=fi.eis.libraries.di.context.deployment.BeanArchive,-method=initArchive,-methodDesc=(Ljava/io/File;)V],-indexes=[19],-mutator=org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator]').style.display=(document.getElementById('MutationIdentifier-[location=Location-[clazz=fi.eis.libraries.di.context.deployment.BeanArchive,-method=initArchive,-methodDesc=(Ljava/io/File;)V],-indexes=[19],-mutator=org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator]').style.display == 'block')?'none':'block';">Covering tests</a>
+<div class="covered-tests" id="MutationIdentifier-[location=Location-[clazz=fi.eis.libraries.di.context.deployment.BeanArchive,-method=initArchive,-methodDesc=(Ljava/io/File;)V],-indexes=[19],-mutator=org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator]" style="display:none;">Covered by tests:
+<ul>
+<li>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDiWithNonExistingFile(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</li> 
+</ul>
+</div></div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>initArchive<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDiWithNonExistingFile(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</span></span> removed call to java/lang/IllegalArgumentException::&#60;init&#62; &rarr; KILLED</span>
+</div> <p class='SURVIVED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>initArchive<br/><b>Killed by : </b>none</span></span> removed call to java/lang/String::format &rarr; SURVIVED</span>
+<a title="Click to view covering tests" class="view-covered-by-tests" onClick="document.getElementById('MutationIdentifier-[location=Location-[clazz=fi.eis.libraries.di.context.deployment.BeanArchive,-method=initArchive,-methodDesc=(Ljava/io/File;)V],-indexes=[19],-mutator=org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator]').style.display=(document.getElementById('MutationIdentifier-[location=Location-[clazz=fi.eis.libraries.di.context.deployment.BeanArchive,-method=initArchive,-methodDesc=(Ljava/io/File;)V],-indexes=[19],-mutator=org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator]').style.display == 'block')?'none':'block';">Covering tests</a>
+<div class="covered-tests" id="MutationIdentifier-[location=Location-[clazz=fi.eis.libraries.di.context.deployment.BeanArchive,-method=initArchive,-methodDesc=(Ljava/io/File;)V],-indexes=[19],-mutator=org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator]" style="display:none;">Covered by tests:
+<ul>
+<li>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDiWithNonExistingFile(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</li> 
+</ul>
+</div></div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@45a824d_69'>69</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_69'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>initArchive<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingDefault(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</span></span> removed call to java/io/File::isDirectory &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>initArchive<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</span></span> removed conditional - replaced equality check with true &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>initArchive<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingDefault(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</span></span> removed conditional - replaced equality check with false &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>initArchive<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@45a824d_70'>70</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_70'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>initArchive<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingDefault(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</span></span> removed call to fi/eis/libraries/di/context/deployment/BeanArchive::handleDirectory &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>initArchive<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingDefault(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</span></span> removed call to fi/eis/libraries/di/context/deployment/DirectoryEntry::setFile &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>initArchive<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingDefault(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</span></span> replaced call to fi/eis/libraries/di/context/deployment/DirectoryEntry::setFile with receiver &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>initArchive<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingDefault(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</span></span> removed call to fi/eis/libraries/di/context/deployment/DirectoryEntry::&#60;init&#62; &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@45a824d_72'>72</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_72'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>initArchive<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</span></span> removed call to fi/eis/libraries/di/context/deployment/BeanArchive::handleFile &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@45a824d_75'>75</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_75'/> 
+
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>initArchive<br/><b>Killed by : </b>none</span></span> replaced call to java/lang/StringBuilder::append with receiver &rarr; NO_COVERAGE</span>
+</div> <p class='NO_COVERAGE'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>initArchive<br/><b>Killed by : </b>none</span></span> removed call to java/lang/StringBuilder::append &rarr; NO_COVERAGE</span>
+</div> <p class='NO_COVERAGE'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>initArchive<br/><b>Killed by : </b>none</span></span> removed call to java/io/File::toPath &rarr; NO_COVERAGE</span>
+</div> <p class='NO_COVERAGE'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>initArchive<br/><b>Killed by : </b>none</span></span> removed call to java/lang/StringBuilder::append &rarr; NO_COVERAGE</span>
+</div> <p class='NO_COVERAGE'><span class='pop'>5.<span><b>5</b><br/><b>Location : </b>initArchive<br/><b>Killed by : </b>none</span></span> replaced call to java/lang/StringBuilder::append with receiver &rarr; NO_COVERAGE</span>
+</div> <p class='NO_COVERAGE'><span class='pop'>6.<span><b>6</b><br/><b>Location : </b>initArchive<br/><b>Killed by : </b>none</span></span> removed call to java/lang/IllegalStateException::&#60;init&#62; &rarr; NO_COVERAGE</span>
+</div> <p class='NO_COVERAGE'><span class='pop'>7.<span><b>7</b><br/><b>Location : </b>initArchive<br/><b>Killed by : </b>none</span></span> removed call to java/lang/StringBuilder::&#60;init&#62; &rarr; NO_COVERAGE</span>
+</div> <p class='NO_COVERAGE'><span class='pop'>8.<span><b>8</b><br/><b>Location : </b>initArchive<br/><b>Killed by : </b>none</span></span> removed call to java/lang/StringBuilder::toString &rarr; NO_COVERAGE</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@45a824d_90'>90</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_90'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>handleFile<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</span></span> removed call to java/util/zip/ZipFile::&#60;init&#62; &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@45a824d_91'>91</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_91'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>handleFile<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</span></span> removed call to java/util/zip/ZipFile::entries &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@45a824d_92'>92</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_92'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>handleFile<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</span></span> removed call to java/io/File::toURI &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>handleFile<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</span></span> removed call to java/net/URI::toURL &rarr; KILLED</span>
+</div> <p class='SURVIVED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>handleFile<br/><b>Killed by : </b>none</span></span> replaced call to java/lang/StringBuilder::append with receiver &rarr; SURVIVED</span>
+<a title="Click to view covering tests" class="view-covered-by-tests" onClick="document.getElementById('MutationIdentifier-[location=Location-[clazz=fi.eis.libraries.di.context.deployment.BeanArchive,-method=handleFile,-methodDesc=(Ljava/io/File;)V],-indexes=[33],-mutator=org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator]').style.display=(document.getElementById('MutationIdentifier-[location=Location-[clazz=fi.eis.libraries.di.context.deployment.BeanArchive,-method=handleFile,-methodDesc=(Ljava/io/File;)V],-indexes=[33],-mutator=org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator]').style.display == 'block')?'none':'block';">Covering tests</a>
+<div class="covered-tests" id="MutationIdentifier-[location=Location-[clazz=fi.eis.libraries.di.context.deployment.BeanArchive,-method=handleFile,-methodDesc=(Ljava/io/File;)V],-indexes=[33],-mutator=org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator]" style="display:none;">Covered by tests:
+<ul>
+<li>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</li> 
+</ul>
+</div></div> <p class='SURVIVED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>handleFile<br/><b>Killed by : </b>none</span></span> removed call to java/net/URL::toExternalForm &rarr; SURVIVED</span>
+<a title="Click to view covering tests" class="view-covered-by-tests" onClick="document.getElementById('MutationIdentifier-[location=Location-[clazz=fi.eis.libraries.di.context.deployment.BeanArchive,-method=handleFile,-methodDesc=(Ljava/io/File;)V],-indexes=[37],-mutator=org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator]').style.display=(document.getElementById('MutationIdentifier-[location=Location-[clazz=fi.eis.libraries.di.context.deployment.BeanArchive,-method=handleFile,-methodDesc=(Ljava/io/File;)V],-indexes=[37],-mutator=org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator]').style.display == 'block')?'none':'block';">Covering tests</a>
+<div class="covered-tests" id="MutationIdentifier-[location=Location-[clazz=fi.eis.libraries.di.context.deployment.BeanArchive,-method=handleFile,-methodDesc=(Ljava/io/File;)V],-indexes=[37],-mutator=org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator]" style="display:none;">Covered by tests:
+<ul>
+<li>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</li> 
+</ul>
+</div></div> <p class='SURVIVED'><span class='pop'>5.<span><b>5</b><br/><b>Location : </b>handleFile<br/><b>Killed by : </b>none</span></span> replaced call to java/lang/StringBuilder::append with receiver &rarr; SURVIVED</span>
+<a title="Click to view covering tests" class="view-covered-by-tests" onClick="document.getElementById('MutationIdentifier-[location=Location-[clazz=fi.eis.libraries.di.context.deployment.BeanArchive,-method=handleFile,-methodDesc=(Ljava/io/File;)V],-indexes=[40],-mutator=org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator]').style.display=(document.getElementById('MutationIdentifier-[location=Location-[clazz=fi.eis.libraries.di.context.deployment.BeanArchive,-method=handleFile,-methodDesc=(Ljava/io/File;)V],-indexes=[40],-mutator=org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator]').style.display == 'block')?'none':'block';">Covering tests</a>
+<div class="covered-tests" id="MutationIdentifier-[location=Location-[clazz=fi.eis.libraries.di.context.deployment.BeanArchive,-method=handleFile,-methodDesc=(Ljava/io/File;)V],-indexes=[40],-mutator=org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator]" style="display:none;">Covered by tests:
+<ul>
+<li>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</li> 
+</ul>
+</div></div> <p class='KILLED'><span class='pop'>6.<span><b>6</b><br/><b>Location : </b>handleFile<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</span></span> removed call to fi/eis/libraries/di/context/deployment/ZipFileEntry::&#60;init&#62; &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>7.<span><b>7</b><br/><b>Location : </b>handleFile<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</span></span> removed call to java/lang/StringBuilder::append &rarr; KILLED</span>
+</div> <p class='SURVIVED'><span class='pop'>8.<span><b>8</b><br/><b>Location : </b>handleFile<br/><b>Killed by : </b>none</span></span> replaced call to java/lang/StringBuilder::append with receiver &rarr; SURVIVED</span>
+<a title="Click to view covering tests" class="view-covered-by-tests" onClick="document.getElementById('MutationIdentifier-[location=Location-[clazz=fi.eis.libraries.di.context.deployment.BeanArchive,-method=handleFile,-methodDesc=(Ljava/io/File;)V],-indexes=[38],-mutator=org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator]').style.display=(document.getElementById('MutationIdentifier-[location=Location-[clazz=fi.eis.libraries.di.context.deployment.BeanArchive,-method=handleFile,-methodDesc=(Ljava/io/File;)V],-indexes=[38],-mutator=org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator]').style.display == 'block')?'none':'block';">Covering tests</a>
+<div class="covered-tests" id="MutationIdentifier-[location=Location-[clazz=fi.eis.libraries.di.context.deployment.BeanArchive,-method=handleFile,-methodDesc=(Ljava/io/File;)V],-indexes=[38],-mutator=org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator]" style="display:none;">Covered by tests:
+<ul>
+<li>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</li> 
+</ul>
+</div></div> <p class='KILLED'><span class='pop'>9.<span><b>9</b><br/><b>Location : </b>handleFile<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</span></span> removed call to java/lang/StringBuilder::&#60;init&#62; &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>10.<span><b>10</b><br/><b>Location : </b>handleFile<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</span></span> removed call to java/lang/StringBuilder::append &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>11.<span><b>11</b><br/><b>Location : </b>handleFile<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</span></span> removed call to java/lang/StringBuilder::append &rarr; KILLED</span>
+</div> <p class='SURVIVED'><span class='pop'>12.<span><b>12</b><br/><b>Location : </b>handleFile<br/><b>Killed by : </b>none</span></span> removed call to java/lang/StringBuilder::toString &rarr; SURVIVED</span>
+<a title="Click to view covering tests" class="view-covered-by-tests" onClick="document.getElementById('MutationIdentifier-[location=Location-[clazz=fi.eis.libraries.di.context.deployment.BeanArchive,-method=handleFile,-methodDesc=(Ljava/io/File;)V],-indexes=[41],-mutator=org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator]').style.display=(document.getElementById('MutationIdentifier-[location=Location-[clazz=fi.eis.libraries.di.context.deployment.BeanArchive,-method=handleFile,-methodDesc=(Ljava/io/File;)V],-indexes=[41],-mutator=org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator]').style.display == 'block')?'none':'block';">Covering tests</a>
+<div class="covered-tests" id="MutationIdentifier-[location=Location-[clazz=fi.eis.libraries.di.context.deployment.BeanArchive,-method=handleFile,-methodDesc=(Ljava/io/File;)V],-indexes=[41],-mutator=org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator]" style="display:none;">Covered by tests:
+<ul>
+<li>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</li> 
+</ul>
+</div></div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@45a824d_93'>93</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_93'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>handleFile<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>handleFile<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</span></span> removed call to java/util/Enumeration::hasMoreElements &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>handleFile<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</span></span> removed conditional - replaced equality check with false &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>handleFile<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</span></span> removed conditional - replaced equality check with true &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@45a824d_94'>94</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_94'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>handleFile<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</span></span> replaced call to fi/eis/libraries/di/context/deployment/ZipFileEntry::setName with receiver &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>handleFile<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</span></span> removed call to java/util/Enumeration::nextElement &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>handleFile<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</span></span> removed call to fi/eis/libraries/di/context/deployment/BeanArchive::addIfClass &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>handleFile<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</span></span> removed call to java/util/zip/ZipEntry::getName &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>5.<span><b>5</b><br/><b>Location : </b>handleFile<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</span></span> removed call to fi/eis/libraries/di/context/deployment/ZipFileEntry::setName &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@45a824d_96'>96</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_96'/> 
+
+<p class='SURVIVED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>handleFile<br/><b>Killed by : </b>none</span></span> removed call to java/util/zip/ZipFile::close &rarr; SURVIVED</span>
+<a title="Click to view covering tests" class="view-covered-by-tests" onClick="document.getElementById('MutationIdentifier-[location=Location-[clazz=fi.eis.libraries.di.context.deployment.BeanArchive,-method=handleFile,-methodDesc=(Ljava/io/File;)V],-indexes=[65],-mutator=org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator]').style.display=(document.getElementById('MutationIdentifier-[location=Location-[clazz=fi.eis.libraries.di.context.deployment.BeanArchive,-method=handleFile,-methodDesc=(Ljava/io/File;)V],-indexes=[65],-mutator=org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator]').style.display == 'block')?'none':'block';">Covering tests</a>
+<div class="covered-tests" id="MutationIdentifier-[location=Location-[clazz=fi.eis.libraries.di.context.deployment.BeanArchive,-method=handleFile,-methodDesc=(Ljava/io/File;)V],-indexes=[65],-mutator=org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator]" style="display:none;">Covered by tests:
+<ul>
+<li>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</li> 
+</ul>
+</div></div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@45a824d_98'>98</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_98'/> 
+
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>handleFile<br/><b>Killed by : </b>none</span></span> removed call to java/lang/IllegalArgumentException::&#60;init&#62; &rarr; NO_COVERAGE</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@45a824d_110'>110</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_110'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>handleDirectory<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingDefault(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</span></span> removed call to fi/eis/libraries/di/context/deployment/DirectoryEntry::getName &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@45a824d_114'>114</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_114'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>handleDirectory<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingDefault(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>handleDirectory<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingDefault(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</span></span> removed conditional - replaced equality check with false &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>handleDirectory<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingDefault(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</span></span> Substituted 1 with 0 &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>handleDirectory<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingDefault(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</span></span> removed conditional - replaced equality check with true &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>5.<span><b>5</b><br/><b>Location : </b>handleDirectory<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingDefault(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</span></span> Substituted 0 with 1 &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@45a824d_116'>116</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_116'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>handleDirectory<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingDefault(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</span></span> removed call to fi/eis/libraries/di/context/deployment/DirectoryEntry::getFile &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>handleDirectory<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingDefault(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</span></span> removed call to java/io/File::listFiles &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@45a824d_118'>118</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_118'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>handleDirectory<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingDefault(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='SURVIVED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>handleDirectory<br/><b>Killed by : </b>none</span></span> removed conditional - replaced equality check with false &rarr; SURVIVED</span>
+<a title="Click to view covering tests" class="view-covered-by-tests" onClick="document.getElementById('MutationIdentifier-[location=Location-[clazz=fi.eis.libraries.di.context.deployment.BeanArchive,-method=handleDirectory,-methodDesc=(Lfi/eis/libraries/di/context/deployment/DirectoryEntry;)V],-indexes=[44],-mutator=org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE]').style.display=(document.getElementById('MutationIdentifier-[location=Location-[clazz=fi.eis.libraries.di.context.deployment.BeanArchive,-method=handleDirectory,-methodDesc=(Lfi/eis/libraries/di/context/deployment/DirectoryEntry;)V],-indexes=[44],-mutator=org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE]').style.display == 'block')?'none':'block';">Covering tests</a>
+<div class="covered-tests" id="MutationIdentifier-[location=Location-[clazz=fi.eis.libraries.di.context.deployment.BeanArchive,-method=handleDirectory,-methodDesc=(Lfi/eis/libraries/di/context/deployment/DirectoryEntry;)V],-indexes=[44],-mutator=org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE]" style="display:none;">Covered by tests:
+<ul>
+<li>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingDefault(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</li> <li>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingDisabled(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</li> <li>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</li> <li>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingEnabled(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</li> 
+</ul>
+</div></div> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>handleDirectory<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingDefault(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</span></span> removed conditional - replaced equality check with true &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@45a824d_119'>119</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_119'/> 
+
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>handleDirectory<br/><b>Killed by : </b>none</span></span> Substituted 0 with 1 &rarr; NO_COVERAGE</span>
+</div> <p class='NO_COVERAGE'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>handleDirectory<br/><b>Killed by : </b>none</span></span> Substituted 1 with 0 &rarr; NO_COVERAGE</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@45a824d_120'>120</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_120'/> 
+
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>handleDirectory<br/><b>Killed by : </b>none</span></span> replaced call to java/lang/String::format with argument &rarr; NO_COVERAGE</span>
+</div> <p class='NO_COVERAGE'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>handleDirectory<br/><b>Killed by : </b>none</span></span> removed call to fi/eis/libraries/di/context/deployment/DirectoryEntry::getFile &rarr; NO_COVERAGE</span>
+</div> <p class='NO_COVERAGE'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>handleDirectory<br/><b>Killed by : </b>none</span></span> removed call to java/lang/IllegalArgumentException::&#60;init&#62; &rarr; NO_COVERAGE</span>
+</div> <p class='NO_COVERAGE'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>handleDirectory<br/><b>Killed by : </b>none</span></span> removed call to java/lang/String::format &rarr; NO_COVERAGE</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@45a824d_125'>125</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_125'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>handleDirectory<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingDefault(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>handleDirectory<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingDefault(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</span></span> removed conditional - replaced equality check with false &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>handleDirectory<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingDefault(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</span></span> removed conditional - replaced equality check with true &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@45a824d_126'>126</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_126'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>handleDirectory<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingDefault(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</span></span> replaced call to java/lang/StringBuilder::append with receiver &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>handleDirectory<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingDefault(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</span></span> removed call to java/lang/StringBuilder::&#60;init&#62; &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>handleDirectory<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingDefault(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</span></span> removed call to java/io/File::getName &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>handleDirectory<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingDefault(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</span></span> replaced call to java/lang/StringBuilder::append with receiver &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>5.<span><b>5</b><br/><b>Location : </b>handleDirectory<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingDefault(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</span></span> removed call to java/lang/StringBuilder::append &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>6.<span><b>6</b><br/><b>Location : </b>handleDirectory<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingDefault(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</span></span> removed call to fi/eis/libraries/di/context/deployment/DirectoryEntry::setPath &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>7.<span><b>7</b><br/><b>Location : </b>handleDirectory<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingDefault(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</span></span> removed call to java/lang/StringBuilder::toString &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>8.<span><b>8</b><br/><b>Location : </b>handleDirectory<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingDefault(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</span></span> replaced call to java/lang/StringBuilder::append with receiver &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>9.<span><b>9</b><br/><b>Location : </b>handleDirectory<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingDefault(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</span></span> removed call to java/lang/StringBuilder::append &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>10.<span><b>10</b><br/><b>Location : </b>handleDirectory<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingDefault(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</span></span> replaced call to fi/eis/libraries/di/context/deployment/DirectoryEntry::setPath with receiver &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>11.<span><b>11</b><br/><b>Location : </b>handleDirectory<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingDefault(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</span></span> removed call to java/lang/StringBuilder::append &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@45a824d_128'>128</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_128'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>handleDirectory<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingDefault(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</span></span> removed call to java/io/File::getName &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>handleDirectory<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingDefault(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</span></span> removed call to fi/eis/libraries/di/context/deployment/DirectoryEntry::setPath &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>handleDirectory<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingDefault(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</span></span> replaced call to fi/eis/libraries/di/context/deployment/DirectoryEntry::setPath with receiver &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@45a824d_130'>130</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_130'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>handleDirectory<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingDefault(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</span></span> removed call to fi/eis/libraries/di/context/deployment/DirectoryEntry::setFile &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>handleDirectory<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingDefault(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</span></span> replaced call to fi/eis/libraries/di/context/deployment/DirectoryEntry::setFile with receiver &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@45a824d_132'>132</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_132'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>handleDirectory<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingDefault(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</span></span> removed call to java/io/File::isDirectory &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>handleDirectory<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingDefault(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</span></span> removed conditional - replaced equality check with true &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>handleDirectory<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingDefault(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>handleDirectory<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingDefault(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</span></span> removed conditional - replaced equality check with false &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@45a824d_133'>133</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_133'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>handleDirectory<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingDefault(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</span></span> removed call to fi/eis/libraries/di/context/deployment/BeanArchive::handleDirectory &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@45a824d_135'>135</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_135'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>handleDirectory<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingDefault(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</span></span> removed call to fi/eis/libraries/di/context/deployment/BeanArchive::addIfClass &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@45a824d_141'>141</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_141'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>addIfClass<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</span></span> removed conditional - replaced equality check with false &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>addIfClass<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</span></span> removed conditional - replaced equality check with true &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>addIfClass<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</span></span> removed call to fi/eis/libraries/di/context/deployment/Entry::getName &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>addIfClass<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</span></span> removed call to fi/eis/libraries/di/context/deployment/BeanArchive::isClass &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>5.<span><b>5</b><br/><b>Location : </b>addIfClass<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@45a824d_142'>142</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_142'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>addIfClass<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</span></span> replaced call to fi/eis/libraries/di/context/deployment/BeanArchive::filenameToClassname with argument &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>addIfClass<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</span></span> removed call to fi/eis/libraries/di/context/deployment/BeanArchive::addClassWithName &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>addIfClass<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</span></span> removed call to fi/eis/libraries/di/context/deployment/Entry::getName &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>addIfClass<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</span></span> removed call to fi/eis/libraries/di/context/deployment/BeanArchive::filenameToClassname &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@45a824d_148'>148</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_148'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>addClassWithName<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</span></span> removed call to java/lang/Class::forName &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@45a824d_151'>151</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_151'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>addClassWithName<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</span></span> removed conditional - replaced equality check with true &rarr; KILLED</span>
+</div> <p class='SURVIVED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>addClassWithName<br/><b>Killed by : </b>none</span></span> removed conditional - replaced equality check with false &rarr; SURVIVED</span>
+<a title="Click to view covering tests" class="view-covered-by-tests" onClick="document.getElementById('MutationIdentifier-[location=Location-[clazz=fi.eis.libraries.di.context.deployment.BeanArchive,-method=addClassWithName,-methodDesc=(Ljava/lang/String;)V],-indexes=[14],-mutator=org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE]').style.display=(document.getElementById('MutationIdentifier-[location=Location-[clazz=fi.eis.libraries.di.context.deployment.BeanArchive,-method=addClassWithName,-methodDesc=(Ljava/lang/String;)V],-indexes=[14],-mutator=org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE]').style.display == 'block')?'none':'block';">Covering tests</a>
+<div class="covered-tests" id="MutationIdentifier-[location=Location-[clazz=fi.eis.libraries.di.context.deployment.BeanArchive,-method=addClassWithName,-methodDesc=(Ljava/lang/String;)V],-indexes=[14],-mutator=org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE]" style="display:none;">Covered by tests:
+<ul>
+<li>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</li> <li>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingDefault(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</li> <li>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingDisabled(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</li> <li>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</li> <li>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingEnabled(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</li> 
+</ul>
+</div></div> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>addClassWithName<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='SURVIVED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>addClassWithName<br/><b>Killed by : </b>none</span></span> removed call to java/lang/reflect/Modifier::isAbstract &rarr; SURVIVED</span>
+<a title="Click to view covering tests" class="view-covered-by-tests" onClick="document.getElementById('MutationIdentifier-[location=Location-[clazz=fi.eis.libraries.di.context.deployment.BeanArchive,-method=addClassWithName,-methodDesc=(Ljava/lang/String;)V],-indexes=[13],-mutator=org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator]').style.display=(document.getElementById('MutationIdentifier-[location=Location-[clazz=fi.eis.libraries.di.context.deployment.BeanArchive,-method=addClassWithName,-methodDesc=(Ljava/lang/String;)V],-indexes=[13],-mutator=org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator]').style.display == 'block')?'none':'block';">Covering tests</a>
+<div class="covered-tests" id="MutationIdentifier-[location=Location-[clazz=fi.eis.libraries.di.context.deployment.BeanArchive,-method=addClassWithName,-methodDesc=(Ljava/lang/String;)V],-indexes=[13],-mutator=org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator]" style="display:none;">Covered by tests:
+<ul>
+<li>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</li> <li>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingDefault(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</li> <li>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingDisabled(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</li> <li>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</li> <li>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingEnabled(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</li> 
+</ul>
+</div></div> <p class='SURVIVED'><span class='pop'>5.<span><b>5</b><br/><b>Location : </b>addClassWithName<br/><b>Killed by : </b>none</span></span> removed call to java/lang/Class::getModifiers &rarr; SURVIVED</span>
+<a title="Click to view covering tests" class="view-covered-by-tests" onClick="document.getElementById('MutationIdentifier-[location=Location-[clazz=fi.eis.libraries.di.context.deployment.BeanArchive,-method=addClassWithName,-methodDesc=(Ljava/lang/String;)V],-indexes=[12],-mutator=org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator]').style.display=(document.getElementById('MutationIdentifier-[location=Location-[clazz=fi.eis.libraries.di.context.deployment.BeanArchive,-method=addClassWithName,-methodDesc=(Ljava/lang/String;)V],-indexes=[12],-mutator=org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator]').style.display == 'block')?'none':'block';">Covering tests</a>
+<div class="covered-tests" id="MutationIdentifier-[location=Location-[clazz=fi.eis.libraries.di.context.deployment.BeanArchive,-method=addClassWithName,-methodDesc=(Ljava/lang/String;)V],-indexes=[12],-mutator=org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator]" style="display:none;">Covered by tests:
+<ul>
+<li>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</li> <li>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingDefault(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</li> <li>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingDisabled(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</li> <li>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</li> <li>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingEnabled(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</li> 
+</ul>
+</div></div> <p class='SURVIVED'><span class='pop'>6.<span><b>6</b><br/><b>Location : </b>addClassWithName<br/><b>Killed by : </b>none</span></span> removed conditional - replaced equality check with true &rarr; SURVIVED</span>
+<a title="Click to view covering tests" class="view-covered-by-tests" onClick="document.getElementById('MutationIdentifier-[location=Location-[clazz=fi.eis.libraries.di.context.deployment.BeanArchive,-method=addClassWithName,-methodDesc=(Ljava/lang/String;)V],-indexes=[10],-mutator=org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF]').style.display=(document.getElementById('MutationIdentifier-[location=Location-[clazz=fi.eis.libraries.di.context.deployment.BeanArchive,-method=addClassWithName,-methodDesc=(Ljava/lang/String;)V],-indexes=[10],-mutator=org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF]').style.display == 'block')?'none':'block';">Covering tests</a>
+<div class="covered-tests" id="MutationIdentifier-[location=Location-[clazz=fi.eis.libraries.di.context.deployment.BeanArchive,-method=addClassWithName,-methodDesc=(Ljava/lang/String;)V],-indexes=[10],-mutator=org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF]" style="display:none;">Covered by tests:
+<ul>
+<li>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</li> <li>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingDefault(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</li> <li>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingDisabled(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</li> <li>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</li> <li>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingEnabled(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</li> 
+</ul>
+</div></div> <p class='KILLED'><span class='pop'>7.<span><b>7</b><br/><b>Location : </b>addClassWithName<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</span></span> removed conditional - replaced equality check with false &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>8.<span><b>8</b><br/><b>Location : </b>addClassWithName<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='SURVIVED'><span class='pop'>9.<span><b>9</b><br/><b>Location : </b>addClassWithName<br/><b>Killed by : </b>none</span></span> removed call to java/lang/Class::isInterface &rarr; SURVIVED</span>
+<a title="Click to view covering tests" class="view-covered-by-tests" onClick="document.getElementById('MutationIdentifier-[location=Location-[clazz=fi.eis.libraries.di.context.deployment.BeanArchive,-method=addClassWithName,-methodDesc=(Ljava/lang/String;)V],-indexes=[9],-mutator=org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator]').style.display=(document.getElementById('MutationIdentifier-[location=Location-[clazz=fi.eis.libraries.di.context.deployment.BeanArchive,-method=addClassWithName,-methodDesc=(Ljava/lang/String;)V],-indexes=[9],-mutator=org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator]').style.display == 'block')?'none':'block';">Covering tests</a>
+<div class="covered-tests" id="MutationIdentifier-[location=Location-[clazz=fi.eis.libraries.di.context.deployment.BeanArchive,-method=addClassWithName,-methodDesc=(Ljava/lang/String;)V],-indexes=[9],-mutator=org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator]" style="display:none;">Covered by tests:
+<ul>
+<li>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</li> <li>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingDefault(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</li> <li>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingDisabled(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</li> <li>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</li> <li>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingEnabled(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</li> 
+</ul>
+</div></div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@45a824d_154'>154</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_154'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>addClassWithName<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</span></span> removed call to java/util/List::add &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@45a824d_156'>156</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_156'/> 
+
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>addClassWithName<br/><b>Killed by : </b>none</span></span> removed call to java/lang/StringBuilder::append &rarr; NO_COVERAGE</span>
+</div> <p class='NO_COVERAGE'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>addClassWithName<br/><b>Killed by : </b>none</span></span> removed call to java/lang/StringBuilder::&#60;init&#62; &rarr; NO_COVERAGE</span>
+</div> <p class='NO_COVERAGE'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>addClassWithName<br/><b>Killed by : </b>none</span></span> removed call to java/lang/StringBuilder::toString &rarr; NO_COVERAGE</span>
+</div> <p class='NO_COVERAGE'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>addClassWithName<br/><b>Killed by : </b>none</span></span> replaced call to java/lang/StringBuilder::append with receiver &rarr; NO_COVERAGE</span>
+</div> <p class='NO_COVERAGE'><span class='pop'>5.<span><b>5</b><br/><b>Location : </b>addClassWithName<br/><b>Killed by : </b>none</span></span> removed call to java/lang/StringBuilder::append &rarr; NO_COVERAGE</span>
+</div> <p class='NO_COVERAGE'><span class='pop'>6.<span><b>6</b><br/><b>Location : </b>addClassWithName<br/><b>Killed by : </b>none</span></span> replaced call to java/lang/StringBuilder::append with receiver &rarr; NO_COVERAGE</span>
+</div> <p class='NO_COVERAGE'><span class='pop'>7.<span><b>7</b><br/><b>Location : </b>addClassWithName<br/><b>Killed by : </b>none</span></span> removed call to java/lang/IllegalArgumentException::&#60;init&#62; &rarr; NO_COVERAGE</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@45a824d_161'>161</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_161'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>isClass<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</span></span> replaced boolean return with false for fi/eis/libraries/di/context/deployment/BeanArchive::isClass &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>isClass<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</span></span> removed call to java/lang/String::endsWith &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>isClass<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</span></span> replaced boolean return with true for fi/eis/libraries/di/context/deployment/BeanArchive::isClass &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@45a824d_165'>165</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_165'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>filenameToClassname<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</span></span> replaced return value with &#34;&#34; for fi/eis/libraries/di/context/deployment/BeanArchive::filenameToClassname &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>filenameToClassname<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</span></span> Substituted 0 with 1 &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>filenameToClassname<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</span></span> Substituted 46 with 47 &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>filenameToClassname<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</span></span> removed call to java/lang/String::substring &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>5.<span><b>5</b><br/><b>Location : </b>filenameToClassname<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</span></span> removed call to java/lang/String::lastIndexOf &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>6.<span><b>6</b><br/><b>Location : </b>filenameToClassname<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</span></span> replaced call to java/lang/String::substring with receiver &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>7.<span><b>7</b><br/><b>Location : </b>filenameToClassname<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</span></span> Substituted 47 with 48 &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@45a824d_166'>166</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@45a824d_166'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>filenameToClassname<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</span></span> removed call to java/lang/String::replace &rarr; KILLED</span>
+</div> <p class='SURVIVED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>filenameToClassname<br/><b>Killed by : </b>none</span></span> Substituted 92 with 93 &rarr; SURVIVED</span>
+<a title="Click to view covering tests" class="view-covered-by-tests" onClick="document.getElementById('MutationIdentifier-[location=Location-[clazz=fi.eis.libraries.di.context.deployment.BeanArchive,-method=filenameToClassname,-methodDesc=(Ljava/lang/String;)Ljava/lang/String;],-indexes=[14],-mutator=org.pitest.mutationtest.engine.gregor.mutators.InlineConstantMutator]').style.display=(document.getElementById('MutationIdentifier-[location=Location-[clazz=fi.eis.libraries.di.context.deployment.BeanArchive,-method=filenameToClassname,-methodDesc=(Ljava/lang/String;)Ljava/lang/String;],-indexes=[14],-mutator=org.pitest.mutationtest.engine.gregor.mutators.InlineConstantMutator]').style.display == 'block')?'none':'block';">Covering tests</a>
+<div class="covered-tests" id="MutationIdentifier-[location=Location-[clazz=fi.eis.libraries.di.context.deployment.BeanArchive,-method=filenameToClassname,-methodDesc=(Ljava/lang/String;)Ljava/lang/String;],-indexes=[14],-mutator=org.pitest.mutationtest.engine.gregor.mutators.InlineConstantMutator]" style="display:none;">Covered by tests:
+<ul>
+<li>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</li> <li>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingDefault(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</li> <li>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingDisabled(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</li> <li>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</li> <li>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingEnabled(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</li> 
+</ul>
+</div></div> <p class='SURVIVED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>filenameToClassname<br/><b>Killed by : </b>none</span></span> Substituted 46 with 47 &rarr; SURVIVED</span>
+<a title="Click to view covering tests" class="view-covered-by-tests" onClick="document.getElementById('MutationIdentifier-[location=Location-[clazz=fi.eis.libraries.di.context.deployment.BeanArchive,-method=filenameToClassname,-methodDesc=(Ljava/lang/String;)Ljava/lang/String;],-indexes=[15],-mutator=org.pitest.mutationtest.engine.gregor.mutators.InlineConstantMutator]').style.display=(document.getElementById('MutationIdentifier-[location=Location-[clazz=fi.eis.libraries.di.context.deployment.BeanArchive,-method=filenameToClassname,-methodDesc=(Ljava/lang/String;)Ljava/lang/String;],-indexes=[15],-mutator=org.pitest.mutationtest.engine.gregor.mutators.InlineConstantMutator]').style.display == 'block')?'none':'block';">Covering tests</a>
+<div class="covered-tests" id="MutationIdentifier-[location=Location-[clazz=fi.eis.libraries.di.context.deployment.BeanArchive,-method=filenameToClassname,-methodDesc=(Ljava/lang/String;)Ljava/lang/String;],-indexes=[15],-mutator=org.pitest.mutationtest.engine.gregor.mutators.InlineConstantMutator]" style="display:none;">Covered by tests:
+<ul>
+<li>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</li> <li>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingDefault(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</li> <li>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingDisabled(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</li> <li>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</li> <li>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingEnabled(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</li> 
+</ul>
+</div></div> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>filenameToClassname<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</span></span> replaced call to java/lang/String::replace with receiver &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>5.<span><b>5</b><br/><b>Location : </b>filenameToClassname<br/><b>Killed by : </b>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</span></span> removed call to java/lang/String::replace &rarr; KILLED</span>
+</div> <p class='SURVIVED'><span class='pop'>6.<span><b>6</b><br/><b>Location : </b>filenameToClassname<br/><b>Killed by : </b>none</span></span> replaced call to java/lang/String::replace with receiver &rarr; SURVIVED</span>
+<a title="Click to view covering tests" class="view-covered-by-tests" onClick="document.getElementById('MutationIdentifier-[location=Location-[clazz=fi.eis.libraries.di.context.deployment.BeanArchive,-method=filenameToClassname,-methodDesc=(Ljava/lang/String;)Ljava/lang/String;],-indexes=[16],-mutator=org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator]').style.display=(document.getElementById('MutationIdentifier-[location=Location-[clazz=fi.eis.libraries.di.context.deployment.BeanArchive,-method=filenameToClassname,-methodDesc=(Ljava/lang/String;)Ljava/lang/String;],-indexes=[16],-mutator=org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator]').style.display == 'block')?'none':'block';">Covering tests</a>
+<div class="covered-tests" id="MutationIdentifier-[location=Location-[clazz=fi.eis.libraries.di.context.deployment.BeanArchive,-method=filenameToClassname,-methodDesc=(Ljava/lang/String;)Ljava/lang/String;],-indexes=[16],-mutator=org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator]" style="display:none;">Covered by tests:
+<ul>
+<li>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest)</li> <li>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingDefault(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</li> <li>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingDisabled(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</li> <li>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</li> <li>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingEnabled(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest)</li> 
+</ul>
+</div></div> 
+</td>
+</tr>
+
+</table>
+
+
+<h2>Active mutators</h2>
+<ul>
+<li class='mutator'>CONDITIONALS_BOUNDARY</li>
+<li class='mutator'>CONSTRUCTOR_CALLS</li>
+<li class='mutator'>EMPTY_RETURNS</li>
+<li class='mutator'>EXPERIMENTAL_ARGUMENT_PROPAGATION</li>
+<li class='mutator'>EXPERIMENTAL_BIG_DECIMAL</li>
+<li class='mutator'>EXPERIMENTAL_BIG_INTEGER</li>
+<li class='mutator'>EXPERIMENTAL_MEMBER_VARIABLE</li>
+<li class='mutator'>EXPERIMENTAL_NAKED_RECEIVER</li>
+<li class='mutator'>EXPERIMENTAL_REMOVE_SWITCH_MUTATOR_[0-99]</li>
+<li class='mutator'>EXPERIMENTAL_SWITCH</li>
+<li class='mutator'>FALSE_RETURNS</li>
+<li class='mutator'>INCREMENTS</li>
+<li class='mutator'>INLINE_CONSTS</li>
+<li class='mutator'>INVERT_NEGS</li>
+<li class='mutator'>MATH</li>
+<li class='mutator'>NEGATE_CONDITIONALS</li>
+<li class='mutator'>NON_VOID_METHOD_CALLS</li>
+<li class='mutator'>NULL_RETURNS</li>
+<li class='mutator'>PRIMITIVE_RETURNS</li>
+<li class='mutator'>REMOVE_CONDITIONALS_EQUAL_ELSE</li>
+<li class='mutator'>REMOVE_CONDITIONALS_EQUAL_IF</li>
+<li class='mutator'>REMOVE_CONDITIONALS_ORDER_ELSE</li>
+<li class='mutator'>REMOVE_CONDITIONALS_ORDER_IF</li>
+<li class='mutator'>REMOVE_INCREMENTS</li>
+<li class='mutator'>TRUE_RETURNS</li>
+<li class='mutator'>VOID_METHOD_CALLS</li>
+
+</ul>
+
+<h2>Tests examined</h2>
+<ul>
+<li>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest) (3 ms)</li><li>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingDefault(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest) (1 ms)</li><li>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingDisabled(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest) (1 ms)</li><li>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDi(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest) (3 ms)</li><li>fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest.testDiLoggingEnabled(fi.eis.libraries.di.test.deploymentunit.DIClassScanningTest) (4 ms)</li><li>fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest.testDiWithNonExistingFile(fi.eis.libraries.di.test.deploymentunit.DIClassScanningJarLoadingTest) (0 ms)</li>
+</ul>
+
+<br/>
+
+Report generated by <a href='https://pitest.org'>PIT</a> 1.25.4 <a href='https://github.com/sponsors/hcoles'>support</a>
+
+</body>
+</html>

@@ -43,7 +43,6 @@
     <li><a href="project-reports.html"><span class="icon-chevron-down"></span>Project Reports</a>
      <ul class="nav nav-list">
       <li><a href="jacoco/index.html">JaCoCo</a></li>
-      <li><a href="javancss.html">JavaNCSS Report</a></li>
       <li class="active"><a>SpotBugs</a></li>
       <li><a href="pit-reports/index.html">PIT Test Report</a></li>
      </ul></li>
@@ -72,7 +71,7 @@
 <th>Errors</th>
 <th>Missing Classes</th></tr>
 <tr class="b">
-<td>14</td>
+<td>12</td>
 <td>6</td>
 <td>0</td>
 <td>0</td></tr></table></section><section>
@@ -82,12 +81,12 @@
 <th>Class</th>
 <th>Bugs</th></tr>
 <tr class="b">
-<td><a href="#fi.eis.libraries.di.ConfigurationClassContext">fi.eis.libraries.di.ConfigurationClassContext</a></td>
+<td><a href="#fi.eis.libraries.di.context.configclass.ConfigurationClassContext">fi.eis.libraries.di.context.configclass.ConfigurationClassContext</a></td>
 <td>2</td></tr>
 <tr class="a">
-<td><a href="#fi.eis.libraries.di.DeploymentUnitContext">fi.eis.libraries.di.DeploymentUnitContext</a></td>
-<td>4</td></tr></table></section><a name="fi.eis.libraries.di.ConfigurationClassContext"></a><section>
-<h2>fi.eis.libraries.di.ConfigurationClassContext</h2>
+<td><a href="#fi.eis.libraries.di.context.deployment.BeanArchive">fi.eis.libraries.di.context.deployment.BeanArchive</a></td>
+<td>4</td></tr></table></section><a name="fi.eis.libraries.di.context.configclass.ConfigurationClassContext"></a><section>
+<h2>fi.eis.libraries.di.context.configclass.ConfigurationClassContext</h2>
 <table class="table table-striped">
 <tr class="a">
 <th>Bug</th>
@@ -96,18 +95,18 @@
 <th>Line</th>
 <th>Priority</th></tr>
 <tr class="b">
-<td>Exception thrown in class fi.eis.libraries.di.ConfigurationClassContext at new fi.eis.libraries.di.ConfigurationClassContext(SimpleLogger$LogLevel, Class[]) will leave the constructor. The object under construction remains partially initialized and may be vulnerable to Finalizer attacks.</td>
+<td>Exception thrown in class fi.eis.libraries.di.context.configclass.ConfigurationClassContext at new fi.eis.libraries.di.context.configclass.ConfigurationClassContext(SimpleLogger$LogLevel, Class[]) will leave the constructor. The object under construction remains partially initialized and may be vulnerable to Finalizer attacks.</td>
 <td>BAD_PRACTICE</td>
 <td><a class="externalLink" href="https://spotbugs.readthedocs.io/en/latest/bugDescriptions.html#CT_CONSTRUCTOR_THROW">CT_CONSTRUCTOR_THROW</a></td>
-<td>27</td>
+<td>41</td>
 <td>Medium</td></tr>
 <tr class="a">
-<td>Exception thrown in class fi.eis.libraries.di.ConfigurationClassContext at new fi.eis.libraries.di.ConfigurationClassContext(Class[]) will leave the constructor. The object under construction remains partially initialized and may be vulnerable to Finalizer attacks.</td>
+<td>Exception thrown in class fi.eis.libraries.di.context.configclass.ConfigurationClassContext at new fi.eis.libraries.di.context.configclass.ConfigurationClassContext(Class[]) will leave the constructor. The object under construction remains partially initialized and may be vulnerable to Finalizer attacks.</td>
 <td>BAD_PRACTICE</td>
 <td><a class="externalLink" href="https://spotbugs.readthedocs.io/en/latest/bugDescriptions.html#CT_CONSTRUCTOR_THROW">CT_CONSTRUCTOR_THROW</a></td>
-<td>17</td>
-<td>Medium</td></tr></table></section><a name="fi.eis.libraries.di.DeploymentUnitContext"></a><section>
-<h2>fi.eis.libraries.di.DeploymentUnitContext</h2>
+<td>31</td>
+<td>Medium</td></tr></table></section><a name="fi.eis.libraries.di.context.deployment.BeanArchive"></a><section>
+<h2>fi.eis.libraries.di.context.deployment.BeanArchive</h2>
 <table class="table table-striped">
 <tr class="a">
 <th>Bug</th>
@@ -116,28 +115,28 @@
 <th>Line</th>
 <th>Priority</th></tr>
 <tr class="b">
-<td>Exception thrown in class fi.eis.libraries.di.DeploymentUnitContext at new fi.eis.libraries.di.DeploymentUnitContext(File) will leave the constructor. The object under construction remains partially initialized and may be vulnerable to Finalizer attacks.</td>
+<td>Exception thrown in class fi.eis.libraries.di.context.deployment.BeanArchive at new fi.eis.libraries.di.context.deployment.BeanArchive(File) will leave the constructor. The object under construction remains partially initialized and may be vulnerable to Finalizer attacks.</td>
 <td>BAD_PRACTICE</td>
 <td><a class="externalLink" href="https://spotbugs.readthedocs.io/en/latest/bugDescriptions.html#CT_CONSTRUCTOR_THROW">CT_CONSTRUCTOR_THROW</a></td>
-<td>50</td>
+<td>41</td>
 <td>Medium</td></tr>
 <tr class="a">
-<td>Exception thrown in class fi.eis.libraries.di.DeploymentUnitContext at new fi.eis.libraries.di.DeploymentUnitContext(File, SimpleLogger$LogLevel) will leave the constructor. The object under construction remains partially initialized and may be vulnerable to Finalizer attacks.</td>
-<td>BAD_PRACTICE</td>
-<td><a class="externalLink" href="https://spotbugs.readthedocs.io/en/latest/bugDescriptions.html#CT_CONSTRUCTOR_THROW">CT_CONSTRUCTOR_THROW</a></td>
-<td>56</td>
-<td>Medium</td></tr>
-<tr class="b">
-<td>Exception thrown in class fi.eis.libraries.di.DeploymentUnitContext at new fi.eis.libraries.di.DeploymentUnitContext(Class) will leave the constructor. The object under construction remains partially initialized and may be vulnerable to Finalizer attacks.</td>
-<td>BAD_PRACTICE</td>
-<td><a class="externalLink" href="https://spotbugs.readthedocs.io/en/latest/bugDescriptions.html#CT_CONSTRUCTOR_THROW">CT_CONSTRUCTOR_THROW</a></td>
-<td>39</td>
-<td>Medium</td></tr>
-<tr class="a">
-<td>Exception thrown in class fi.eis.libraries.di.DeploymentUnitContext at new fi.eis.libraries.di.DeploymentUnitContext(Class, SimpleLogger$LogLevel) will leave the constructor. The object under construction remains partially initialized and may be vulnerable to Finalizer attacks.</td>
+<td>Exception thrown in class fi.eis.libraries.di.context.deployment.BeanArchive at new fi.eis.libraries.di.context.deployment.BeanArchive(File, SimpleLogger$LogLevel) will leave the constructor. The object under construction remains partially initialized and may be vulnerable to Finalizer attacks.</td>
 <td>BAD_PRACTICE</td>
 <td><a class="externalLink" href="https://spotbugs.readthedocs.io/en/latest/bugDescriptions.html#CT_CONSTRUCTOR_THROW">CT_CONSTRUCTOR_THROW</a></td>
 <td>45</td>
+<td>Medium</td></tr>
+<tr class="b">
+<td>Exception thrown in class fi.eis.libraries.di.context.deployment.BeanArchive at new fi.eis.libraries.di.context.deployment.BeanArchive(URL) will leave the constructor. The object under construction remains partially initialized and may be vulnerable to Finalizer attacks.</td>
+<td>BAD_PRACTICE</td>
+<td><a class="externalLink" href="https://spotbugs.readthedocs.io/en/latest/bugDescriptions.html#CT_CONSTRUCTOR_THROW">CT_CONSTRUCTOR_THROW</a></td>
+<td>34</td>
+<td>Medium</td></tr>
+<tr class="a">
+<td>Exception thrown in class fi.eis.libraries.di.context.deployment.BeanArchive at new fi.eis.libraries.di.context.deployment.BeanArchive(URL, SimpleLogger$LogLevel) will leave the constructor. The object under construction remains partially initialized and may be vulnerable to Finalizer attacks.</td>
+<td>BAD_PRACTICE</td>
+<td><a class="externalLink" href="https://spotbugs.readthedocs.io/en/latest/bugDescriptions.html#CT_CONSTRUCTOR_THROW">CT_CONSTRUCTOR_THROW</a></td>
+<td>38</td>
 <td>Medium</td></tr></table></section>
         </main>
       </div>

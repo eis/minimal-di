@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ConfigurationClassContext.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Minimal DI</a> &gt; <a href="index.source.html" class="el_package">fi.eis.libraries.di.context.configclass</a> &gt; <span class="el_source">ConfigurationClassContext.java</span></div><h1>ConfigurationClassContext.java</h1><pre class="source lang-java linenums">package fi.eis.libraries.di.context.configclass;
+
+import fi.eis.libraries.di.DependencyInjection;
+import fi.eis.libraries.di.context.Context;
+import fi.eis.libraries.di.logger.SimpleLogger;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * A Configuration Class is a Spring-style class that contains the required configuration
+ * to do dependency injection. It contains the definition of dependency associations so that
+ * it can be used to figure out which class depends on what.
+ *
+ * This class contains the logic to handle such classes, so we create a dependency injection context
+ * based on such class or several classes. This class goes through all the methods in a
+ * configuration class, creating the needed dependencies and instantiating the configured classes
+ * with their dependencies.
+ */
+public class ConfigurationClassContext extends Context {
+<span class="fc" id="L28">    private final Map&lt;Class, Object&gt; classObjectMap = new HashMap&lt;&gt;();</span>
+
+    public ConfigurationClassContext(Class... configurationClasses) {
+<span class="nc" id="L31">        this(SimpleLogger.LogLevel.NONE, configurationClasses);</span>
+<span class="nc" id="L32">    }</span>
+<span class="fc" id="L33">    public ConfigurationClassContext(SimpleLogger.LogLevel logLevel, Class... configurationClassInstances) {</span>
+<span class="fc" id="L34">        setLogLevel(logLevel);</span>
+
+        try {
+<span class="fc" id="L37">            List&lt;Map.Entry&lt;Object, Method&gt;&gt; confClassCreationMethodTuples = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L38" title="All 2 branches covered.">            for (Class configurationClass: configurationClassInstances){</span>
+<span class="fc" id="L39">                Object configurationClassInstance = configurationClass.newInstance();</span>
+
+<span class="fc bfc" id="L41" title="All 2 branches covered.">                for (Method m : Arrays.asList(configurationClass.getMethods())) {</span>
+<span class="fc bfc" id="L42" title="All 2 branches covered.">                    if (m.getDeclaringClass() != Object.class) {</span>
+<span class="fc" id="L43">                        logger.debug(&quot;Got method &quot; + m);</span>
+<span class="fc" id="L44">                        confClassCreationMethodTuples.add(tuple(configurationClassInstance, m));</span>
+                    }
+<span class="fc" id="L46">                }</span>
+            }
+<span class="fc" id="L48">            Collections.sort(confClassCreationMethodTuples, ConfClassCreationMethodTuplesComparator);</span>
+<span class="fc" id="L49">            logger.debug(&quot;tuples: &quot; + confClassCreationMethodTuples);</span>
+
+<span class="fc bfc" id="L51" title="All 2 branches covered.">            for (Map.Entry&lt;Object,Method&gt; confClassCreationMethodTuple: confClassCreationMethodTuples) {</span>
+<span class="fc" id="L52">                Method method = confClassCreationMethodTuple.getValue();</span>
+<span class="fc" id="L53">                Object instance = newInstance(confClassCreationMethodTuple.getKey(), method);</span>
+<span class="fc" id="L54">                classObjectMap.put(method.getReturnType(), instance);</span>
+<span class="fc" id="L55">                logger.debug(&quot;instantiated and stored instance for class &quot; + method.getReturnType());</span>
+<span class="fc" id="L56">            }</span>
+<span class="nc" id="L57">        } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {</span>
+<span class="nc" id="L58">            throw new IllegalArgumentException(e);</span>
+<span class="fc" id="L59">        }</span>
+<span class="fc" id="L60">        logger.debug(&quot;class-instance module: &quot; + DependencyInjection.module(classObjectMap));</span>
+<span class="fc" id="L61">        super.modules.add(DependencyInjection.module(classObjectMap)) ;</span>
+<span class="fc" id="L62">    }</span>
+
+    private static Map.Entry&lt;Object,Method&gt; tuple(Object object, Method method) {
+<span class="fc" id="L65">        return new HashMap.SimpleEntry&lt;&gt;(object, method);</span>
+    }
+<span class="fc" id="L67">    private static final Comparator&lt;Map.Entry&lt;Object,Method&gt;&gt; ConfClassCreationMethodTuplesComparator =</span>
+<span class="fc" id="L68">            Comparator.comparingInt(o -&gt; o.getValue().getParameterTypes().length);</span>
+
+    private Object newInstance(Object configurationClass, Method method) throws InstantiationException,
+            IllegalAccessException, NoSuchMethodException, InvocationTargetException {
+<span class="fc" id="L72">        Class[] parameterTypes = method.getParameterTypes();</span>
+<span class="fc" id="L73">        Object[] paramArr = new Object[parameterTypes.length];</span>
+<span class="fc" id="L74">        int i = 0;</span>
+
+<span class="fc bfc" id="L76" title="All 2 branches covered.">        for(Class c : parameterTypes) {</span>
+<span class="fc" id="L77">            paramArr[i++] = classObjectMap.get(c);</span>
+        }
+<span class="fc" id="L79">        return method.invoke(configurationClass, paramArr);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.15.202606040825</span></div></body></html>
