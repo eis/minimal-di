@@ -78,7 +78,7 @@ class BeanArchive {
         }
 
         try {
-            logger.debug("Handle path: {0}", file.toPath());
+            logger.debug("Handle path: %s", file.toPath());
 
             if (file.isDirectory()) {
                 handleDirectory(new DirectoryEntry().setFile(file));
@@ -92,7 +92,7 @@ class BeanArchive {
 
     private void handleFile(File file) throws IOException {
 
-        logger.debug("Handle archive file: {0}", file);
+        logger.debug("Handle archive file: %s", file);
 
         try {
             ZipFile zip = new ZipFile(file);
@@ -117,7 +117,7 @@ class BeanArchive {
 
         String directoryPath = entry.getName();
 
-        logger.debug("Handle file {0} with a path: {1}", entry.getFile(), directoryPath);
+        logger.debug("Handle file %s with a path: %s", entry.getFile(), directoryPath);
 
         boolean hasPath = directoryPath != null;
 
