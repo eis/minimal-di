@@ -36,6 +36,13 @@ public class DIConstructorTest {
         Assert.assertNotNull("was not initialized: " + instance, instance.getDependency());
     }
 
+    @Test
+    public void testDiSkippingModuleAbstraction() {
+        Context diContext = DependencyInjection.context(ConstDependency.class,
+                ConstClassToInit.class);
+        ConstClassToInit instance = diContext.get(ConstClassToInit.class);
+        Assert.assertNotNull("was not initialized: " + instance, instance.getDependency());
+    }
 
     @Test
     public void testDiWithInheritance() {

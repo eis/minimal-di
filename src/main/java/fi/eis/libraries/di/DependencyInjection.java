@@ -17,7 +17,7 @@ import fi.eis.libraries.di.context.Module;
  * 1) ask it to create a context from the deployment unit (e.g. jar) in question (deploymentUnitContext())
  * 2) ask it to create a context based on spring-style configuration class (configurationClassContext())
  * 3) list the classes and their instances explicitly as modules and ask it to create a context based on that (module() + context())
- *
+ * 4) list the classes explicitly and ask it to create a context based on that (context())
  * @author eis
  */
 public class DependencyInjection {
@@ -38,6 +38,11 @@ public class DependencyInjection {
         }
         // create a new module based on combined one
         return new Context(combinedModule);
+    }
+
+    public static Context context(Class... classes) {
+        // create a new module based on given classes
+        return new Context(new Module(classes));
     }
 
     public static Context deploymentUnitContext(Class sourceClass) {
