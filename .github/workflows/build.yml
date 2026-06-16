@@ -52,7 +52,7 @@ jobs:
         uses: actions/setup-java@be666c2fcd27ec809703dec50e508c2fdc7f6654 # v5.2.0
         with:
           distribution: 'adopt'
-          java-version: '8'
+          java-version: '11'
       - name: Generate site with Maven
         run: mvn test org.pitest:pitest-maven:mutationCoverage site --batch-mode -DbuildNumber=${GITHUB_RUN_NUMBER}
       - name: Deploy docs 🚀
