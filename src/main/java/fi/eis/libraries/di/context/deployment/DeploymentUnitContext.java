@@ -1,7 +1,7 @@
 package fi.eis.libraries.di.context.deployment;
 
-import fi.eis.libraries.di.DependencyInjection;
 import fi.eis.libraries.di.context.Context;
+import fi.eis.libraries.di.context.Module;
 import fi.eis.libraries.di.logger.SimpleLogger.LogLevel;
 
 import java.io.File;
@@ -46,7 +46,7 @@ public class DeploymentUnitContext extends Context {
     private void initFrom(BeanArchive builder) {
         List<Class> classes = builder.getClasses();
         logger.debug("got classes " + classes);
-        super.modules.add(DependencyInjection.module(classes));
+        super.modules.add(new Module(classes));
     }
 
 }

@@ -45,20 +45,6 @@ class BeanArchive {
         initArchive(file);
     }
 
-    public void addClass(String className) {
-        try {
-            Class targetClass = Class.forName(className);
-            // we want instantiable classes, so don't add interfaces or
-            // abstract classes
-            if (targetClass.isInterface() || Modifier.isAbstract(targetClass.getModifiers())) {
-                return;
-            }
-            classes.add(targetClass);
-        } catch (ClassNotFoundException | NoClassDefFoundError e) {
-            throw new IllegalArgumentException("Not found: " + className);
-        }
-    }
-
     public List<Class> getClasses() {
         return this.classes;
     }
@@ -90,6 +76,12 @@ class BeanArchive {
         }
     }
 
+    /**
+     * Method to go through all entries in a .jar file on disk
+     * 
+     * @param file jar file that we want to use basis for dependency injection
+     * @throws IOException
+     */
     private void handleFile(File file) throws IOException {
 
         logger.debug("Handle archive file: %s", file);
@@ -108,7 +100,7 @@ class BeanArchive {
     }
 
     /**
-     * Recursive method to handle a directory tree.
+     * Recursive method to handle a directory tree of classes loaded runtime.
      *
      * @param entry an entry in a directory. A file instance that might or might not have a path.
      * @throws IOException
@@ -147,16 +139,30 @@ class BeanArchive {
 
     private void addIfClass(Entry entry) {
         if (isClass(entry.getName())) {
-            addClass(filenameToClassname(entry.getName()));
+            addClassWithName(filenameToClassname(entry.getName()));
         }
     }
 
-    private boolean isClass(String name) {
-        return name.endsWith(CLASS_FILE_EXTENSION);
+    private void addClassWithName(String className) {
+        try {
+            Class targetClass = Class.forName(className);
+            // we want instantiable classes, so don't add interfaces or
+            // abstract classes
+            if (targetClass.isInterface() || Modifier.isAbstract(targetClass.getModifiers())) {
+                return;
+            }
+            classes.add(targetClass);
+        } catch (ClassNotFoundException | NoClassDefFoundError e) {
+            throw new IllegalArgumentException("Not found: " + className);
+        }
     }
 
-    private String filenameToClassname(String filename) {
-        return filename.substring(0, filename.lastIndexOf(CLASS_FILE_EXTENSION))
+    private boolean isClass(String fileName) {
+        return fileName.endsWith(CLASS_FILE_EXTENSION);
+    }
+
+    private String filenameToClassname(String fileName) {
+        return fileName.substring(0, fileName.lastIndexOf(CLASS_FILE_EXTENSION))
                 .replace('/', '.').replace('\\', '.');
     }
 
