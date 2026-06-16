@@ -6,21 +6,22 @@ package fi.eis.libraries.di.test.moduleconfig;
  */
 
 
+import fi.eis.libraries.di.DependencyInjection;
+import fi.eis.libraries.di.context.Context;
+import fi.eis.libraries.di.context.Module;
+import fi.eis.libraries.di.logger.SimpleLogger.LogLevel;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 
-import fi.eis.libraries.di.DependencyInjection;
-import fi.eis.libraries.di.context.Context;
-import fi.eis.libraries.di.context.Module;
-import org.hamcrest.Matchers;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-
-import fi.eis.libraries.di.logger.SimpleLogger.LogLevel;
-
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.Matchers.not;
+import static org.junit.Assert.assertNotNull;
 
 public class DIConstructorTest {
 
@@ -33,7 +34,7 @@ public class DIConstructorTest {
         Module mClasses = DependencyInjection.module(ConstClassToInit.class);
         Context diContext = DependencyInjection.context(mClasses, mSuppliers);
         ConstClassToInit instance = diContext.get(ConstClassToInit.class);
-        Assert.assertNotNull("was not initialized: " + instance, instance.getDependency());
+        assertNotNull("was not initialized: " + instance, instance.getDependency());
     }
 
     @Test
@@ -41,7 +42,7 @@ public class DIConstructorTest {
         Context diContext = DependencyInjection.context(ConstDependency.class,
                 ConstClassToInit.class);
         ConstClassToInit instance = diContext.get(ConstClassToInit.class);
-        Assert.assertNotNull("was not initialized: " + instance, instance.getDependency());
+        assertNotNull("was not initialized: " + instance, instance.getDependency());
     }
 
     @Test
@@ -53,7 +54,7 @@ public class DIConstructorTest {
         Module mClasses = DependencyInjection.module(ConstClassToInit.class);
         Context diContext = DependencyInjection.context(mClasses, mSuppliers);
         ConstClassToInit instance = diContext.get(ConstClassToInit.class);
-        Assert.assertNotNull("was not initialized: " + instance, instance.getDependency());
+        assertNotNull("was not initialized: " + instance, instance.getDependency());
     }
 
     // below is to test logging
@@ -87,7 +88,7 @@ public class DIConstructorTest {
         
         String loggedStuff = loggingOutputStream.toString("UTF-8");
         // there should be at least a context.get call
-        Assert.assertThat(loggedStuff, Matchers.containsString("context.get"));
+        assertThat(loggedStuff, containsString("context.get"));
     }
     @Test
     public void testDiWithLoggingDisabled() throws UnsupportedEncodingException {
@@ -102,8 +103,7 @@ public class DIConstructorTest {
         diContext.get(ConstClassToInit.class);
         
         String loggedStuff = loggingOutputStream.toString("UTF-8");
-        Assert.assertThat(loggedStuff, Matchers.not(
-                Matchers.containsString("context.get")));
+        assertThat(loggedStuff, not(containsString("context.get")));
     }
     @Test
     public void testDiWithLoggingDefault() throws UnsupportedEncodingException {
@@ -116,7 +116,6 @@ public class DIConstructorTest {
         diContext.get(ConstClassToInit.class);
         
         String loggedStuff = loggingOutputStream.toString("UTF-8");
-        Assert.assertThat(loggedStuff, Matchers.not(
-                Matchers.containsString("context.get")));
+        assertThat(loggedStuff, not(containsString("context.get")));
     }
 }

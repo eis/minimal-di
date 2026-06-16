@@ -8,8 +8,9 @@ package fi.eis.libraries.di.test.moduleconfig;
 import fi.eis.libraries.di.DependencyInjection;
 import fi.eis.libraries.di.context.Context;
 import fi.eis.libraries.di.context.Module;
-import org.junit.Assert;
 import org.junit.Test;
+
+import static org.junit.Assert.assertNotNull;
 
 public class DIInheritanceTest {
 
@@ -21,7 +22,7 @@ public class DIInheritanceTest {
         Module mClasses = DependencyInjection.module(ClassToInit.class);
         Context diContext = DependencyInjection.context(mClasses, mSuppliers);
         ClassToInit instance = diContext.get(ClassToInit.class);
-        Assert.assertNotNull("was not initialized: " + instance, instance.getDependency());
+        assertNotNull("was not initialized: " + instance, instance.getDependency());
     }
 
     @Test
@@ -32,6 +33,6 @@ public class DIInheritanceTest {
         Module mClasses = DependencyInjection.module(ClassToInit.class);
         Context diContext = DependencyInjection.context(mClasses, mSuppliers);
         ClassToInit instance = diContext.get(ClassToInit.class);
-        Assert.assertNotNull("was not initialized: " + instance, instance.getDependency());
+        assertNotNull("was not initialized: " + instance, instance.getDependency());
     }
 }
