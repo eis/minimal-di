@@ -3,7 +3,7 @@ Minimal DI
 
 [![Build Status](https://github.com/eis/minimal-di/actions/workflows/build.yml/badge.svg)](https://github.com/eis/minimal-di/actions/workflows/build.yml)
 [![Coverage Status](https://img.shields.io/codecov/c/gh/eis/minimal-di?token=FL4QJY2PRT)](https://codecov.io/gh/eis/minimal-di)
-[![Maven Central](https://maven-badges.sml.io/maven-central/com.github.eis.libraries/minimal-di/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.eis.libraries/minimal-di/)
+[![Maven Central](https://maven-badges.sml.io/maven-central/com.github.eis.libraries/minimal-di/badge.svg)](https://maven-badges.sml.io/maven-central/com.github.eis.libraries/minimal-di/)
 [![CodeQL Analysis](https://github.com/eis/minimal-di/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/eis/minimal-di/security/code-scanning)
 
 This is a minimal dependency injection framework.
