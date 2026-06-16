@@ -98,30 +98,6 @@
                 </plugins>
             </build>
         </profile>
-        <profile>
-            <id>addPitReport</id>
-            <activation>
-                <file>
-                    <exists>target/pit-reports</exists>
-                </file>
-            </activation>
-
-            <reporting>
-                <plugins>
-                    <plugin>
-                        <groupId>org.pitest</groupId>
-                        <artifactId>pitest-maven</artifactId>
-                        <reportSets>
-                            <reportSet>
-                                <reports>
-                                    <report>report</report>
-                                </reports>
-                            </reportSet>
-                        </reportSets>
-                    </plugin>
-                </plugins>
-            </reporting>
-        </profile>
     </profiles>
     <dependencies>
         <dependency>
@@ -319,6 +295,13 @@
                 <groupId>org.pitest</groupId>
                 <artifactId>pitest-maven</artifactId>
                 <version>1.25.4</version>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <report>report</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
             </plugin>
         </plugins>
     </reporting>
