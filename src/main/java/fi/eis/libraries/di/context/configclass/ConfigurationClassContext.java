@@ -38,14 +38,14 @@ public class ConfigurationClassContext extends Context {
             for (Class configurationClass: configurationClassInstances){
                 Object configurationClassInstance = configurationClass.newInstance();
 
-                for (Method m : Arrays.asList(configurationClass.getMethods())) {
+                for (Method m : configurationClass.getMethods()) {
                     if (m.getDeclaringClass() != Object.class) {
                         logger.debug("Got method " + m);
                         confClassCreationMethodTuples.add(tuple(configurationClassInstance, m));
                     }
                 }
             }
-            Collections.sort(confClassCreationMethodTuples, ConfClassCreationMethodTuplesComparator);
+            confClassCreationMethodTuples.sort(ConfClassCreationMethodTuplesComparator);
             logger.debug("tuples: " + confClassCreationMethodTuples);
 
             for (Map.Entry<Object,Method> confClassCreationMethodTuple: confClassCreationMethodTuples) {

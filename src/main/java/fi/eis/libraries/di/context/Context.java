@@ -19,7 +19,7 @@ public class Context {
 
     protected final SimpleLogger logger = new SimpleLogger(this.getClass());
 
-    protected final List<Module> modules = new ArrayList<Module>();
+    protected final List<Module> modules = new ArrayList<>();
     public Context(Module... modules) {
         Collections.addAll(this.modules, modules);
     }
