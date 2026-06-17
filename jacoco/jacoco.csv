@@ -1,5 +1,5 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
-Minimal DI,fi.eis.libraries.di.context.configclass,ConfigurationClassContext,11,199,0,10,4,32,1,10,1,5
+Minimal DI,fi.eis.libraries.di.context.configclass,ConfigurationClassContext,11,203,0,10,4,31,1,10,1,5
 Minimal DI,fi.eis.libraries.di,DependencyInjection,19,80,0,2,4,11,4,9,4,8
 Minimal DI,fi.eis.libraries.di.logger,SimpleLogger.LoggingBackend,0,24,0,0,0,3,0,1,0,1
 Minimal DI,fi.eis.libraries.di.logger,LogLevel,0,34,0,0,0,2,0,1,0,1

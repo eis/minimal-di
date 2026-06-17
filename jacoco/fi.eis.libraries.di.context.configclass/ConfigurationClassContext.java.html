@@ -38,14 +38,14 @@ public class ConfigurationClassContext extends Context {
 <span class="fc bfc" id="L38" title="All 2 branches covered.">            for (Class configurationClass: configurationClassInstances){</span>
 <span class="fc" id="L39">                Object configurationClassInstance = configurationClass.newInstance();</span>
 
-<span class="fc bfc" id="L41" title="All 2 branches covered.">                for (Method m : Arrays.asList(configurationClass.getMethods())) {</span>
+<span class="fc bfc" id="L41" title="All 2 branches covered.">                for (Method m : configurationClass.getMethods()) {</span>
 <span class="fc bfc" id="L42" title="All 2 branches covered.">                    if (m.getDeclaringClass() != Object.class) {</span>
 <span class="fc" id="L43">                        logger.debug(&quot;Got method &quot; + m);</span>
 <span class="fc" id="L44">                        confClassCreationMethodTuples.add(tuple(configurationClassInstance, m));</span>
                     }
-<span class="fc" id="L46">                }</span>
+                }
             }
-<span class="fc" id="L48">            Collections.sort(confClassCreationMethodTuples, ConfClassCreationMethodTuplesComparator);</span>
+<span class="fc" id="L48">            confClassCreationMethodTuples.sort(ConfClassCreationMethodTuplesComparator);</span>
 <span class="fc" id="L49">            logger.debug(&quot;tuples: &quot; + confClassCreationMethodTuples);</span>
 
 <span class="fc bfc" id="L51" title="All 2 branches covered.">            for (Map.Entry&lt;Object,Method&gt; confClassCreationMethodTuple: confClassCreationMethodTuples) {</span>
