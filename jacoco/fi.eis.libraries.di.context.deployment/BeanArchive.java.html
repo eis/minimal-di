@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BeanArchive.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Minimal DI</a> &gt; <a href="index.source.html" class="el_package">fi.eis.libraries.di.context.deployment</a> &gt; <span class="el_source">BeanArchive.java</span></div><h1>BeanArchive.java</h1><pre class="source lang-java linenums">package fi.eis.libraries.di.context.deployment;
 
+import fi.eis.libraries.di.logger.LogLevel;
 import fi.eis.libraries.di.logger.SimpleLogger;
 
 import java.io.File;
@@ -27,54 +28,54 @@ import java.util.zip.ZipFile;
  * @author eis
  */
 class BeanArchive {
-<span class="pc" id="L30">    private final List&lt;Class&gt; classes = new ArrayList&lt;&gt;();</span>
-<span class="pc" id="L31">    private final SimpleLogger logger = new SimpleLogger(this.getClass());</span>
+<span class="pc" id="L31">    private final List&lt;Class&gt; classes = new ArrayList&lt;&gt;();</span>
+<span class="pc" id="L32">    private final SimpleLogger logger = new SimpleLogger(this.getClass());</span>
 
-<span class="fc" id="L33">    public BeanArchive(URL url) {</span>
-<span class="fc" id="L34">        initArchive(url);</span>
-<span class="fc" id="L35">    }</span>
-<span class="fc" id="L36">    public BeanArchive(URL url, SimpleLogger.LogLevel logLevel) {</span>
-<span class="fc" id="L37">        setLogLevel(logLevel);</span>
-<span class="fc" id="L38">        initArchive(url);</span>
-<span class="fc" id="L39">    }</span>
-<span class="fc" id="L40">    public BeanArchive(File file) {</span>
-<span class="fc" id="L41">        initArchive(file);</span>
-<span class="fc" id="L42">    }</span>
-<span class="nc" id="L43">    public BeanArchive(File file, SimpleLogger.LogLevel logLevel) {</span>
-<span class="nc" id="L44">        setLogLevel(logLevel);</span>
-<span class="nc" id="L45">        initArchive(file);</span>
-<span class="nc" id="L46">    }</span>
+<span class="fc" id="L34">    public BeanArchive(URL url) {</span>
+<span class="fc" id="L35">        initArchive(url);</span>
+<span class="fc" id="L36">    }</span>
+<span class="fc" id="L37">    public BeanArchive(URL url, LogLevel logLevel) {</span>
+<span class="fc" id="L38">        setLogLevel(logLevel);</span>
+<span class="fc" id="L39">        initArchive(url);</span>
+<span class="fc" id="L40">    }</span>
+<span class="fc" id="L41">    public BeanArchive(File file) {</span>
+<span class="fc" id="L42">        initArchive(file);</span>
+<span class="fc" id="L43">    }</span>
+<span class="nc" id="L44">    public BeanArchive(File file, LogLevel logLevel) {</span>
+<span class="nc" id="L45">        setLogLevel(logLevel);</span>
+<span class="nc" id="L46">        initArchive(file);</span>
+<span class="nc" id="L47">    }</span>
 
     public List&lt;Class&gt; getClasses() {
-<span class="fc" id="L49">        return this.classes;</span>
+<span class="fc" id="L50">        return this.classes;</span>
     }
 
     private static final String PROCOTOL_JAR = &quot;jar&quot;;
     private static final String CLASS_FILE_EXTENSION = &quot;.class&quot;;
 
     private void initArchive(URL url) {
-<span class="fc" id="L56">        initArchive(new File(url.getPath()));</span>
-<span class="fc" id="L57">    }</span>
+<span class="fc" id="L57">        initArchive(new File(url.getPath()));</span>
+<span class="fc" id="L58">    }</span>
 
     private void initArchive(File file) {
 
-<span class="fc bfc" id="L61" title="All 2 branches covered.">        if (!file.exists()) {</span>
-<span class="fc" id="L62">            throw new IllegalArgumentException(</span>
-<span class="fc" id="L63">                    String.format(&quot;Doesn't exist: %s&quot;, file));</span>
+<span class="fc bfc" id="L62" title="All 2 branches covered.">        if (!file.exists()) {</span>
+<span class="fc" id="L63">            throw new IllegalArgumentException(</span>
+<span class="fc" id="L64">                    String.format(&quot;Doesn't exist: %s&quot;, file));</span>
         }
 
         try {
-<span class="fc" id="L67">            logger.debug(&quot;Handle path: %s&quot;, file.toPath());</span>
+<span class="fc" id="L68">            logger.debug(&quot;Handle path: %s&quot;, file.toPath());</span>
 
-<span class="fc bfc" id="L69" title="All 2 branches covered.">            if (file.isDirectory()) {</span>
-<span class="fc" id="L70">                handleDirectory(new DirectoryEntry().setFile(file));</span>
+<span class="fc bfc" id="L70" title="All 2 branches covered.">            if (file.isDirectory()) {</span>
+<span class="fc" id="L71">                handleDirectory(new DirectoryEntry().setFile(file));</span>
             } else {
-<span class="fc" id="L72">                handleFile(file);</span>
+<span class="fc" id="L73">                handleFile(file);</span>
             }
-<span class="nc" id="L74">        } catch (IOException e) {</span>
-<span class="nc" id="L75">            throw new IllegalStateException(&quot;Could not handle path: &quot; + file.toPath(), e);</span>
-<span class="fc" id="L76">        }</span>
-<span class="fc" id="L77">    }</span>
+<span class="nc" id="L75">        } catch (IOException e) {</span>
+<span class="nc" id="L76">            throw new IllegalStateException(&quot;Could not handle path: &quot; + file.toPath(), e);</span>
+<span class="fc" id="L77">        }</span>
+<span class="fc" id="L78">    }</span>
 
     /**
      * Method to go through all entries in a .jar file on disk
@@ -84,20 +85,20 @@ class BeanArchive {
      */
     private void handleFile(File file) throws IOException {
 
-<span class="fc" id="L87">        logger.debug(&quot;Handle archive file: %s&quot;, file);</span>
+<span class="fc" id="L88">        logger.debug(&quot;Handle archive file: %s&quot;, file);</span>
 
         try {
-<span class="fc" id="L90">            ZipFile zip = new ZipFile(file);</span>
-<span class="fc" id="L91">            Enumeration&lt;? extends ZipEntry&gt; entries = zip.entries();</span>
-<span class="fc" id="L92">            ZipFileEntry entry = new ZipFileEntry(PROCOTOL_JAR + &quot;:&quot; + file.toURI().toURL().toExternalForm() + &quot;!/&quot;);</span>
-<span class="fc bfc" id="L93" title="All 2 branches covered.">            while (entries.hasMoreElements()) {</span>
-<span class="fc" id="L94">                addIfClass(entry.setName(entries.nextElement().getName()));</span>
+<span class="fc" id="L91">            ZipFile zip = new ZipFile(file);</span>
+<span class="fc" id="L92">            Enumeration&lt;? extends ZipEntry&gt; entries = zip.entries();</span>
+<span class="fc" id="L93">            ZipFileEntry entry = new ZipFileEntry(PROCOTOL_JAR + &quot;:&quot; + file.toURI().toURL().toExternalForm() + &quot;!/&quot;);</span>
+<span class="fc bfc" id="L94" title="All 2 branches covered.">            while (entries.hasMoreElements()) {</span>
+<span class="fc" id="L95">                addIfClass(entry.setName(entries.nextElement().getName()));</span>
             }
-<span class="fc" id="L96">            zip.close();</span>
-<span class="nc" id="L97">        } catch (ZipException e) {</span>
-<span class="nc" id="L98">            throw new IllegalArgumentException(e);</span>
-<span class="fc" id="L99">        }</span>
-<span class="fc" id="L100">    }</span>
+<span class="fc" id="L97">            zip.close();</span>
+<span class="nc" id="L98">        } catch (ZipException e) {</span>
+<span class="nc" id="L99">            throw new IllegalArgumentException(e);</span>
+<span class="fc" id="L100">        }</span>
+<span class="fc" id="L101">    }</span>
 
     /**
      * Recursive method to handle a directory tree of classes loaded runtime.
@@ -107,68 +108,68 @@ class BeanArchive {
      */
     private void handleDirectory(DirectoryEntry entry) throws IOException {
 
-<span class="fc" id="L110">        String directoryPath = entry.getName();</span>
+<span class="fc" id="L111">        String directoryPath = entry.getName();</span>
 
-<span class="fc" id="L112">        logger.debug(&quot;Handle file %s with a path: %s&quot;, entry.getFile(), directoryPath);</span>
+<span class="fc" id="L113">        logger.debug(&quot;Handle file %s with a path: %s&quot;, entry.getFile(), directoryPath);</span>
 
-<span class="fc bfc" id="L114" title="All 2 branches covered.">        boolean hasPath = directoryPath != null;</span>
+<span class="fc bfc" id="L115" title="All 2 branches covered.">        boolean hasPath = directoryPath != null;</span>
 
-<span class="fc" id="L116">        File[] files = entry.getFile().listFiles();</span>
+<span class="fc" id="L117">        File[] files = entry.getFile().listFiles();</span>
 
-<span class="pc bpc" id="L118" title="1 of 2 branches missed.">        if (files == null) {</span>
-<span class="nc" id="L119">            throw new IllegalArgumentException(</span>
-<span class="nc" id="L120">                    String.format(&quot;Unable to list directory files: %s&quot;, entry.getFile()));</span>
+<span class="pc bpc" id="L119" title="1 of 2 branches missed.">        if (files == null) {</span>
+<span class="nc" id="L120">            throw new IllegalArgumentException(</span>
+<span class="nc" id="L121">                    String.format(&quot;Unable to list directory files: %s&quot;, entry.getFile()));</span>
         }
 
-<span class="fc bfc" id="L123" title="All 2 branches covered.">        for (File childFile : files) {</span>
+<span class="fc bfc" id="L124" title="All 2 branches covered.">        for (File childFile : files) {</span>
 
-<span class="fc bfc" id="L125" title="All 2 branches covered.">            if (hasPath) {</span>
-<span class="fc" id="L126">                entry.setPath(directoryPath + &quot;/&quot; + childFile.getName());</span>
+<span class="fc bfc" id="L126" title="All 2 branches covered.">            if (hasPath) {</span>
+<span class="fc" id="L127">                entry.setPath(directoryPath + &quot;/&quot; + childFile.getName());</span>
             } else {
-<span class="fc" id="L128">                entry.setPath(childFile.getName());</span>
+<span class="fc" id="L129">                entry.setPath(childFile.getName());</span>
             }
-<span class="fc" id="L130">            entry.setFile(childFile);</span>
+<span class="fc" id="L131">            entry.setFile(childFile);</span>
 
-<span class="fc bfc" id="L132" title="All 2 branches covered.">            if (childFile.isDirectory()) {</span>
-<span class="fc" id="L133">                handleDirectory(entry);</span>
+<span class="fc bfc" id="L133" title="All 2 branches covered.">            if (childFile.isDirectory()) {</span>
+<span class="fc" id="L134">                handleDirectory(entry);</span>
             } else {
-<span class="fc" id="L135">                addIfClass(entry);</span>
+<span class="fc" id="L136">                addIfClass(entry);</span>
             }
         }
-<span class="fc" id="L138">    }</span>
+<span class="fc" id="L139">    }</span>
 
     private void addIfClass(Entry entry) {
-<span class="fc bfc" id="L141" title="All 2 branches covered.">        if (isClass(entry.getName())) {</span>
-<span class="fc" id="L142">            addClassWithName(filenameToClassname(entry.getName()));</span>
+<span class="fc bfc" id="L142" title="All 2 branches covered.">        if (isClass(entry.getName())) {</span>
+<span class="fc" id="L143">            addClassWithName(filenameToClassname(entry.getName()));</span>
         }
-<span class="fc" id="L144">    }</span>
+<span class="fc" id="L145">    }</span>
 
     private void addClassWithName(String className) {
         try {
-<span class="fc" id="L148">            Class targetClass = Class.forName(className);</span>
+<span class="fc" id="L149">            Class targetClass = Class.forName(className);</span>
             // we want instantiable classes, so don't add interfaces or
             // abstract classes
-<span class="fc bfc" id="L151" title="All 4 branches covered.">            if (targetClass.isInterface() || Modifier.isAbstract(targetClass.getModifiers())) {</span>
-<span class="fc" id="L152">                return;</span>
+<span class="fc bfc" id="L152" title="All 4 branches covered.">            if (targetClass.isInterface() || Modifier.isAbstract(targetClass.getModifiers())) {</span>
+<span class="fc" id="L153">                return;</span>
             }
-<span class="fc" id="L154">            classes.add(targetClass);</span>
-<span class="nc" id="L155">        } catch (ClassNotFoundException | NoClassDefFoundError e) {</span>
-<span class="nc" id="L156">            throw new IllegalArgumentException(&quot;Not found: &quot; + className);</span>
-<span class="fc" id="L157">        }</span>
-<span class="fc" id="L158">    }</span>
+<span class="fc" id="L155">            classes.add(targetClass);</span>
+<span class="nc" id="L156">        } catch (ClassNotFoundException | NoClassDefFoundError e) {</span>
+<span class="nc" id="L157">            throw new IllegalArgumentException(&quot;Not found: &quot; + className);</span>
+<span class="fc" id="L158">        }</span>
+<span class="fc" id="L159">    }</span>
 
     private boolean isClass(String fileName) {
-<span class="fc" id="L161">        return fileName.endsWith(CLASS_FILE_EXTENSION);</span>
+<span class="fc" id="L162">        return fileName.endsWith(CLASS_FILE_EXTENSION);</span>
     }
 
     private String filenameToClassname(String fileName) {
-<span class="fc" id="L165">        return fileName.substring(0, fileName.lastIndexOf(CLASS_FILE_EXTENSION))</span>
-<span class="fc" id="L166">                .replace('/', '.').replace('\\', '.');</span>
+<span class="fc" id="L166">        return fileName.substring(0, fileName.lastIndexOf(CLASS_FILE_EXTENSION))</span>
+<span class="fc" id="L167">                .replace('/', '.').replace('\\', '.');</span>
     }
 
-    private void setLogLevel(SimpleLogger.LogLevel logLevel) {
-<span class="fc" id="L170">        this.logger.setLogLevel(logLevel);</span>
-<span class="fc" id="L171">    }</span>
+    private void setLogLevel(LogLevel logLevel) {
+<span class="fc" id="L171">        this.logger.setLogLevel(logLevel);</span>
+<span class="fc" id="L172">    }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.15.202606040825</span></div></body></html>

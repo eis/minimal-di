@@ -2,54 +2,94 @@
 
 import java.io.PrintStream;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+/**
+ * Simple logger that can delegate to java.util.logging or System.out.
+ *
+ * By default, JUL is used, but it can be overridden with a property.
+ *
+ * JUL support is due to fact that it's available in all java environments without additional dependencies,
+ * and with jul bridge, can be redirected to wherever if needed.
+ */
 public class SimpleLogger {
-<span class="fc" id="L7">    public static enum LogLevel {</span>
-<span class="fc" id="L8">        NONE, ERROR, DEBUG; </span>
+
+    public static final String PROPERTY_NAME_USE_SYSTEM_OUT_LOGGING = &quot;minimal-di.logging.systemout&quot;;
+<span class="fc" id="L19">    public enum LoggingBackend {</span>
+<span class="fc" id="L20">        USE_SYSTEM_OUT,</span>
+<span class="fc" id="L21">        USE_JUL_LOGGING</span>
     }
-<span class="fc" id="L10">    private volatile LogLevel logLevel = LogLevel.NONE;</span>
+<span class="fc" id="L23">    private volatile LogLevel logLevel = LogLevel.NONE;</span>
 
     private final String className;
-<span class="fc" id="L13">    private transient PrintStream printStream = System.out;</span>
+    private final Logger logger;
 
-<span class="fc" id="L15">    public SimpleLogger(Class&lt;?&gt; targetClass) {</span>
-<span class="fc" id="L16">        this.className = targetClass.getName();</span>
-<span class="fc" id="L17">    }</span>
+<span class="fc" id="L28">    private transient PrintStream printStream = System.out;</span>
+
+    private final LoggingBackend loggingBackend;
+
+    public SimpleLogger(Class&lt;?&gt; targetClass) {
+<span class="fc" id="L33">        this(targetClass,</span>
+<span class="fc bfc" id="L34" title="All 2 branches covered.">                Boolean.parseBoolean(System.getProperty(PROPERTY_NAME_USE_SYSTEM_OUT_LOGGING, &quot;false&quot;))</span>
+<span class="fc" id="L35">                        ? LoggingBackend.USE_SYSTEM_OUT : LoggingBackend.USE_JUL_LOGGING);</span>
+<span class="fc" id="L36">    }</span>
+<span class="fc" id="L37">    public SimpleLogger(Class&lt;?&gt; targetClass, LoggingBackend loggingBackend) {</span>
+<span class="fc" id="L38">        this.className = targetClass.getName();</span>
+<span class="fc" id="L39">        this.loggingBackend = loggingBackend;</span>
+        
+<span class="fc bfc" id="L41" title="All 2 branches covered.">        if (loggingBackend == LoggingBackend.USE_JUL_LOGGING) {</span>
+<span class="fc" id="L42">            this.logger = Logger.getLogger(targetClass.getSimpleName());</span>
+        } else {
+<span class="fc" id="L44">            this.logger = null;</span>
+        }
+<span class="fc" id="L46">    }</span>
     public void setLogLevel(LogLevel value) {
-<span class="fc" id="L19">        this.logLevel = value;</span>
-<span class="fc" id="L20">    }</span>
+<span class="fc" id="L48">        this.logLevel = value;</span>
+<span class="fc" id="L49">    }</span>
     public boolean isDebugEnabled() {
-<span class="fc bfc" id="L22" title="All 2 branches covered.">        return this.logLevel.ordinal() &gt;= LogLevel.DEBUG.ordinal();</span>
+<span class="fc bfc" id="L51" title="All 2 branches covered.">        return this.logLevel.ordinal() &gt;= LogLevel.DEBUG.ordinal();</span>
     }
     public boolean isErrorEnabled() {
-<span class="pc bpc" id="L25" title="1 of 2 branches missed.">        return this.logLevel.ordinal() &gt;= LogLevel.ERROR.ordinal();</span>
+<span class="pc bpc" id="L54" title="1 of 2 branches missed.">        return this.logLevel.ordinal() &gt;= LogLevel.ERROR.ordinal();</span>
     }
     
     public void debug(String message) {
-<span class="fc bfc" id="L29" title="All 2 branches covered.">        if (this.isDebugEnabled()) {</span>
-<span class="fc" id="L30">            printStream.printf(&quot;%s DEBUG %s: %s%n&quot;,</span>
-                    new Date(), className, message);
+<span class="fc bfc" id="L58" title="All 2 branches covered.">        if (!this.isDebugEnabled()) {</span>
+<span class="fc" id="L59">            return;</span>
         }
-<span class="fc" id="L33">    }</span>
+<span class="fc bfc" id="L61" title="All 2 branches covered.">        if (loggingBackend == LoggingBackend.USE_SYSTEM_OUT) {</span>
+<span class="fc" id="L62">            printStream.printf(&quot;%s DEBUG %s: %s%n&quot;,</span>
+                    new Date(), className, message);
+        } else {
+<span class="fc" id="L65">            this.logger.log(Level.FINE, message);</span>
+        }
+<span class="fc" id="L67">    }</span>
     public void debug(String message, Object... parameters) {
-<span class="fc bfc" id="L35" title="All 2 branches covered.">        if (this.isDebugEnabled()) {</span>
-<span class="fc" id="L36">            debug(String.format(message, parameters));</span>
+<span class="fc bfc" id="L69" title="All 2 branches covered.">        if (this.isDebugEnabled()) {</span>
+<span class="fc" id="L70">            debug(String.format(message, parameters));</span>
         }
-<span class="fc" id="L38">    }</span>
+<span class="fc" id="L72">    }</span>
     public void error(String message) {
-<span class="pc bpc" id="L40" title="1 of 2 branches missed.">        if (this.isErrorEnabled()) {</span>
-<span class="fc" id="L41">            printStream.printf(&quot;%s ERROR %s: %s%n&quot;,</span>
+<span class="pc bpc" id="L74" title="1 of 2 branches missed.">        if (!this.isErrorEnabled()) {</span>
+<span class="nc" id="L75">            return;</span>
+        }
+<span class="pc bpc" id="L77" title="1 of 2 branches missed.">        if (loggingBackend == LoggingBackend.USE_SYSTEM_OUT) {</span>
+<span class="fc" id="L78">            printStream.printf(&quot;%s ERROR %s: %s%n&quot;,</span>
                     new Date(), className, message);
+        } else {
+<span class="nc" id="L81">            this.logger.log(Level.SEVERE, message);</span>
         }
-<span class="fc" id="L44">    }</span>
+<span class="fc" id="L83">    }</span>
     public void error(String message, Object... parameters) {
-<span class="pc bpc" id="L46" title="1 of 2 branches missed.">        if (this.isErrorEnabled()) {</span>
-<span class="fc" id="L47">            error(String.format(message, parameters));</span>
+<span class="pc bpc" id="L85" title="1 of 2 branches missed.">        if (this.isErrorEnabled()) {</span>
+<span class="fc" id="L86">            error(String.format(message, parameters));</span>
         }
-<span class="fc" id="L49">    }</span>
-    /** package-private - we don't need to set this from everywhere */
+<span class="fc" id="L88">    }</span>
+
+    /** package-private to facilitate testing - we don't need to set this from everywhere */
     void setPrintOut(PrintStream stream) {
-<span class="fc" id="L52">        this.printStream = stream;</span>
-<span class="fc" id="L53">    }</span>
+<span class="fc" id="L92">        this.printStream = stream;</span>
+<span class="fc" id="L93">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.15.202606040825</span></div></body></html>
