@@ -1,6 +1,7 @@
 package fi.eis.libraries.di.context;
 
 import fi.eis.libraries.di.Inject;
+import fi.eis.libraries.di.logger.LogLevel;
 import fi.eis.libraries.di.logger.SimpleLogger;
 
 import java.lang.reflect.Field;
@@ -62,7 +63,7 @@ public class Context {
             }
         }
     }
-    public void setLogLevel(SimpleLogger.LogLevel level) {
+    public void setLogLevel(LogLevel level) {
         this.logger.setLogLevel(level);
     }
 }

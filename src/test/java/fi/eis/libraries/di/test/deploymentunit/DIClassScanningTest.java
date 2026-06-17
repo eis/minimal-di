@@ -2,7 +2,7 @@ package fi.eis.libraries.di.test.deploymentunit;
 
 import fi.eis.libraries.di.DependencyInjection;
 import fi.eis.libraries.di.context.Context;
-import fi.eis.libraries.di.logger.SimpleLogger.LogLevel;
+import fi.eis.libraries.di.logger.LogLevel;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,6 +11,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 
+import static fi.eis.libraries.di.testhelpers.LoggingConfigHelper.resetSystemOutLogging;
+import static fi.eis.libraries.di.testhelpers.LoggingConfigHelper.setSystemOutLogging;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.not;
@@ -38,11 +40,15 @@ public class DIClassScanningTest {
         loggingOutputStream = new ByteArrayOutputStream();
         PrintStream ps = new PrintStream(loggingOutputStream);
         System.setOut(ps);
+
+        setSystemOutLogging();
     }
     
     @After
     public void resetSystemOutRedirection() {
         System.setOut(originalPrintStream);
+
+        resetSystemOutLogging();
     }
     @Test
     public void testDiLoggingEnabled() throws UnsupportedEncodingException {

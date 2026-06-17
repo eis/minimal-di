@@ -5,12 +5,25 @@ import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 
 import org.hamcrest.Matchers;
+import org.junit.AfterClass;
 import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
-import fi.eis.libraries.di.logger.SimpleLogger.LogLevel;
+import static fi.eis.libraries.di.testhelpers.LoggingConfigHelper.resetSystemOutLogging;
+import static fi.eis.libraries.di.testhelpers.LoggingConfigHelper.setSystemOutLogging;
 
-public class SimpleLoggerTest {
+public class SimpleSystemOutLoggerTest {
+
+    @BeforeClass
+    public static void loggingSetup() {
+        setSystemOutLogging();
+    }
+
+    @AfterClass
+    public static void loggingReset() {
+        resetSystemOutLogging();
+    }
     @Test
     public void testDebugLevelDebugLogging() throws UnsupportedEncodingException {
         SimpleLogger logger = new SimpleLogger(this.getClass());

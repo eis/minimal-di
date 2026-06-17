@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.Map;
 
 import fi.eis.libraries.di.Inject;
+import fi.eis.libraries.di.logger.LogLevel;
 import fi.eis.libraries.di.logger.SimpleLogger;
-import fi.eis.libraries.di.logger.SimpleLogger.LogLevel;
 
 /**
  *

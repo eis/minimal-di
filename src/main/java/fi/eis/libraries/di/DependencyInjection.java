@@ -5,10 +5,10 @@ import java.util.List;
 import java.util.Map;
 
 import fi.eis.libraries.di.context.configclass.ConfigurationClassContext;
-import fi.eis.libraries.di.logger.SimpleLogger.LogLevel;
 import fi.eis.libraries.di.context.Context;
 import fi.eis.libraries.di.context.deployment.DeploymentUnitContext;
 import fi.eis.libraries.di.context.Module;
+import fi.eis.libraries.di.logger.LogLevel;
 
 /**
  * 

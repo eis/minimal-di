@@ -2,7 +2,7 @@ package fi.eis.libraries.di.context.deployment;
 
 import fi.eis.libraries.di.context.Context;
 import fi.eis.libraries.di.context.Module;
-import fi.eis.libraries.di.logger.SimpleLogger.LogLevel;
+import fi.eis.libraries.di.logger.LogLevel;
 
 import java.io.File;
 import java.util.List;

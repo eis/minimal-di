@@ -2,7 +2,7 @@ package fi.eis.libraries.di.context.configclass;
 
 import fi.eis.libraries.di.DependencyInjection;
 import fi.eis.libraries.di.context.Context;
-import fi.eis.libraries.di.logger.SimpleLogger;
+import fi.eis.libraries.di.logger.LogLevel;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -28,9 +28,9 @@ public class ConfigurationClassContext extends Context {
     private final Map<Class, Object> classObjectMap = new HashMap<>();
 
     public ConfigurationClassContext(Class... configurationClasses) {
-        this(SimpleLogger.LogLevel.NONE, configurationClasses);
+        this(LogLevel.NONE, configurationClasses);
     }
-    public ConfigurationClassContext(SimpleLogger.LogLevel logLevel, Class... configurationClassInstances) {
+    public ConfigurationClassContext(LogLevel logLevel, Class... configurationClassInstances) {
         setLogLevel(logLevel);
 
         try {

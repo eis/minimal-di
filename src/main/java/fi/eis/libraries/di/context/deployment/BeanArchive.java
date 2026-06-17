@@ -1,5 +1,6 @@
 package fi.eis.libraries.di.context.deployment;
 
+import fi.eis.libraries.di.logger.LogLevel;
 import fi.eis.libraries.di.logger.SimpleLogger;
 
 import java.io.File;
@@ -33,14 +34,14 @@ class BeanArchive {
     public BeanArchive(URL url) {
         initArchive(url);
     }
-    public BeanArchive(URL url, SimpleLogger.LogLevel logLevel) {
+    public BeanArchive(URL url, LogLevel logLevel) {
         setLogLevel(logLevel);
         initArchive(url);
     }
     public BeanArchive(File file) {
         initArchive(file);
     }
-    public BeanArchive(File file, SimpleLogger.LogLevel logLevel) {
+    public BeanArchive(File file, LogLevel logLevel) {
         setLogLevel(logLevel);
         initArchive(file);
     }
@@ -166,7 +167,7 @@ class BeanArchive {
                 .replace('/', '.').replace('\\', '.');
     }
 
-    private void setLogLevel(SimpleLogger.LogLevel logLevel) {
+    private void setLogLevel(LogLevel logLevel) {
         this.logger.setLogLevel(logLevel);
     }
 
