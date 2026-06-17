@@ -74,11 +74,11 @@ public class SimpleLogger {
 <span class="fc bfc" id="L74" title="All 2 branches covered.">        if (!this.isErrorEnabled()) {</span>
 <span class="fc" id="L75">            return;</span>
         }
-<span class="pc bpc" id="L77" title="1 of 2 branches missed.">        if (loggingBackend == LoggingBackend.USE_SYSTEM_OUT) {</span>
+<span class="fc bfc" id="L77" title="All 2 branches covered.">        if (loggingBackend == LoggingBackend.USE_SYSTEM_OUT) {</span>
 <span class="fc" id="L78">            printStream.printf(&quot;%s ERROR %s: %s%n&quot;,</span>
                     new Date(), className, message);
         } else {
-<span class="nc" id="L81">            this.logger.log(Level.SEVERE, message);</span>
+<span class="fc" id="L81">            this.logger.log(Level.SEVERE, message);</span>
         }
 <span class="fc" id="L83">    }</span>
     public void error(String message, Object... parameters) {
