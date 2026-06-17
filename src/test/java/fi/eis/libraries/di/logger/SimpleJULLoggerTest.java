@@ -27,7 +27,7 @@ public class SimpleJULLoggerTest {
     };
     private Filter previousFilter;
 
-g    private final Logger julLogger = Logger.getLogger(this.getClass().getSimpleName());
+    private final Logger julLogger = Logger.getLogger(this.getClass().getSimpleName());
 
     @Before
     public void loggingSetup() {
