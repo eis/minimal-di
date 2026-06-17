@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Filter;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
 import static fi.eis.libraries.di.testhelpers.LoggingConfigHelper.resetJULLoggingConfiguration;
 import static fi.eis.libraries.di.testhelpers.LoggingConfigHelper.setJULLoggingConfiguration;
@@ -58,7 +57,7 @@ public class SimpleJULLoggerTest {
         logger.debug("How're you doing, %s?", "John");
 
         // Then
-        String result = logs.stream().collect(Collectors.joining());
+        String result = String.join("", logs);
         
         assertThat(result, containsString("Hello"));
         assertThat(result, containsString("How're you doing, John?"));
@@ -74,7 +73,7 @@ public class SimpleJULLoggerTest {
         logger.debug("Hello");
         logger.debug("How're you doing, %s?", "John");
 
-        String result = logs.stream().collect(Collectors.joining());
+        String result = String.join("", logs);
         assertThat(result, not(containsString("DEBUG")));
         assertThat(result, not(containsString("How're you doing, John?")));
     }
@@ -90,7 +89,7 @@ public class SimpleJULLoggerTest {
         logger.debug("How're you doing, %s?", "John");
         logger.error("Some error");
 
-        String result = logs.stream().collect(Collectors.joining());
+        String result = String.join("", logs);
         assertThat(result, not(containsString("DEBUG")));
         assertThat(result, not(containsString("How're you doing, John?")));
         assertThat(result, not(containsString("ERROR")));
@@ -107,7 +106,7 @@ public class SimpleJULLoggerTest {
         logger.debug("How're you doing, %s?", "John");
         logger.error("Quite well, %s.", "Matt");
 
-        String result = logs.stream().collect(Collectors.joining());
+        String result = String.join("", logs);
         assertThat(result, not(containsString("DEBUG")));
         assertThat(result, not(containsString("How're you doing, John?")));
         assertThat(result, containsString("Quite well, Matt."));
